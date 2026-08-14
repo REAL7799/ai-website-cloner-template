@@ -1,28 +1,5 @@
 import { flavors } from "@/components/flavor-section";
 
-function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
-      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
-      <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
-    </svg>
-  );
-}
-
-function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M14 8.5h2V5.5h-2c-1.93 0-3.5 1.57-3.5 3.5v2H8.5v3H10.5V21h3v-7h2.2l.5-3H13.5V9c0-.28.22-.5.5-.5Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export function Footer() {
   return (
     <footer className="bg-neutral-950 px-6 py-14 text-white sm:px-10 md:py-20">
@@ -35,22 +12,6 @@ export function Footer() {
             Água mineral natural gasocarbónica, nascida nas montanhas de
             Trás-os-Montes desde 1871.
           </p>
-          <div className="mt-6 flex gap-4">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="text-white/60 transition-colors hover:text-white"
-            >
-              <InstagramIcon className="size-5" />
-            </a>
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="text-white/60 transition-colors hover:text-white"
-            >
-              <FacebookIcon className="size-5" />
-            </a>
-          </div>
         </div>
 
         <div>

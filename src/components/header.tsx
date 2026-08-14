@@ -33,6 +33,8 @@ export function Header() {
         </nav>
 
         <Button
+          render={<a href="#sabores" />}
+          nativeButton={false}
           size="sm"
           className="hidden rounded-full bg-white px-5 text-neutral-900 hover:bg-white/90 md:inline-flex"
         >
@@ -63,6 +65,8 @@ export function Header() {
             </a>
           ))}
           <Button
+            render={<a href="#sabores" onClick={() => setOpen(false)} />}
+            nativeButton={false}
             size="sm"
             className="mt-2 w-full rounded-full bg-white text-neutral-900 hover:bg-white/90"
           >
