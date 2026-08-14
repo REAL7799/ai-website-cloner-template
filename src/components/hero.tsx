@@ -20,10 +20,11 @@ export function Hero() {
           className="object-cover"
         />
         <div className="absolute inset-0 hidden bg-gradient-to-b from-black/75 via-black/25 to-transparent lg:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-l from-black/55 via-transparent to-transparent lg:block" />
         <div className="absolute inset-x-0 bottom-0 hidden h-1/3 bg-gradient-to-t from-black/60 to-transparent lg:block" />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-start gap-4 px-6 py-10 sm:px-10 lg:pt-28 lg:pb-0 lg:absolute lg:inset-0 lg:justify-start lg:py-0">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-start gap-4 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:items-end lg:justify-start lg:py-0 lg:pt-28 lg:pb-0 lg:text-right">
         <span className="text-xs font-semibold tracking-[0.3em] text-white/60 uppercase sm:text-sm lg:text-white/80">
           Água das Pedras · Desde 1871
         </span>
@@ -34,7 +35,7 @@ export function Hero() {
           Borbulhar
         </h1>
 
-        <p className="max-w-md text-base text-white/85 sm:text-lg">
+        <p className="max-w-md text-base text-white/85 sm:text-lg lg:ml-auto">
           Cinco sabores, uma explosão de frescura. Água mineral natural
           gasocarbónica com ingredientes naturais — Natural, Limão, Ananás,
           Maracujá e Frutos Vermelhos.
