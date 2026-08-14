@@ -1,4 +1,4 @@
-import { flavors } from "@/components/flavor-section";
+import { flavors } from "@/lib/flavors";
 
 export function Footer() {
   return (

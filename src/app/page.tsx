@@ -1,6 +1,7 @@
 import { FlavorGrid } from "@/components/flavor-grid";
-import { FlavorSection, flavors } from "@/components/flavor-section";
+import { FlavorSection } from "@/components/flavor-section";
 import { Hero } from "@/components/hero";
+import { flavors } from "@/lib/flavors";
 
 export default function Home() {
   return (

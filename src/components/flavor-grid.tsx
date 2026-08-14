@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { flavors } from "@/components/flavor-section";
+import { flavors } from "@/lib/flavors";
 import { cn } from "@/lib/utils";
 
 export function FlavorGrid() {
