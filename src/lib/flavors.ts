@@ -46,8 +46,7 @@ export const flavors: Flavor[] = [
     imageAlt: "Garrafa Pedras Limão com splash de limões",
     accent: "oklch(0.8 0.17 95)",
     cardFocus: "18% 55%",
-    align: "left",
-    offsetClass: "lg:pl-[19%]",
+    align: "right",
     animation: "falling-lemon",
   },
   {

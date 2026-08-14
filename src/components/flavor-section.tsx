@@ -19,10 +19,10 @@ interface FallingItem {
 }
 
 const lemonDrops: FallingItem[] = [
-  { src: "/images/cutouts/lemon.png", top: "8%", left: "68%", size: 92, rotateFrom: -25, rotateTo: 10, delay: 0 },
-  { src: "/images/cutouts/leaf.png", top: "4%", left: "80%", size: 56, rotateFrom: 15, rotateTo: -20, delay: 0.15 },
-  { src: "/images/cutouts/lemon.png", top: "10%", left: "88%", size: 64, rotateFrom: 20, rotateTo: -15, delay: 0.3 },
-  { src: "/images/cutouts/leaf.png", top: "6%", left: "60%", size: 44, rotateFrom: -10, rotateTo: 25, delay: 0.45 },
+  { src: "/images/cutouts/lemon.png", top: "6%", left: "6%", size: 88, rotateFrom: -25, rotateTo: 10, delay: 0 },
+  { src: "/images/cutouts/leaf.png", top: "3%", left: "20%", size: 54, rotateFrom: 15, rotateTo: -20, delay: 0.15 },
+  { src: "/images/cutouts/lemon.png", top: "9%", left: "30%", size: 60, rotateFrom: 20, rotateTo: -15, delay: 0.3 },
+  { src: "/images/cutouts/leaf.png", top: "5%", left: "0%", size: 42, rotateFrom: -10, rotateTo: 25, delay: 0.45 },
 ];
 
 const berryDrops: FallingItem[] = [
