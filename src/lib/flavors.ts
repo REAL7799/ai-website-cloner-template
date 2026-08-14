@@ -60,7 +60,7 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/ananas.jpg",
     imageAlt: "Garrafa Pedras Ananás numa praia tropical",
     accent: "oklch(0.75 0.15 75)",
-    cardFocus: "80% 60%",
+    cardFocus: "80% 75%",
     align: "left",
     animation: "kenburns",
   },
