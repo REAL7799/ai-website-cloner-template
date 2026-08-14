@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
+
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,8 +23,9 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Água das Pedras — Deixa o Verão Borbulhar",
+  description:
+    "Cinco sabores, uma explosão de frescura: Natural, Limão, Ananás, Maracujá e Frutos Vermelhos.",
 };
 
 export default function RootLayout({
@@ -33,7 +38,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

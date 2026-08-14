@@ -10,6 +10,7 @@ export interface Flavor {
   image: string;
   imageAlt: string;
   accent: string;
+  cardFocus: string;
 }
 
 export const flavors: Flavor[] = [
@@ -22,6 +23,7 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/natural.jpg",
     imageAlt: "Garrafa Pedras Natural num riacho na floresta",
     accent: "oklch(0.55 0.14 150)",
+    cardFocus: "50% 45%",
   },
   {
     slug: "limao",
@@ -32,6 +34,7 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/limao.jpg",
     imageAlt: "Garrafa Pedras Limão com splash de limões",
     accent: "oklch(0.8 0.17 95)",
+    cardFocus: "18% 55%",
   },
   {
     slug: "ananas",
@@ -42,6 +45,7 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/ananas.jpg",
     imageAlt: "Garrafa Pedras Ananás numa praia tropical",
     accent: "oklch(0.75 0.15 75)",
+    cardFocus: "80% 60%",
   },
   {
     slug: "maracuja",
@@ -52,6 +56,7 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/maracuja.jpg",
     imageAlt: "Garrafa Pedras Maracujá com splash dourado",
     accent: "oklch(0.5 0.18 330)",
+    cardFocus: "50% 55%",
   },
   {
     slug: "frutos-vermelhos",
@@ -62,12 +67,16 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/frutos-vermelhos.jpg",
     imageAlt: "Garrafa Pedras Frutos Vermelhos com frutos silvestres",
     accent: "oklch(0.45 0.18 15)",
+    cardFocus: "72% 50%",
   },
 ];
 
 export function FlavorSection({ flavor }: { flavor: Flavor }) {
   return (
-    <section className="relative w-full overflow-hidden bg-neutral-900 text-white md:min-h-[90svh]">
+    <section
+      id={flavor.slug}
+      className="relative w-full scroll-mt-16 overflow-hidden bg-neutral-900 text-white md:min-h-[90svh]"
+    >
       <div className="relative aspect-[16/9] w-full md:absolute md:inset-0 md:aspect-auto">
         <Image
           src={flavor.image}

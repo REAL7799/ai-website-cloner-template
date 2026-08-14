@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <section className="relative w-full overflow-hidden bg-neutral-900 text-white md:min-h-[100svh]">
+    <section
+      id="top"
+      className="relative w-full overflow-hidden bg-neutral-900 text-white md:min-h-[100svh]"
+    >
       {/* Image: contained banner on mobile (shows the full pack lineup, no cropping),
           full-bleed background from md up */}
       <div className="relative aspect-[16/9] w-full md:absolute md:inset-0 md:aspect-auto">
@@ -38,6 +41,8 @@ export function Hero() {
         </p>
 
         <Button
+          render={<a href="#sabores" />}
+          nativeButton={false}
           size="lg"
           className="mt-2 h-12 rounded-full bg-white px-8 text-base text-neutral-900 hover:bg-white/90 md:bg-primary md:text-primary-foreground md:hover:bg-primary/80"
         >
