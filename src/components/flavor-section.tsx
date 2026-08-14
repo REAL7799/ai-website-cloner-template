@@ -43,7 +43,7 @@ export const flavors: Flavor[] = [
     accent: "oklch(0.8 0.17 95)",
     cardFocus: "18% 55%",
     align: "left",
-    offsetClass: "md:pl-[26%]",
+    offsetClass: "md:pl-[19%]",
   },
   {
     slug: "ananas",
@@ -83,6 +83,7 @@ export const flavors: Flavor[] = [
     accent: "oklch(0.45 0.18 15)",
     cardFocus: "72% 50%",
     align: "right",
+    offsetClass: "md:justify-start md:pt-24",
   },
 ];
 
@@ -138,7 +139,7 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
         <p
           className={cn(
             "max-w-sm text-base text-white/85 sm:text-lg",
-            isRight && "md:ml-auto"
+            isRight && "md:ml-auto md:max-w-xs"
           )}
         >
           {flavor.description}
