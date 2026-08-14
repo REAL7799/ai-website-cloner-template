@@ -43,7 +43,7 @@ export const flavors: Flavor[] = [
     accent: "oklch(0.8 0.17 95)",
     cardFocus: "18% 55%",
     align: "left",
-    offsetClass: "md:pl-[19%]",
+    offsetClass: "lg:pl-[19%]",
   },
   {
     slug: "ananas",
@@ -83,7 +83,7 @@ export const flavors: Flavor[] = [
     accent: "oklch(0.45 0.18 15)",
     cardFocus: "72% 50%",
     align: "right",
-    offsetClass: "md:justify-start md:pt-24",
+    offsetClass: "lg:justify-start lg:pt-24",
   },
 ];
 
@@ -93,9 +93,9 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
   return (
     <section
       id={flavor.slug}
-      className="relative w-full scroll-mt-16 overflow-hidden bg-neutral-900 text-white md:min-h-[90svh]"
+      className="relative w-full scroll-mt-16 overflow-hidden bg-neutral-900 text-white lg:min-h-[90svh]"
     >
-      <div className="relative aspect-[16/9] w-full md:absolute md:inset-0 md:aspect-auto">
+      <div className="relative aspect-[16/9] w-full lg:absolute lg:inset-0 lg:aspect-auto">
         <Image
           src={flavor.image}
           alt={flavor.imageAlt}
@@ -105,20 +105,20 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
         />
         <div
           className={cn(
-            "absolute inset-0 hidden bg-gradient-to-b from-black/70 via-black/10 to-black/40 md:block",
+            "absolute inset-0 hidden bg-gradient-to-b from-black/70 via-black/10 to-black/40 lg:block",
             isRight
-              ? "md:bg-gradient-to-r md:from-black/10 md:via-black/45 md:to-black/75"
-              : "md:bg-gradient-to-l md:from-black/10 md:via-black/45 md:to-black/75"
+              ? "lg:bg-gradient-to-r lg:from-black/10 lg:via-black/45 lg:to-black/75"
+              : "lg:bg-gradient-to-l lg:from-black/10 lg:via-black/45 lg:to-black/75"
           )}
         />
       </div>
 
       <div
         className={cn(
-          "relative z-10 mx-auto flex w-full flex-col gap-3 px-6 py-10 sm:px-10 md:absolute md:inset-0 md:justify-center md:py-0",
+          "relative z-10 mx-auto flex w-full flex-col gap-3 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:justify-center lg:py-0",
           !isRight && "max-w-6xl",
           isRight
-            ? "items-start text-left md:items-end md:text-right"
+            ? "items-start text-left lg:items-end lg:text-right"
             : "items-start text-left",
           flavor.offsetClass
         )}
@@ -130,7 +130,7 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
           {flavor.eyebrow}
         </span>
 
-        <h2 className="font-heading text-6xl leading-[0.9] tracking-wide uppercase sm:text-7xl md:text-8xl md:drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+        <h2 className="font-heading text-6xl leading-[0.9] tracking-wide uppercase sm:text-7xl lg:text-8xl lg:drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
           {flavor.tagline[0]}
           <br />
           {flavor.tagline[1]}
@@ -139,7 +139,7 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
         <p
           className={cn(
             "max-w-sm text-base text-white/85 sm:text-lg",
-            isRight && "md:ml-auto md:max-w-xs"
+            isRight && "lg:ml-auto lg:max-w-xs"
           )}
         >
           {flavor.description}
@@ -148,7 +148,7 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
         <Button
           size="lg"
           variant="outline"
-          className="mt-2 h-11 rounded-full border-white/40 bg-transparent px-7 text-sm text-white hover:bg-white hover:text-neutral-900 md:text-base"
+          className="mt-2 h-11 rounded-full border-white/40 bg-transparent px-7 text-sm text-white hover:bg-white hover:text-neutral-900 lg:text-base"
         >
           Experimenta {flavor.name}
         </Button>
