@@ -2,7 +2,7 @@ export type FlavorAnimation =
   | "parallax"
   | "falling-lemon"
   | "kenburns"
-  | "entrance"
+  | "wall-drip"
   | "falling-berries";
 
 export interface Flavor {
@@ -71,11 +71,11 @@ export const flavors: Flavor[] = [
     description:
       "Exótico e intenso. Uma explosão ácida e perfumada que acorda os sentidos.",
     image: "/images/flavors/maracuja.jpg",
-    imageAlt: "Garrafa Pedras Maracujá com splash dourado",
+    imageAlt: "Garrafa Pedras Maracujá encostada a uma parede de estuque escura",
     accent: "oklch(0.5 0.18 330)",
-    cardFocus: "50% 55%",
+    cardFocus: "38% 55%",
     align: "right",
-    animation: "entrance",
+    animation: "wall-drip",
   },
   {
     slug: "frutos-vermelhos",
