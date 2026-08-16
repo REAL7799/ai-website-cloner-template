@@ -6,14 +6,47 @@
  * erra sempre isso se não lhe dissermos.
  */
 
-/** Enquadramento comum: fundo liso, para o recorte automático funcionar. */
-export const FRAME =
-  "Isolated product photograph on a pure plain white seamless background, " +
-  "nothing else in the frame, no table, no room, no props, no text, no logo, " +
-  "no watermark. Even soft studio lighting, gentle contact shadow directly " +
-  "under the food only, subject fully inside the frame with a clear margin " +
-  "on every side, sharp focus throughout, appetising, photorealistic, " +
-  "high detail, square image. ";
+/*
+ * Enquadramento copiado da carta impressa do café, que usa dois tratamentos:
+ *
+ *   - pratos: vistos a pique, de cima, em prato redondo branco, luz chapada
+ *   - sandes, snacks e bebidas: o item sozinho, em ligeiro ângulo
+ *
+ * Ambos isolados em branco, que é o que permite o recorte automático.
+ */
+const COMMON =
+  " Isolated on a pure plain white seamless background, nothing else in the " +
+  "frame — no table, no room, no props, no cutlery, no napkin, no text, no " +
+  "logo, no watermark. Flat even shadowless studio lighting, no dramatic " +
+  "shadows, no strong highlights. Subject centred and fully inside the frame " +
+  "with a clear margin on every side, sharp focus throughout, plain catalogue " +
+  "product photography, photorealistic, high detail, square image.";
+
+/** Prato: a pique, como na carta. */
+const PLATED =
+  "A perfectly top-down overhead flat-lay photograph, camera pointing " +
+  "straight down at 90 degrees, of ";
+
+/** Sandes, snacks e bebidas: o item sozinho, ligeiramente de lado. */
+const HANDHELD =
+  "A straight-on product photograph at a slight three-quarter angle of ";
+
+/** Por secção da carta. */
+const FRAMING = {
+  cafetaria: HANDHELD,
+  sandes: HANDHELD,
+  "sandes-vegetarianas": HANDHELD,
+  "sopa-snacks": PLATED,
+  burgers: HANDHELD,
+  "pratos-combinados": PLATED,
+  omeletes: PLATED,
+  "pratos-tradicionais": PLATED,
+  saladas: PLATED,
+  extras: PLATED,
+  sobremesas: PLATED,
+  "bebidas-frias": HANDHELD,
+  vinhos: HANDHELD,
+};
 
 const PAPO =
   "in a traditional Portuguese papo-seco bread roll: a small crusty white " +
@@ -166,5 +199,6 @@ export function promptFor(sectionId, namePt, nameEn) {
     BY_SECTION[`${sectionId}|${namePt}`] ??
     DISHES[namePt] ??
     `${nameEn}, a traditional Portuguese cafe item`;
-  return `${FRAME}Subject: ${subject}.`;
+  const framing = FRAMING[sectionId] ?? HANDHELD;
+  return `${framing}${subject}.${COMMON}`;
 }

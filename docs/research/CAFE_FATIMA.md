@@ -56,9 +56,11 @@ assim que forem preenchidos.
    esplanada**. São um lugar real e concreto; qualquer imagem gerada seria uma
    invenção. O layout tem espaço reservado para elas.
 
-   As imagens estão **recortadas**, com fundo transparente, para o prato
-   assentar sobre qualquer cor do site — creme nos destaques, disco claro no
-   hero, como na carta impressa. A primeira ronda tinha cenários de café atrás
+   As imagens **copiam o enquadramento da carta impressa**, que usa dois
+   tratamentos: os pratos são vistos a pique, de cima, em louça redonda branca
+   e com luz chapada; as sandes, snacks e bebidas aparecem sozinhos, em ligeiro
+   ângulo. Ambos recortados, com fundo transparente, para assentarem sobre
+   qualquer cor do site. A primeira ronda tinha cenários de café atrás
    e erros de conteúdo (a sandes de fiambre saiu em pão de forma quando numa
    casa portuguesa vem em papo-seco); ambos corrigidos com prompts específicos
    por prato em `scripts/dish-images/prompts.mjs`.

@@ -28,10 +28,13 @@ export function DishImage({
   if (src) {
     return (
       <div className={cn("relative isolate overflow-hidden", className)}>
-        <AzulejoPattern
-          id={`dish-bg-${slugify(name)}`}
-          className="pointer-events-none absolute inset-0 size-full text-label/12"
-          tile={56}
+        {/*
+          Disco cinza-claro por baixo do prato, como na carta impressa: cada
+          prato assenta num círculo pálido em vez de flutuar no vazio.
+        */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,var(--greige)_0%,transparent_70%)] opacity-40"
         />
         <Image
           src={`/images/pratos/${src}`}
