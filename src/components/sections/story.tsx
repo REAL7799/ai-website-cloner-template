@@ -9,43 +9,57 @@ export function Story({ locale }: { locale: Locale }) {
   return (
     <section
       id="historia"
-      className="scroll-mt-24 border-b border-border bg-background"
+      className="on-ink relative isolate scroll-mt-20 overflow-hidden border-b-2 border-ink"
     >
-      <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16">
-        <div>
-          <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">
-            {t.story.title}
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-foreground/90">
-            {t.story.lead}
-          </p>
-          {t.story.body.map((paragraph) => (
-            <p
-              key={paragraph.slice(0, 32)}
-              className="mt-5 leading-relaxed text-muted-foreground"
-            >
-              {paragraph}
-            </p>
-          ))}
-        </div>
+      <AzulejoPattern
+        id="story-azulejo"
+        className="pointer-events-none absolute inset-y-0 right-0 h-full w-2/3 text-azulejo/20"
+        tile={96}
+      />
 
-        <div className="relative isolate overflow-hidden rounded-lg border border-border bg-cream">
-          <AzulejoPattern
-            id="story-azulejo"
-            className="pointer-events-none absolute inset-0 size-full text-azulejo/20"
-            tile={64}
-          />
-          <div className="relative flex flex-col items-center px-8 py-16 text-center sm:py-20">
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
-              {t.story.badgeTitle}
+      <div className="relative mx-auto w-full max-w-[110rem] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+        {/* O ano em tamanho de cartaz, a segurar toda a secção. */}
+        <p
+          aria-hidden="true"
+          className="shout shout-outline text-[clamp(6rem,26vw,20rem)] text-cream/45"
+        >
+          {site.since}
+        </p>
+
+        <div className="mt-4 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+          <div>
+            <h2 className="shout text-[clamp(2.2rem,6.5vw,5rem)] text-cream">
+              {t.story.title}
+            </h2>
+            <p className="mt-8 max-w-xl font-heading text-xl leading-snug text-gold sm:text-2xl">
+              {t.story.lead}
             </p>
-            <p className="mt-4 font-heading text-7xl font-semibold tabular-nums text-primary sm:text-8xl">
-              {site.since}
-            </p>
-            <div className="mt-6 h-px w-16 bg-border" />
-            <p className="mt-6 text-sm text-muted-foreground">
-              {t.story.badgeSubtitle}
-            </p>
+          </div>
+
+          <div className="space-y-6">
+            {t.story.body.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 32)}
+                className="max-w-lg text-base leading-relaxed text-cream/70"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <dl className="grid grid-cols-2 gap-px border-t border-cream/15 pt-8">
+              {[
+                { term: t.story.statYearsLabel, value: t.story.statYearsValue },
+                { term: t.story.statPlaceLabel, value: t.story.statPlaceValue },
+              ].map((stat) => (
+                <div key={stat.term}>
+                  <dt className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-cream/45">
+                    {stat.term}
+                  </dt>
+                  <dd className="shout mt-2 text-3xl text-cream sm:text-4xl">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </div>

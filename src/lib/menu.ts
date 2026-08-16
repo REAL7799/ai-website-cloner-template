@@ -14,13 +14,20 @@ export const getItem = (
   return section && item ? { section, item } : undefined;
 };
 
+interface SignatureEntry {
+  section: MenuSection;
+  item: MenuItem;
+  blurb: { pt: string; en: string };
+}
+
 /** Pratos em destaque na homepage, já resolvidos e sem entradas em falta. */
-export const getSignatureItems = () =>
+export const getSignatureItems = (): SignatureEntry[] =>
   signatureDishes
-    .map(({ sectionId, itemPt }) => getItem(sectionId, itemPt))
-    .filter((entry): entry is { section: MenuSection; item: MenuItem } =>
-      Boolean(entry)
-    );
+    .map(({ sectionId, itemPt, blurb }) => {
+      const found = getItem(sectionId, itemPt);
+      return found ? { ...found, blurb } : undefined;
+    })
+    .filter((entry): entry is SignatureEntry => Boolean(entry));
 
 /** O preço mais baixo do prato, para os cartões de destaque. */
 export const getLeadPrice = (item: MenuItem, locale: Locale) => {

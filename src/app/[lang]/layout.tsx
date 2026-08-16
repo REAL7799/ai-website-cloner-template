@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Great_Vibes, Inter, Playfair_Display } from "next/font/google";
+import { Anton, Great_Vibes, Inter, Playfair_Display } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -16,9 +16,17 @@ const body = Inter({
   display: "swap",
 });
 
-const display = Playfair_Display({
-  variable: "--font-display",
+const editorial = Playfair_Display({
+  variable: "--font-editorial",
   subsets: ["latin"],
+  display: "swap",
+});
+
+/** O tipo de berro: condensado e pesado, para os títulos gigantes. */
+const shout = Anton({
+  variable: "--font-shout",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -88,9 +96,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={lang === "pt" ? "pt-PT" : "en"}
-      className={`${body.variable} ${display.variable} ${wordmark.variable} h-full antialiased`}
+      className={`${body.variable} ${editorial.variable} ${shout.variable} ${wordmark.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-background">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-background">
         <SiteHeader locale={lang} />
         <main className="flex-1">{children}</main>
         <SiteFooter locale={lang} />

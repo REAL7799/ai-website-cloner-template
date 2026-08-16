@@ -27,6 +27,7 @@ const dictionary = {
       secondaryCta: "Como chegar",
       ratingLabel: "no Google",
       reviewsLabel: "avaliações",
+      scrollCue: "Role para ver a casa",
     },
     facts: {
       addressLabel: "Onde estamos",
@@ -46,16 +47,24 @@ const dictionary = {
       ],
       badgeTitle: "Casa aberta desde",
       badgeSubtitle: "Cova da Iria, Fátima",
+      statYearsLabel: "Anos ao balcão",
+      statYearsValue: "74",
+      statPlaceLabel: "A pé do santuário",
+      statPlaceValue: "5 min",
     },
     signature: {
+      eyebrow: "Da nossa cozinha",
       title: "O que se pede mais",
-      subtitle: "Alguns dos pratos que saem todos os dias da nossa cozinha.",
+      subtitle:
+        "Seis pratos que saem todos os dias, com o preço à vista. Sem surpresas na conta.",
       cta: "Ver a ementa completa",
     },
     menu: {
+      eyebrow: "Treze secções, 68 pratos",
       title: "Ementa",
       subtitle:
         "A carta completa da casa, em português e inglês. IVA incluído à taxa legal em vigor.",
+      fromLabel: "desde",
       jumpLabel: "Ir para",
       allergensTitle: "Mapa de alergénios",
       allergensSubtitle:
@@ -71,12 +80,14 @@ const dictionary = {
         "Os preços podem ser alterados sem aviso prévio. Em caso de dúvida, prevalece a carta afixada no estabelecimento.",
     },
     visit: {
+      eyebrow: "Cova da Iria, Fátima",
       title: "Venha visitar-nos",
       subtitle:
         "Estamos na Rua de São José, a poucos minutos a pé do Santuário de Fátima.",
       addressTitle: "Morada",
       hoursTitle: "Horário",
       hoursValue: "Todos os dias, 08:00 – 00:00",
+      hoursFoot: "Sete dias por semana, sem fecho semanal.",
       directionsCta: "Abrir no Google Maps",
       plusCodeLabel: "Plus code",
       phoneTitle: "Contacto",
@@ -109,6 +120,7 @@ const dictionary = {
       secondaryCta: "Get directions",
       ratingLabel: "on Google",
       reviewsLabel: "reviews",
+      scrollCue: "Scroll to meet the house",
     },
     facts: {
       addressLabel: "Where we are",
@@ -128,16 +140,24 @@ const dictionary = {
       ],
       badgeTitle: "Serving since",
       badgeSubtitle: "Cova da Iria, Fátima",
+      statYearsLabel: "Years at the counter",
+      statYearsValue: "74",
+      statPlaceLabel: "Walk to the sanctuary",
+      statPlaceValue: "5 min",
     },
     signature: {
+      eyebrow: "From our kitchen",
       title: "What people order",
-      subtitle: "A few of the plates that leave our kitchen every single day.",
+      subtitle:
+        "Six plates that leave the kitchen every day, prices in plain sight. No surprises on the bill.",
       cta: "See the full menu",
     },
     menu: {
+      eyebrow: "Thirteen sections, 68 dishes",
       title: "Menu",
       subtitle:
         "Our full menu, in Portuguese and English. VAT included at the legal rate.",
+      fromLabel: "from",
       jumpLabel: "Jump to",
       allergensTitle: "Allergen map",
       allergensSubtitle:
@@ -153,12 +173,14 @@ const dictionary = {
         "Prices may change without notice. The menu displayed in the café always takes precedence.",
     },
     visit: {
+      eyebrow: "Cova da Iria, Fátima",
       title: "Come and find us",
       subtitle:
         "We are on Rua de São José, a few minutes' walk from the Sanctuary of Fátima.",
       addressTitle: "Address",
       hoursTitle: "Opening hours",
       hoursValue: "Every day, 08:00 – 00:00",
+      hoursFoot: "Seven days a week, no closing day.",
       directionsCta: "Open in Google Maps",
       plusCodeLabel: "Plus code",
       phoneTitle: "Contact",

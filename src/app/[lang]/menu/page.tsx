@@ -55,20 +55,20 @@ export default async function MenuPage({
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-cream">
+      <section className="on-ink relative isolate overflow-hidden">
         <AzulejoPattern
           id="menu-azulejo"
-          className="pointer-events-none absolute inset-0 size-full text-azulejo/[0.12]"
+          className="pointer-events-none absolute inset-0 size-full text-azulejo/25"
+          tile={110}
         />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/30 to-background"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto w-full max-w-4xl px-5 py-16 text-center sm:px-8 sm:py-20">
-          <h1 className="font-heading text-4xl uppercase tracking-[0.18em] text-foreground sm:text-5xl">
+        <div className="relative mx-auto w-full max-w-[110rem] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+          <p className="text-[0.68rem] font-bold uppercase tracking-[0.4em] text-gold">
+            {t.menu.eyebrow}
+          </p>
+          <h1 className="shout mt-5 text-[clamp(3.5rem,16vw,12rem)] text-cream">
             {t.menu.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-cream/70">
             {t.menu.subtitle}
           </p>
         </div>

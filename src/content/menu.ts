@@ -516,12 +516,61 @@ export const menu: MenuSection[] = [
   },
 ];
 
-/** Pratos escolhidos para destaque na página inicial. */
-export const signatureDishes = [
-  { sectionId: "pratos-tradicionais", itemPt: "Arroz de pato" },
-  { sectionId: "pratos-combinados", itemPt: "Bitoque de porco à portuguesa" },
-  { sectionId: "sandes", itemPt: "Bifana simples" },
-  { sectionId: "sopa-snacks", itemPt: "Sopa de legumes" },
-  { sectionId: "sandes", itemPt: "Tosta mista" },
-  { sectionId: "sopa-snacks", itemPt: "Pastel de bacalhau" },
-] as const;
+/**
+ * Pratos em destaque na página inicial, por ordem de aparecimento.
+ * `blurb` é a frase curta que acompanha o prato no cartaz grande.
+ */
+export const signatureDishes: {
+  sectionId: string;
+  itemPt: string;
+  blurb: { pt: string; en: string };
+}[] = [
+  {
+    sectionId: "pratos-combinados",
+    itemPt: "Bitoque de porco à portuguesa",
+    blurb: {
+      pt: "Carne, ovo estrelado, batata frita e salada. O prato que sai mais vezes ao almoço.",
+      en: "Pork steak, fried egg, chips and salad. The plate that leaves the kitchen most at lunch.",
+    },
+  },
+  {
+    sectionId: "pratos-tradicionais",
+    itemPt: "Arroz de pato",
+    blurb: {
+      pt: "Feito como se faz há setenta anos, no forno, com a côdea tostada por cima.",
+      en: "Made the way it has been for seventy years, oven-baked, crisp on top.",
+    },
+  },
+  {
+    sectionId: "sandes",
+    itemPt: "Bifana simples",
+    blurb: {
+      pt: "No pão d'avó, com o molho a pingar. Cinco minutos, de pé ao balcão.",
+      en: "In grandmother's bread, sauce dripping. Five minutes, standing at the counter.",
+    },
+  },
+  {
+    sectionId: "pratos-tradicionais",
+    itemPt: "Bacalhau à Brás",
+    blurb: {
+      pt: "Bacalhau desfiado, batata palha e ovo, com azeitonas e salsa.",
+      en: "Shredded codfish, straw potatoes and egg, with olives and parsley.",
+    },
+  },
+  {
+    sectionId: "sopa-snacks",
+    itemPt: "Pastel de bacalhau",
+    blurb: {
+      pt: "Acabado de fritar, para enganar a fome enquanto o prato não vem.",
+      en: "Straight from the fryer, to keep hunger away until the plate arrives.",
+    },
+  },
+  {
+    sectionId: "sandes",
+    itemPt: "Tosta mista",
+    blurb: {
+      pt: "Em pão caseiro fatiado ou pão d'avó. O pequeno-almoço de meia Fátima.",
+      en: "On sliced homemade bread or a regular roll. Half of Fátima's breakfast.",
+    },
+  },
+];

@@ -18,6 +18,11 @@ export interface MenuItem {
   allergens?: AllergenCode[];
   /** Leitura ambígua na fotografia da carta — confirmar com o proprietário. */
   needsCheck?: boolean;
+  /**
+   * Ficheiro em `public/images/pratos/`. Enquanto não existir, o componente
+   * de prato desenha um marcador gráfico em vez de uma imagem partida.
+   */
+  image?: string;
 }
 
 export interface MenuSection {

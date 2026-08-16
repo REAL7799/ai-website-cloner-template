@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { BusinessJsonLd } from "@/components/json-ld";
 import { FactsStrip } from "@/components/sections/facts-strip";
 import { Hero } from "@/components/sections/hero";
+import { Marquee } from "@/components/sections/marquee";
 import { MenuPreview } from "@/components/sections/menu-preview";
 import { Signature } from "@/components/sections/signature";
 import { Story } from "@/components/sections/story";
@@ -25,9 +26,10 @@ export default async function HomePage({
     <>
       <BusinessJsonLd locale={lang} />
       <Hero locale={lang} />
+      <Marquee locale={lang} />
       <FactsStrip locale={lang} />
-      <Story locale={lang} />
       <Signature locale={lang} />
+      <Story locale={lang} />
       <MenuPreview locale={lang} />
       <Visit locale={lang} />
     </>

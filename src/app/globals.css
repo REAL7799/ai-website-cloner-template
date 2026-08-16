@@ -9,7 +9,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
-  --font-heading: var(--font-display), ui-serif, Georgia, serif;
+  --font-display: var(--font-shout), "Arial Narrow", sans-serif;
+  --font-heading: var(--font-editorial), ui-serif, Georgia, serif;
   --font-script: var(--font-wordmark), ui-serif, Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -40,9 +41,14 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Cores da casa */
+  --color-ink: var(--ink);
   --color-cream: var(--cream);
   --color-azulejo: var(--azulejo);
-  --color-azulejo-foreground: var(--azulejo-foreground);
+  --color-piri: var(--piri);
+  --color-gold: var(--gold);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -53,77 +59,72 @@
 }
 
 /*
- * Paleta Café Fátima: creme de parede caiada, castanho de café tirado
- * e o azul-cobalto do azulejo português como único acento.
+ * Café Fátima — paleta de alto contraste.
+ * Café torrado quase preto, cal das paredes, azul-cobalto do azulejo
+ * e o vermelho do piri-piri a gritar os preços.
  */
 :root {
-  --background: oklch(0.982 0.011 84);
-  --foreground: oklch(0.246 0.026 52);
-  --card: oklch(0.995 0.006 84);
-  --card-foreground: oklch(0.246 0.026 52);
-  --popover: oklch(0.995 0.006 84);
-  --popover-foreground: oklch(0.246 0.026 52);
-  --primary: oklch(0.372 0.058 48);
-  --primary-foreground: oklch(0.985 0.012 84);
-  --secondary: oklch(0.944 0.019 82);
-  --secondary-foreground: oklch(0.33 0.045 50);
-  --muted: oklch(0.951 0.016 82);
-  --muted-foreground: oklch(0.503 0.032 55);
-  --accent: oklch(0.928 0.031 80);
-  --accent-foreground: oklch(0.33 0.045 50);
-  --destructive: oklch(0.545 0.196 27);
-  --border: oklch(0.888 0.021 78);
-  --input: oklch(0.888 0.021 78);
-  --ring: oklch(0.52 0.078 250);
-  --cream: oklch(0.966 0.019 83);
-  --azulejo: oklch(0.462 0.107 251);
-  --azulejo-foreground: oklch(0.985 0.012 84);
-  --chart-1: oklch(0.462 0.107 251);
-  --chart-2: oklch(0.556 0.09 52);
-  --chart-3: oklch(0.66 0.11 62);
+  --ink: oklch(0.168 0.021 46);
+  --cream: oklch(0.958 0.021 86);
+  --azulejo: oklch(0.452 0.132 258);
+  --piri: oklch(0.556 0.203 29);
+  --gold: oklch(0.782 0.135 78);
+
+  --background: oklch(0.973 0.016 86);
+  --foreground: oklch(0.168 0.021 46);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.168 0.021 46);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.168 0.021 46);
+  --primary: oklch(0.168 0.021 46);
+  --primary-foreground: oklch(0.973 0.016 86);
+  --secondary: oklch(0.928 0.026 84);
+  --secondary-foreground: oklch(0.24 0.028 46);
+  --muted: oklch(0.936 0.021 84);
+  --muted-foreground: oklch(0.474 0.031 52);
+  --accent: oklch(0.556 0.203 29);
+  --accent-foreground: oklch(0.98 0.012 86);
+  --destructive: oklch(0.556 0.203 29);
+  --border: oklch(0.862 0.026 78);
+  --input: oklch(0.862 0.026 78);
+  --ring: oklch(0.452 0.132 258);
+  --chart-1: oklch(0.452 0.132 258);
+  --chart-2: oklch(0.556 0.203 29);
+  --chart-3: oklch(0.782 0.135 78);
   --chart-4: oklch(0.44 0.06 148);
   --chart-5: oklch(0.32 0.04 52);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.966 0.019 83);
-  --sidebar-foreground: oklch(0.246 0.026 52);
-  --sidebar-primary: oklch(0.372 0.058 48);
-  --sidebar-primary-foreground: oklch(0.985 0.012 84);
-  --sidebar-accent: oklch(0.928 0.031 80);
-  --sidebar-accent-foreground: oklch(0.33 0.045 50);
-  --sidebar-border: oklch(0.888 0.021 78);
-  --sidebar-ring: oklch(0.52 0.078 250);
+  --radius: 0.25rem;
+  --sidebar: oklch(0.958 0.021 86);
+  --sidebar-foreground: oklch(0.168 0.021 46);
+  --sidebar-primary: oklch(0.168 0.021 46);
+  --sidebar-primary-foreground: oklch(0.973 0.016 86);
+  --sidebar-accent: oklch(0.928 0.026 84);
+  --sidebar-accent-foreground: oklch(0.24 0.028 46);
+  --sidebar-border: oklch(0.862 0.026 78);
+  --sidebar-ring: oklch(0.452 0.132 258);
 }
 
-.dark {
-  --background: oklch(0.196 0.018 52);
-  --foreground: oklch(0.945 0.014 84);
-  --card: oklch(0.244 0.021 52);
-  --card-foreground: oklch(0.945 0.014 84);
-  --popover: oklch(0.244 0.021 52);
-  --popover-foreground: oklch(0.945 0.014 84);
-  --primary: oklch(0.882 0.038 80);
-  --primary-foreground: oklch(0.246 0.026 52);
-  --secondary: oklch(0.288 0.023 52);
-  --secondary-foreground: oklch(0.945 0.014 84);
-  --muted: oklch(0.288 0.023 52);
-  --muted-foreground: oklch(0.712 0.024 70);
-  --accent: oklch(0.318 0.028 52);
-  --accent-foreground: oklch(0.945 0.014 84);
-  --destructive: oklch(0.68 0.176 24);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.66 0.096 251);
-  --cream: oklch(0.244 0.021 52);
-  --azulejo: oklch(0.66 0.096 251);
-  --azulejo-foreground: oklch(0.196 0.018 52);
-  --sidebar: oklch(0.244 0.021 52);
-  --sidebar-foreground: oklch(0.945 0.014 84);
-  --sidebar-primary: oklch(0.882 0.038 80);
-  --sidebar-primary-foreground: oklch(0.246 0.026 52);
-  --sidebar-accent: oklch(0.318 0.028 52);
-  --sidebar-accent-foreground: oklch(0.945 0.014 84);
-  --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.66 0.096 251);
+/*
+ * As secções escuras usam esta classe em vez de um tema global: o site é
+ * claro, mas alterna faixas de tinta cheia para dar ritmo.
+ */
+.on-ink {
+  --background: var(--ink);
+  --foreground: oklch(0.958 0.021 86);
+  --card: oklch(0.222 0.024 46);
+  --card-foreground: oklch(0.958 0.021 86);
+  --muted: oklch(0.246 0.024 46);
+  --muted-foreground: oklch(0.742 0.023 70);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 18%);
+  --primary: oklch(0.958 0.021 86);
+  --primary-foreground: oklch(0.168 0.021 46);
+  --secondary: oklch(0.246 0.024 46);
+  --secondary-foreground: oklch(0.958 0.021 86);
+  --azulejo: oklch(0.678 0.122 256);
+  --ring: oklch(0.678 0.122 256);
+  background-color: var(--ink);
+  color: oklch(0.958 0.021 86);
 }
 
 @layer base {
@@ -132,36 +133,162 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 4rem;
+    -webkit-tap-highlight-color: transparent;
   }
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-heading;
+  ::selection {
+    background-color: var(--piri);
+    color: oklch(0.98 0.012 86);
   }
 }
 
 @layer components {
-  /* Linha pontilhada entre o nome do prato e o preço, como na carta impressa. */
+  /* Tipo de berro: condensado, apertado, em caixa alta. */
+  .shout {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.82;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+  }
+
+  /* Contorno vazado, para sobrepor a fotografias e faixas de cor. */
+  .shout-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px currentColor;
+    paint-order: stroke fill;
+  }
+
+  @supports not (-webkit-text-stroke: 1px black) {
+    .shout-outline {
+      color: inherit;
+    }
+  }
+
+  /* Linha pontilhada até ao preço, como na carta impressa. */
   .leader-dots {
     background-image: radial-gradient(
       circle,
-      var(--color-border) 1px,
+      color-mix(in oklch, var(--foreground) 35%, transparent) 1px,
       transparent 1px
     );
-    background-position: bottom 0.35rem left 0;
-    background-size: 6px 6px;
+    background-position: bottom 0.4rem left 0;
+    background-size: 7px 7px;
     background-repeat: repeat-x;
   }
+
+  /* Etiqueta de preço em estrela, como os autocolantes da carta. */
+  .price-star {
+    clip-path: polygon(
+      50% 0%, 61% 12%, 77% 8%, 80% 24%, 95% 30%, 88% 45%, 98% 57%,
+      85% 66%, 88% 82%, 72% 83%, 63% 96%, 50% 88%, 37% 96%, 28% 83%,
+      12% 82%, 15% 66%, 2% 57%, 12% 45%, 5% 30%, 20% 24%, 23% 8%, 39% 12%
+    );
+  }
+}
+
+@layer utilities {
+  /* Aparecer ao entrar no ecrã. CSS puro, sem observador em JS. */
+  .reveal {
+    animation: reveal-in linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 26%;
+  }
+
+  .reveal-up {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  /* Deriva lenta em profundidade, para imagens grandes. */
+  .drift {
+    animation: drift linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  @supports not (animation-timeline: view()) {
+    .reveal,
+    .reveal-up,
+    .drift {
+      animation: none;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(3%) scale(1.06);
+  }
+  to {
+    transform: translateY(-3%) scale(1.06);
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 38s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal-up,
+  .drift,
+  .marquee-track {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/*
+ * Ao imprimir não há scroll, e sem isto as secções animadas sairiam em branco
+ * no papel — que é como um cliente pode querer levar a ementa.
+ */
+@media print {
+  .reveal,
+  .reveal-up,
+  .drift {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

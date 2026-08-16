@@ -1,4 +1,4 @@
-import { Clock, MapPin, MessageSquare, Navigation } from "lucide-react";
+import { Clock, MapPin, Navigation, Phone } from "lucide-react";
 
 import { AzulejoPattern } from "@/components/azulejo";
 import { getDictionary } from "@/content/dictionary";
@@ -7,86 +7,96 @@ import type { Locale } from "@/types/menu";
 
 export function Visit({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const phoneIsReal = Boolean(site.phone) && !site.phoneIsPlaceholder;
+
+  const cards = [
+    {
+      icon: MapPin,
+      title: t.visit.addressTitle,
+      lines: [
+        site.address.street,
+        site.address.locality,
+        `${site.address.postalCode} ${site.address.city}`,
+      ],
+      foot: `${t.visit.plusCodeLabel}: ${site.address.plusCode}`,
+    },
+    {
+      icon: Clock,
+      title: t.visit.hoursTitle,
+      lines: [t.visit.hoursValue],
+      foot: t.visit.hoursFoot,
+    },
+    {
+      icon: Phone,
+      title: t.visit.phoneTitle,
+      lines: [site.phone],
+      foot: t.visit.phoneMissing,
+    },
+  ];
 
   return (
     <section
       id="visitar"
-      className="relative isolate scroll-mt-24 overflow-hidden border-b border-border bg-background"
+      className="on-ink relative isolate scroll-mt-20 overflow-hidden"
     >
       <AzulejoPattern
         id="visit-azulejo"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full text-azulejo/10"
-        tile={64}
+        className="pointer-events-none absolute inset-0 size-full text-azulejo/18"
+        tile={110}
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl leading-tight text-foreground sm:text-4xl">
-            {t.visit.title}
-          </h2>
-          <p className="mt-4 text-muted-foreground">{t.visit.subtitle}</p>
-        </div>
+      <div className="relative mx-auto w-full max-w-[110rem] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+        <p className="text-[0.68rem] font-bold uppercase tracking-[0.4em] text-gold">
+          {t.visit.eyebrow}
+        </p>
+        <h2 className="shout mt-5 max-w-4xl text-[clamp(2.6rem,8.5vw,7rem)] text-cream">
+          {t.visit.title}
+        </h2>
+        <p className="mt-7 max-w-lg text-base text-cream/70 sm:text-lg">
+          {t.visit.subtitle}
+        </p>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-lg border border-border bg-card p-6">
-            <MapPin className="size-5 text-azulejo" aria-hidden="true" />
-            <h3 className="mt-4 font-heading text-lg text-foreground">
-              {t.visit.addressTitle}
-            </h3>
-            <address className="mt-3 text-sm not-italic leading-relaxed text-muted-foreground">
-              {site.address.street}
-              <br />
-              {site.address.locality}
-              <br />
-              {site.address.postalCode} {site.address.city},{" "}
-              {site.address.countryName}
-            </address>
-            <p className="mt-4 text-xs text-muted-foreground">
-              {t.visit.plusCodeLabel}:{" "}
-              <span className="font-mono">{site.address.plusCode}</span>
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-border bg-card p-6">
-            <Clock className="size-5 text-azulejo" aria-hidden="true" />
-            <h3 className="mt-4 font-heading text-lg text-foreground">
-              {t.visit.hoursTitle}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              {t.visit.hoursValue}
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-border bg-card p-6">
-            <MessageSquare className="size-5 text-azulejo" aria-hidden="true" />
-            <h3 className="mt-4 font-heading text-lg text-foreground">
-              {t.visit.phoneTitle}
-            </h3>
-            {site.phone && !site.phoneIsPlaceholder ? (
-              <a
-                href={`tel:${site.phone.replace(/\s/g, "")}`}
-                className="mt-3 inline-block rounded-sm text-sm font-medium text-azulejo underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-              >
-                {site.phone}
-              </a>
-            ) : (
-              <p className="mt-3 text-sm font-medium text-foreground">
-                {site.phone}
-              </p>
-            )}
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              {t.visit.phoneMissing}
-            </p>
-          </div>
-        </div>
+        <dl className="mt-16 grid gap-px border-t border-cream/15 md:grid-cols-3">
+          {cards.map(({ icon: Icon, title, lines, foot }) => (
+            <div key={title} className="border-b border-cream/15 py-8 md:pr-10">
+              <Icon className="size-6 text-gold" aria-hidden="true" />
+              <dt className="mt-5 text-[0.6rem] font-bold uppercase tracking-[0.3em] text-cream/45">
+                {title}
+              </dt>
+              <dd className="mt-3">
+                {lines.map((line) => (
+                  <span
+                    key={line}
+                    className="block font-heading text-xl leading-snug text-cream"
+                  >
+                    {line}
+                  </span>
+                ))}
+                {foot ? (
+                  <span className="mt-3 block text-sm text-cream/55">
+                    {foot}
+                  </span>
+                ) : null}
+                {title === t.visit.phoneTitle && phoneIsReal && site.phone ? (
+                  <a
+                    href={`tel:${site.phone.replace(/\s/g, "")}`}
+                    className="mt-3 inline-block text-sm font-semibold text-gold underline-offset-4 hover:underline"
+                  >
+                    {site.phone}
+                  </a>
+                ) : null}
+              </dd>
+            </div>
+          ))}
+        </dl>
 
         <a
           href={site.maps.directions}
           target="_blank"
           rel="noreferrer"
-          className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-md bg-azulejo px-7 text-sm font-semibold uppercase tracking-wider text-azulejo-foreground transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="mt-12 inline-flex h-16 items-center gap-4 bg-piri px-10 text-sm font-bold uppercase tracking-[0.2em] text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
         >
-          <Navigation className="size-4" />
+          <Navigation className="size-5" />
           {t.visit.directionsCta}
         </a>
       </div>
