@@ -62,7 +62,7 @@ export function Visit({ locale }: { locale: Locale }) {
             <h3 className="mt-4 font-heading text-lg text-foreground">
               {t.visit.phoneTitle}
             </h3>
-            {site.phone ? (
+            {site.phone && !site.phoneIsPlaceholder ? (
               <a
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
                 className="mt-3 inline-block rounded-sm text-sm font-medium text-azulejo underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
@@ -70,10 +70,13 @@ export function Visit({ locale }: { locale: Locale }) {
                 {site.phone}
               </a>
             ) : (
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {t.visit.phoneMissing}
+              <p className="mt-3 text-sm font-medium text-foreground">
+                {site.phone}
               </p>
             )}
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {t.visit.phoneMissing}
+            </p>
           </div>
         </div>
 

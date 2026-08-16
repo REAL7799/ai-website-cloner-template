@@ -37,7 +37,18 @@ export function BusinessJsonLd({ locale }: { locale: Locale }) {
       reviewCount: site.rating.count,
       bestRating: 5,
     },
-    ...(site.phone ? { telephone: site.phone } : {}),
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: site.hours.days,
+        opens: site.hours.opens,
+        closes: site.hours.closes,
+      },
+    ],
+    // Um número por preencher não entra nos dados estruturados.
+    ...(site.phone && !site.phoneIsPlaceholder
+      ? { telephone: site.phone }
+      : {}),
     hasMenu: {
       "@type": "Menu",
       url: `${site.url}/${locale}/menu`,

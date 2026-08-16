@@ -29,12 +29,26 @@ export const site = {
   rating: { value: 4.0, count: 207 },
   /** Intervalo médio por pessoa indicado no Google Maps. */
   priceRange: { min: 10, max: 15 },
-  /** TODO: o Google Maps não tem telefone associado. Preencher quando o dono indicar. */
-  phone: null as string | null,
-  /** TODO: confirmar a hora de abertura. Só o fecho (00:00) está confirmado. */
+  /**
+   * TODO: número real por indicar. Enquanto `phoneIsPlaceholder` for `true`, o
+   * site mostra o texto sem o transformar em link de chamada — um `tel:` para
+   * um número falso só faz o cliente marcar para lado nenhum.
+   */
+  phone: "+351 xxxxxxxxx",
+  phoneIsPlaceholder: true,
+  /** Confirmado no Google Maps: sete dias por semana, 08:00 às 00:00. */
   hours: {
-    opens: null as string | null,
+    opens: "08:00",
     closes: "00:00",
+    days: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
   },
   features: {
     /** Confirmado no Google Maps ("Comer no local"). */
