@@ -56,6 +56,13 @@ assim que forem preenchidos.
    esplanada**. São um lugar real e concreto; qualquer imagem gerada seria uma
    invenção. O layout tem espaço reservado para elas.
 
+   As imagens estão **recortadas**, com fundo transparente, para o prato
+   assentar sobre qualquer cor do site — creme nos destaques, disco claro no
+   hero, como na carta impressa. A primeira ronda tinha cenários de café atrás
+   e erros de conteúdo (a sandes de fiambre saiu em pão de forma quando numa
+   casa portuguesa vem em papo-seco); ambos corrigidos com prompts específicos
+   por prato em `scripts/dish-images/prompts.mjs`.
+
    Para regenerar ou acrescentar imagens: o nome do ficheiro é
    `<id-da-seccao>--<nome-do-prato>.webp` (ver `src/lib/dish-slug.ts`) e a
    lista do que existe está em `src/content/dish-images.ts`, gerada

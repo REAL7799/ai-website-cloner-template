@@ -84,7 +84,7 @@ export function Hero({ locale }: { locale: Locale }) {
                 name={lead.item[locale]}
                 priority
                 sizes="(min-width: 1024px) 40vw, 0px"
-                className="aspect-square w-full rounded-full"
+                className="aspect-square w-full rounded-full bg-cream"
               />
               <PriceStar
                 value={lead.item.prices[0].value}

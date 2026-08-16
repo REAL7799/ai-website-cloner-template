@@ -57,7 +57,8 @@ export function DishDialog({
               alt={item[locale]}
               fill
               sizes="(min-width: 640px) 34rem, 92vw"
-              className="object-cover"
+              // Recortada: mostrar o prato inteiro em vez de o cortar.
+              className="object-contain p-6 drop-shadow-[0_14px_24px_rgb(0_0_0/0.18)]"
             />
             <Dialog.Close
               aria-label={t.menu.closePhoto}

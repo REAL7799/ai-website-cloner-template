@@ -44,7 +44,7 @@ export function Signature({ locale }: { locale: Locale }) {
                   src={dishImageFile(section.id, item)}
                   name={item[locale]}
                   sizes="(min-width: 1024px) 46vw, 92vw"
-                  className="aspect-[5/4] w-full"
+                  className="aspect-[5/4] w-full bg-cream"
                 />
                 <span
                   aria-hidden="true"

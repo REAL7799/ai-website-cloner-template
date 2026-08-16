@@ -27,14 +27,21 @@ export function DishImage({
 }: DishImageProps) {
   if (src) {
     return (
-      <div className={cn("relative overflow-hidden bg-secondary", className)}>
+      <div className={cn("relative isolate overflow-hidden", className)}>
+        <AzulejoPattern
+          id={`dish-bg-${slugify(name)}`}
+          className="pointer-events-none absolute inset-0 size-full text-azulejo/12"
+          tile={56}
+        />
         <Image
           src={`/images/pratos/${src}`}
           alt={name}
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover"
+          // As fotografias vêm recortadas: `contain` mostra o prato inteiro,
+          // e a folga evita que encoste às margens.
+          className="relative object-contain p-[6%] drop-shadow-[0_18px_28px_rgb(0_0_0/0.22)]"
         />
       </div>
     );

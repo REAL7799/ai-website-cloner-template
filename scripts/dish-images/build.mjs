@@ -164,19 +164,34 @@ async function cutout(slug) {
     .toBuffer({ resolveWithObject: true });
 
   const keyed = keyOutBackground(data, info.width, info.height);
-  let image = sharp(keyed, {
+
+  // Codificar para PNG antes de aparar: o `trim()` do sharp não deteta o fundo
+  // quando recebe um buffer raw, e devolve a imagem inteira ou nada.
+  const keyedPng = await sharp(keyed, {
     raw: { width: info.width, height: info.height, channels: 4 },
-  });
+  })
+    .png()
+    .toBuffer();
+  let image = sharp(keyedPng);
 
-  const trimmed = await image
-    .trim({ threshold: 1 })
-    .toBuffer()
-    .catch(() => null);
-  if (trimmed) image = sharp(trimmed);
+  // Se o flood fill apanhou a imagem toda, o trim devolve um buffer vazio e o
+  // próprio metadata() rebenta — daí o try/catch em vez de só verificar
+  // dimensões. Em qualquer desses casos guarda-se a imagem sem recorte, que é
+  // sempre melhor do que um buraco no site.
+  let usable = false;
+  try {
+    const trimmed = await image.trim({ threshold: 1 }).toBuffer();
+    const candidate = sharp(trimmed);
+    const meta = await candidate.metadata();
+    if (meta.width >= 120 && meta.height >= 120) {
+      image = candidate;
+      usable = true;
+    }
+  } catch {
+    usable = false;
+  }
 
-  const meta = await image.metadata();
-  // Recorte que come quase tudo significa fundo mal detetado: guarda o original.
-  if (!meta.width || !meta.height || meta.width < 120 || meta.height < 120) {
+  if (!usable) {
     await sharp(source)
       .resize(SIZE, SIZE, { fit: "inside" })
       .webp({ quality: 80 })
@@ -196,7 +211,9 @@ async function cutout(slug) {
       right: 40,
       background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
-    .webp({ quality: 80, alphaQuality: 90 })
+    // alphaQuality 100: com compressão no canal alfa, zonas claras como o arroz
+    // ganham pixels semitransparentes que se veem como ruído sobre fundo escuro.
+    .webp({ quality: 80, alphaQuality: 100 })
     .toFile(join(DEST, `${slug}.webp`));
   return true;
 }
