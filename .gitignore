@@ -47,3 +47,10 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Chaves de API locais (nunca commitar)
+gemini_api_key.txt
+.env*.local
+
+# Imagens de origem geradas (não versionadas)
+.dish-images-raw/
