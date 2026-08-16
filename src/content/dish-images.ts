@@ -1,5 +1,4 @@
-// Ficheiro gerado. Lista das fotografias existentes em public/images/pratos.
-// Regenerar com o script de imagens; não editar à mão.
+// Ficheiro gerado por scripts/dish-images/build.mjs — não editar à mão.
 export const dishImages = new Set<string>([
   "bebidas-frias--agua-c-gas",
   "bebidas-frias--agua-s-gas",
