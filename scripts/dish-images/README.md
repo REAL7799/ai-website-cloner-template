@@ -50,12 +50,32 @@ de um prato, apaga o ficheiro correspondente dessa pasta.
 carta sem ficheiro não fica partido: o site desenha um marcador gráfico e a
 linha deixa de ser clicável.
 
+## Modelo
+
+Por omissão usa `gemini-2.5-flash-image` — o modelo a que a Google chama
+**Nano Banana**. Trocar com `GEMINI_MODEL`:
+
+| Modelo | Quando usar |
+| --- | --- |
+| `gemini-2.5-flash-image` | omissão. Nano Banana. Barato e suficiente |
+| `gemini-3.1-flash-image` | geração mais recente da mesma classe |
+| `gemini-3-pro-image` | Nano Banana **Pro**. Mais caro, melhor detalhe fino |
+
+```bash
+GEMINI_MODEL=gemini-3-pro-image GEMINI_API_KEY=... \
+  node --experimental-strip-types scripts/dish-images/build.mjs
+```
+
 ## Custo e limites
 
 Cerca de 0,04 € por imagem no modelo por omissão — uns 2,70 € pela carta
-completa. Se os créditos pré-pagos acabarem, a API responde `429
-RESOURCE_EXHAUSTED` com "prepayment credits are depleted" e o script pára com
-essa mensagem em vez de insistir.
+completa. O Pro anda pelos 0,13–0,24 € por imagem, ou seja 9 a 16 € pela carta.
+
+Se os créditos pré-pagos acabarem, **todos** os modelos de imagem respondem
+`429 RESOURCE_EXHAUSTED` com "prepayment credits are depleted" — o limite é do
+saldo da conta, não do modelo, por isso trocar de modelo não contorna nada. O
+script pára com essa mensagem em vez de insistir e gastar tempo. Carregar em
+<https://ai.studio/projects>.
 
 ## Nota sobre estas imagens
 
