@@ -52,7 +52,11 @@ assim que forem preenchidos.
 ## Estrutura do site
 
 - `/pt` e `/en` — mesma estrutura, conteúdo traduzido.
-- `/` redireciona conforme o `Accept-Language` do visitante (`src/proxy.ts`).
+- `/` redireciona conforme o `Accept-Language` do visitante, via `redirects()`
+  no `next.config.ts`. Não é um `proxy.ts` de propósito: em Next 16 o Proxy
+  corre sempre no runtime Node, e adaptadores como o OpenNext para Cloudflare
+  Workers não suportam middleware Node. Como redirect de configuração,
+  funciona em qualquer alojamento.
 - `/[lang]/menu` — carta completa, com nome do prato na língua escolhida e a
   tradução em itálico por baixo, como na carta impressa.
 - Dados estruturados `CafeOrCoffeeShop` + `Menu` (`src/components/json-ld.tsx`),
