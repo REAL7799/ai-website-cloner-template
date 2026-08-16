@@ -13,7 +13,7 @@ export function Marquee({ locale }: { locale: Locale }) {
   return (
     <div
       aria-hidden="true"
-      className="flex overflow-hidden border-y-2 border-ink bg-piri py-3.5 select-none"
+      className="flex overflow-hidden border-y-2 border-ink bg-ink py-3.5 select-none"
     >
       <div className="marquee-track flex shrink-0 items-center gap-8 pr-8">
         {[...words, ...words].map((word, index) => (
@@ -22,7 +22,7 @@ export function Marquee({ locale }: { locale: Locale }) {
             className="flex shrink-0 items-center gap-8 text-sm font-bold uppercase tracking-[0.22em] text-cream sm:text-base"
           >
             {word}
-            <span className="text-gold">✦</span>
+            <span className="text-label">✦</span>
           </span>
         ))}
       </div>

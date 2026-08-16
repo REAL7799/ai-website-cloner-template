@@ -30,7 +30,7 @@ export function DishImage({
       <div className={cn("relative isolate overflow-hidden", className)}>
         <AzulejoPattern
           id={`dish-bg-${slugify(name)}`}
-          className="pointer-events-none absolute inset-0 size-full text-azulejo/12"
+          className="pointer-events-none absolute inset-0 size-full text-label/12"
           tile={56}
         />
         <Image
@@ -58,7 +58,7 @@ export function DishImage({
     >
       <AzulejoPattern
         id={`dish-${slugify(name)}`}
-        className="pointer-events-none absolute inset-0 size-full text-azulejo/25"
+        className="pointer-events-none absolute inset-0 size-full text-label/25"
         tile={56}
       />
       <div className="relative flex aspect-square w-[62%] items-center justify-center rounded-full border border-foreground/10 bg-cream shadow-[0_20px_60px_-20px_rgb(0_0_0/0.35)]">

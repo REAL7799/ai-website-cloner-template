@@ -13,7 +13,7 @@ export function Story({ locale }: { locale: Locale }) {
     >
       <AzulejoPattern
         id="story-azulejo"
-        className="pointer-events-none absolute inset-y-0 right-0 h-full w-2/3 text-azulejo/20"
+        className="pointer-events-none absolute inset-y-0 right-0 h-full w-2/3 text-label/20"
         tile={96}
       />
 
@@ -31,7 +31,7 @@ export function Story({ locale }: { locale: Locale }) {
             <h2 className="shout text-[clamp(2.2rem,6.5vw,5rem)] text-cream">
               {t.story.title}
             </h2>
-            <p className="mt-8 max-w-xl font-heading text-xl leading-snug text-gold sm:text-2xl">
+            <p className="mt-8 max-w-xl font-heading text-xl leading-snug text-label sm:text-2xl">
               {t.story.lead}
             </p>
           </div>

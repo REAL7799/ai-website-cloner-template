@@ -21,7 +21,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
         <div className="mt-14 grid gap-10 border-t border-cream/15 pt-10 sm:grid-cols-3">
           <div>
-            <h2 className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-gold">
+            <h2 className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-label">
               {t.visit.addressTitle}
             </h2>
             <address className="mt-3 text-sm not-italic leading-relaxed text-cream/75">
@@ -35,21 +35,21 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               href={site.maps.directions}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-block text-sm font-semibold text-gold underline-offset-4 hover:underline"
+              className="mt-3 inline-block text-sm font-semibold text-label underline-offset-4 hover:underline"
             >
               {t.visit.directionsCta}
             </a>
           </div>
 
           <div>
-            <h2 className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-gold">
+            <h2 className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-label">
               {t.visit.hoursTitle}
             </h2>
             <p className="mt-3 text-sm text-cream/75">{t.visit.hoursValue}</p>
           </div>
 
           <div>
-            <h2 className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-gold">
+            <h2 className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-label">
               {t.menu.notesTitle}
             </h2>
             <ul className="mt-3 space-y-1.5 text-sm text-cream/75">
@@ -69,7 +69,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link
               href={`/${locale === "pt" ? "en" : "pt"}`}
-              className="underline-offset-4 hover:text-gold hover:underline"
+              className="underline-offset-4 hover:text-label hover:underline"
             >
               {t.localeSwitchLabel}
             </Link>
@@ -77,7 +77,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
               href="https://www.livroreclamacoes.pt/"
               target="_blank"
               rel="noreferrer"
-              className="underline-offset-4 hover:text-gold hover:underline"
+              className="underline-offset-4 hover:text-label hover:underline"
             >
               {t.footer.complaintsBook}
             </a>

@@ -58,11 +58,11 @@ export default async function MenuPage({
       <section className="on-ink relative isolate overflow-hidden">
         <AzulejoPattern
           id="menu-azulejo"
-          className="pointer-events-none absolute inset-0 size-full text-azulejo/25"
+          className="pointer-events-none absolute inset-0 size-full text-label/25"
           tile={110}
         />
         <div className="relative mx-auto w-full max-w-[110rem] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.4em] text-gold">
+          <p className="text-[0.68rem] font-bold uppercase tracking-[0.4em] text-label">
             {t.menu.eyebrow}
           </p>
           <h1 className="shout mt-5 text-[clamp(3.5rem,16vw,12rem)] text-cream">
@@ -93,7 +93,7 @@ export default async function MenuPage({
             <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
               {t.menu.notes.map((note) => (
                 <li key={note} className="flex gap-2.5">
-                  <span aria-hidden="true" className="text-azulejo">
+                  <span aria-hidden="true" className="text-label">
                     ·
                   </span>
                   {note}

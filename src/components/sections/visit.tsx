@@ -41,12 +41,12 @@ export function Visit({ locale }: { locale: Locale }) {
     >
       <AzulejoPattern
         id="visit-azulejo"
-        className="pointer-events-none absolute inset-0 size-full text-azulejo/18"
+        className="pointer-events-none absolute inset-0 size-full text-label/18"
         tile={110}
       />
 
       <div className="relative mx-auto w-full max-w-[110rem] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
-        <p className="text-[0.68rem] font-bold uppercase tracking-[0.4em] text-gold">
+        <p className="text-[0.68rem] font-bold uppercase tracking-[0.4em] text-label">
           {t.visit.eyebrow}
         </p>
         <h2 className="shout mt-5 max-w-4xl text-[clamp(2.6rem,8.5vw,7rem)] text-cream">
@@ -59,7 +59,7 @@ export function Visit({ locale }: { locale: Locale }) {
         <dl className="mt-16 grid gap-px border-t border-cream/15 md:grid-cols-3">
           {cards.map(({ icon: Icon, title, lines, foot }) => (
             <div key={title} className="border-b border-cream/15 py-8 md:pr-10">
-              <Icon className="size-6 text-gold" aria-hidden="true" />
+              <Icon className="size-6 text-label" aria-hidden="true" />
               <dt className="mt-5 text-[0.6rem] font-bold uppercase tracking-[0.3em] text-cream/45">
                 {title}
               </dt>
@@ -80,7 +80,7 @@ export function Visit({ locale }: { locale: Locale }) {
                 {title === t.visit.phoneTitle && phoneIsReal && site.phone ? (
                   <a
                     href={`tel:${site.phone.replace(/\s/g, "")}`}
-                    className="mt-3 inline-block text-sm font-semibold text-gold underline-offset-4 hover:underline"
+                    className="mt-3 inline-block text-sm font-semibold text-label underline-offset-4 hover:underline"
                   >
                     {site.phone}
                   </a>
@@ -94,7 +94,7 @@ export function Visit({ locale }: { locale: Locale }) {
           href={site.maps.directions}
           target="_blank"
           rel="noreferrer"
-          className="mt-12 inline-flex h-16 items-center gap-4 bg-piri px-10 text-sm font-bold uppercase tracking-[0.2em] text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+          className="mt-12 inline-flex h-16 items-center gap-4 bg-cta px-10 text-sm font-bold uppercase tracking-[0.2em] text-cta-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
         >
           <Navigation className="size-5" />
           {t.visit.directionsCta}

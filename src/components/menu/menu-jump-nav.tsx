@@ -25,7 +25,7 @@ export function MenuJumpNav({ locale }: { locale: Locale }) {
           <li>
             <a
               href="#alergenios"
-              className="inline-block rounded-full border border-azulejo/30 bg-azulejo/[0.07] px-3.5 py-1.5 text-xs font-medium text-azulejo transition-colors hover:border-azulejo/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="inline-block rounded-full border border-label/30 bg-label/[0.07] px-3.5 py-1.5 text-xs font-medium text-label transition-colors hover:border-label/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               {t.menu.allergensTitle}
             </a>

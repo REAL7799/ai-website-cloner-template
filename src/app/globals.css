@@ -42,12 +42,19 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Cores da casa */
+  /* Cores da casa: branco, preto, creme e cinza-creme. Só isto. */
   --color-ink: var(--ink);
   --color-cream: var(--cream);
-  --color-azulejo: var(--azulejo);
-  --color-piri: var(--piri);
-  --color-gold: var(--gold);
+  --color-greige: var(--greige);
+
+  /*
+   * Papéis, não cores. Adaptam-se à superfície: o mesmo preço fica preto
+   * sobre creme e creme sobre preto, sem casos especiais no componente.
+   */
+  --color-shout: var(--shout);
+  --color-label: var(--label);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -59,49 +66,52 @@
 }
 
 /*
- * Café Fátima — paleta de alto contraste.
- * Café torrado quase preto, cal das paredes, azul-cobalto do azulejo
- * e o vermelho do piri-piri a gritar os preços.
+ * Café Fátima — paleta monocromática: branco, preto, creme e cinza-creme.
+ * Sem cor de acento: a ênfase vem do tamanho e do peso do tipo, não de
+ * um vermelho. Fica mais sóbrio e envelhece melhor.
  */
 :root {
-  --ink: oklch(0.168 0.021 46);
-  --cream: oklch(0.958 0.021 86);
-  --azulejo: oklch(0.452 0.132 258);
-  --piri: oklch(0.556 0.203 29);
-  --gold: oklch(0.782 0.135 78);
+  --ink: oklch(0.155 0.006 60);
+  --cream: oklch(0.958 0.016 86);
+  --greige: oklch(0.723 0.012 78);
 
-  --background: oklch(0.973 0.016 86);
-  --foreground: oklch(0.168 0.021 46);
+  --shout: var(--ink);
+  --label: oklch(0.512 0.014 70);
+  --cta: var(--ink);
+  --cta-foreground: oklch(0.985 0.008 86);
+
+  --background: oklch(0.973 0.014 86);
+  --foreground: var(--ink);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.168 0.021 46);
+  --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.168 0.021 46);
-  --primary: oklch(0.168 0.021 46);
-  --primary-foreground: oklch(0.973 0.016 86);
-  --secondary: oklch(0.928 0.026 84);
-  --secondary-foreground: oklch(0.24 0.028 46);
-  --muted: oklch(0.936 0.021 84);
-  --muted-foreground: oklch(0.474 0.031 52);
-  --accent: oklch(0.556 0.203 29);
-  --accent-foreground: oklch(0.98 0.012 86);
-  --destructive: oklch(0.556 0.203 29);
-  --border: oklch(0.862 0.026 78);
-  --input: oklch(0.862 0.026 78);
-  --ring: oklch(0.452 0.132 258);
-  --chart-1: oklch(0.452 0.132 258);
-  --chart-2: oklch(0.556 0.203 29);
-  --chart-3: oklch(0.782 0.135 78);
-  --chart-4: oklch(0.44 0.06 148);
-  --chart-5: oklch(0.32 0.04 52);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: oklch(0.985 0.008 86);
+  --secondary: oklch(0.928 0.018 84);
+  --secondary-foreground: oklch(0.24 0.01 60);
+  --muted: oklch(0.936 0.015 84);
+  --muted-foreground: oklch(0.512 0.014 70);
+  --accent: oklch(0.928 0.018 84);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.505 0.05 30);
+  --border: oklch(0.868 0.014 78);
+  --input: oklch(0.868 0.014 78);
+  --ring: oklch(0.42 0.012 70);
+  --chart-1: oklch(0.155 0.006 60);
+  --chart-2: oklch(0.38 0.012 70);
+  --chart-3: oklch(0.58 0.014 74);
+  --chart-4: oklch(0.723 0.012 78);
+  --chart-5: oklch(0.85 0.012 82);
   --radius: 0.25rem;
-  --sidebar: oklch(0.958 0.021 86);
-  --sidebar-foreground: oklch(0.168 0.021 46);
-  --sidebar-primary: oklch(0.168 0.021 46);
-  --sidebar-primary-foreground: oklch(0.973 0.016 86);
-  --sidebar-accent: oklch(0.928 0.026 84);
-  --sidebar-accent-foreground: oklch(0.24 0.028 46);
-  --sidebar-border: oklch(0.862 0.026 78);
-  --sidebar-ring: oklch(0.452 0.132 258);
+  --sidebar: var(--cream);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: oklch(0.985 0.008 86);
+  --sidebar-accent: oklch(0.928 0.018 84);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: oklch(0.868 0.014 78);
+  --sidebar-ring: oklch(0.42 0.012 70);
 }
 
 /*
@@ -110,21 +120,27 @@
  */
 .on-ink {
   --background: var(--ink);
-  --foreground: oklch(0.958 0.021 86);
-  --card: oklch(0.222 0.024 46);
-  --card-foreground: oklch(0.958 0.021 86);
-  --muted: oklch(0.246 0.024 46);
-  --muted-foreground: oklch(0.742 0.023 70);
+  --foreground: var(--cream);
+  --card: oklch(0.212 0.007 60);
+  --card-foreground: var(--cream);
+  --muted: oklch(0.238 0.007 60);
+  --muted-foreground: oklch(0.742 0.012 78);
   --border: oklch(1 0 0 / 14%);
   --input: oklch(1 0 0 / 18%);
-  --primary: oklch(0.958 0.021 86);
-  --primary-foreground: oklch(0.168 0.021 46);
-  --secondary: oklch(0.246 0.024 46);
-  --secondary-foreground: oklch(0.958 0.021 86);
-  --azulejo: oklch(0.678 0.122 256);
-  --ring: oklch(0.678 0.122 256);
+  --primary: var(--cream);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.238 0.007 60);
+  --secondary-foreground: var(--cream);
+  --ring: oklch(0.8 0.01 80);
+
+  /* Os papéis invertem-se sobre tinta. */
+  --shout: var(--cream);
+  --label: var(--greige);
+  --cta: var(--cream);
+  --cta-foreground: var(--ink);
+
   background-color: var(--ink);
-  color: oklch(0.958 0.021 86);
+  color: var(--cream);
 }
 
 @layer base {
@@ -143,8 +159,8 @@
     -webkit-tap-highlight-color: transparent;
   }
   ::selection {
-    background-color: var(--piri);
-    color: oklch(0.98 0.012 86);
+    background-color: var(--ink);
+    color: var(--cream);
   }
 }
 

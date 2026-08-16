@@ -19,7 +19,7 @@ export function AllergenKey({ locale }: { locale: Locale }) {
           <li key={allergen.code} className="flex items-start gap-3 text-sm">
             <span
               aria-hidden="true"
-              className="mt-px flex size-6 shrink-0 items-center justify-center rounded-full border border-azulejo/40 bg-azulejo/10 text-[0.68rem] font-semibold tabular-nums text-azulejo"
+              className="mt-px flex size-6 shrink-0 items-center justify-center rounded-full border border-label/40 bg-label/10 text-[0.68rem] font-semibold tabular-nums text-label"
             >
               {allergen.code}
             </span>

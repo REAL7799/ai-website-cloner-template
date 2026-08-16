@@ -21,7 +21,7 @@ export function Hero({ locale }: { locale: Locale }) {
     <section className="on-ink relative isolate overflow-hidden">
       <AzulejoPattern
         id="hero-azulejo"
-        className="pointer-events-none absolute inset-0 size-full text-azulejo/25"
+        className="pointer-events-none absolute inset-0 size-full text-label/25"
         tile={110}
       />
       <div
@@ -33,7 +33,7 @@ export function Hero({ locale }: { locale: Locale }) {
         <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
             <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.68rem] font-semibold uppercase tracking-[0.4em] text-cream/60 sm:text-xs">
-              <span className="inline-block size-1.5 rounded-full bg-piri" />
+              <span className="inline-block size-1.5 rounded-full bg-cta" />
               {t.hero.eyebrow}
             </p>
 
@@ -41,7 +41,7 @@ export function Hero({ locale }: { locale: Locale }) {
               <span className="font-script text-[clamp(3.4rem,11vw,8.5rem)] leading-[0.9] text-cream">
                 {site.name}
               </span>
-              <span className="shout shout-outline mt-3 text-[clamp(2.6rem,10.5vw,8rem)] text-gold">
+              <span className="shout shout-outline mt-3 text-[clamp(2.6rem,10.5vw,8rem)] text-label">
                 {t.hero.since}
               </span>
             </h1>
@@ -53,7 +53,7 @@ export function Hero({ locale }: { locale: Locale }) {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href={`/${locale}/menu`}
-                className="group inline-flex h-14 items-center justify-center gap-3 bg-piri px-9 text-sm font-bold uppercase tracking-[0.18em] text-cream transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                className="group inline-flex h-14 items-center justify-center gap-3 bg-cta px-9 text-sm font-bold uppercase tracking-[0.18em] text-cta-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
               >
                 {t.hero.primaryCta}
               </Link>
@@ -61,7 +61,7 @@ export function Hero({ locale }: { locale: Locale }) {
                 href={site.maps.directions}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-14 items-center justify-center gap-2 border border-cream/25 px-9 text-sm font-bold uppercase tracking-[0.18em] text-cream transition-colors hover:border-cream/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+                className="inline-flex h-14 items-center justify-center gap-2 border border-cream/25 px-9 text-sm font-bold uppercase tracking-[0.18em] text-cream transition-colors hover:border-cream/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
               >
                 <MapPin className="size-4" />
                 {t.hero.secondaryCta}
@@ -69,7 +69,7 @@ export function Hero({ locale }: { locale: Locale }) {
             </div>
 
             <p className="mt-9 flex items-center gap-2.5 text-sm text-cream/60">
-              <Star className="size-4 fill-gold text-gold" aria-hidden="true" />
+              <Star className="size-4 fill-shout text-shout" aria-hidden="true" />
               <span>
                 <strong className="font-bold text-cream">{rating}</strong>{" "}
                 {t.hero.ratingLabel} · {site.rating.count} {t.hero.reviewsLabel}
@@ -117,11 +117,11 @@ function PriceStar({
     <span
       aria-hidden="true"
       className={cn(
-        "price-star flex size-32 items-center justify-center bg-piri text-center",
+        "price-star flex size-32 items-center justify-center bg-cta text-center",
         className
       )}
     >
-      <span className="shout text-2xl text-cream">
+      <span className="shout text-2xl text-cta-foreground">
         {formatPrice(value, locale)}
       </span>
     </span>

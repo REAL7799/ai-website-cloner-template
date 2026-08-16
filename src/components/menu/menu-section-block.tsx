@@ -34,7 +34,7 @@ export function MenuSectionBlock({
       </ul>
 
       {section.note ? (
-        <p className="mt-5 border-l-2 border-piri pl-4 text-xs leading-relaxed text-muted-foreground">
+        <p className="mt-5 border-l-2 border-shout pl-4 text-xs leading-relaxed text-muted-foreground">
           {section.note[locale]}
         </p>
       ) : null}
@@ -61,11 +61,11 @@ function MenuRow({
           single ? "leader-dots" : undefined
         )}
       >
-        <p className="bg-background pr-2 text-base font-semibold leading-snug text-foreground transition-colors group-hover/dish:text-piri sm:text-lg">
+        <p className="bg-background pr-2 text-base font-semibold leading-snug text-foreground transition-colors group-hover/dish:text-shout sm:text-lg">
           {item[locale]}
         </p>
         {single ? (
-          <p className="ml-auto bg-background pl-2 shout text-xl text-piri sm:text-2xl">
+          <p className="ml-auto bg-background pl-2 shout text-xl text-shout sm:text-2xl">
             {formatPrice(item.prices[0].value, locale)}
           </p>
         ) : null}
@@ -83,7 +83,7 @@ function MenuRow({
               className="flex items-baseline gap-2 text-sm text-muted-foreground"
             >
               {price[locale] ? <span>{price[locale]}</span> : null}
-              <span className="shout text-lg text-piri">
+              <span className="shout text-lg text-shout">
                 {formatPrice(price.value, locale)}
               </span>
             </li>
@@ -99,7 +99,7 @@ function MenuRow({
           {item.allergens.map((code) => (
             <span
               key={code}
-              className="flex size-5 items-center justify-center rounded-full border border-azulejo/30 bg-azulejo/8 text-[0.6rem] font-bold tabular-nums text-azulejo"
+              className="flex size-5 items-center justify-center rounded-full border border-label/30 bg-label/8 text-[0.6rem] font-bold tabular-nums text-label"
             >
               {code}
             </span>

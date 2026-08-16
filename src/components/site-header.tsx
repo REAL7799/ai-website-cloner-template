@@ -31,7 +31,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <div className="mx-auto flex h-16 w-full max-w-[110rem] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
         <Link
           href={`/${locale}`}
-          className="font-script text-2xl text-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold sm:text-[1.7rem]"
+          className="font-script text-2xl text-cream focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring sm:text-[1.7rem]"
         >
           {site.name}
         </Link>
@@ -41,7 +41,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-bold uppercase tracking-[0.22em] text-cream/70 transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+              className="text-xs font-bold uppercase tracking-[0.22em] text-cream/70 transition-colors hover:text-label focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
             >
               {link.label}
             </Link>
@@ -65,7 +65,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
-            className="p-2 text-cream transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="p-2 text-cream transition-colors hover:text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
           >
             {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
@@ -85,7 +85,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="shout block py-4 text-3xl text-cream transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="shout block py-4 text-3xl text-cream transition-colors hover:text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 {link.label}
               </Link>
@@ -110,7 +110,7 @@ function LocaleLink({
     <Link
       href={href}
       hrefLang={locale}
-      className="border border-cream/30 px-2.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-cream/70 transition-colors hover:border-gold hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+      className="border border-cream/30 px-2.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-cream/70 transition-colors hover:border-label hover:text-label focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
       {locale.toUpperCase()}
       <span className="sr-only"> — {label}</span>

@@ -62,7 +62,7 @@ export function DishDialog({
             />
             <Dialog.Close
               aria-label={t.menu.closePhoto}
-              className="absolute right-3 top-3 flex size-10 items-center justify-center bg-ink/70 text-cream backdrop-blur transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="absolute right-3 top-3 flex size-10 items-center justify-center bg-ink/70 text-cream backdrop-blur transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               <X className="size-5" />
             </Dialog.Close>
@@ -82,7 +82,7 @@ export function DishDialog({
                   key={`${price.value}-${price.pt ?? ""}`}
                   className="flex items-baseline gap-2"
                 >
-                  <span className="shout text-3xl text-piri">
+                  <span className="shout text-3xl text-shout">
                     {formatPrice(price.value, locale)}
                   </span>
                   {price[locale] ? (
@@ -105,7 +105,7 @@ export function DishDialog({
                       key={entry.code}
                       className="flex items-center gap-2 text-sm text-ink"
                     >
-                      <span className="flex size-5 items-center justify-center rounded-full border border-azulejo/30 bg-azulejo/8 text-[0.6rem] font-bold tabular-nums text-azulejo">
+                      <span className="flex size-5 items-center justify-center rounded-full border border-label/30 bg-label/8 text-[0.6rem] font-bold tabular-nums text-label">
                         {entry.code}
                       </span>
                       {entry[locale]}
