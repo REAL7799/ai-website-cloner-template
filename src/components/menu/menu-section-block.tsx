@@ -1,3 +1,4 @@
+import { DishDialog } from "@/components/menu/dish-dialog";
 import { formatPrice } from "@/content/site";
 import { cn } from "@/lib/utils";
 import type { Locale, MenuItem, MenuSection } from "@/types/menu";
@@ -24,12 +25,11 @@ export function MenuSectionBlock({
 
       <ul className="mt-5 divide-y divide-ink/12">
         {section.items.map((item) => (
-          <MenuRow
-            key={item.pt}
-            item={item}
-            locale={locale}
-            secondary={secondary}
-          />
+          <li key={item.pt} className="py-4">
+            <DishDialog item={item} sectionId={section.id} locale={locale}>
+              <MenuRow item={item} locale={locale} secondary={secondary} />
+            </DishDialog>
+          </li>
         ))}
       </ul>
 
@@ -54,14 +54,14 @@ function MenuRow({
   const single = item.prices.length === 1;
 
   return (
-    <li className="py-4">
+    <div>
       <div
         className={cn(
           "flex items-baseline gap-3",
           single ? "leader-dots" : undefined
         )}
       >
-        <p className="bg-background pr-2 text-base font-semibold leading-snug text-foreground sm:text-lg">
+        <p className="bg-background pr-2 text-base font-semibold leading-snug text-foreground transition-colors group-hover/dish:text-piri sm:text-lg">
           {item[locale]}
         </p>
         {single ? (
@@ -106,6 +106,6 @@ function MenuRow({
           ))}
         </p>
       ) : null}
-    </li>
+    </div>
   );
 }

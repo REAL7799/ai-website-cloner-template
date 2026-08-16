@@ -1,5 +1,7 @@
 import { menu, signatureDishes } from "@/content/menu";
+import { dishImages } from "@/content/dish-images";
 import { formatPrice } from "@/content/site";
+import { dishKey } from "@/lib/dish-slug";
 import type { Locale, MenuItem, MenuSection } from "@/types/menu";
 
 export const getSection = (id: string): MenuSection | undefined =>
@@ -42,3 +44,16 @@ export const localised = <T extends { pt: string; en: string }>(
   entry: T,
   locale: Locale
 ) => entry[locale];
+
+/**
+ * Ficheiro da fotografia de um item, ou undefined se ainda não existir —
+ * assim os componentes desenham o marcador gráfico em vez de uma imagem 404.
+ */
+export const dishImageFile = (
+  sectionId: string,
+  item: MenuItem
+): string | undefined => {
+  if (item.image) return item.image;
+  const key = dishKey(sectionId, item.pt);
+  return dishImages.has(key) ? `${key}.webp` : undefined;
+};

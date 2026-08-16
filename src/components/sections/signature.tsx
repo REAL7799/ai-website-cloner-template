@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { DishImage } from "@/components/dish-image";
 import { getDictionary } from "@/content/dictionary";
 import { formatPrice } from "@/content/site";
-import { getSignatureItems } from "@/lib/menu";
+import { dishImageFile, getSignatureItems } from "@/lib/menu";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/types/menu";
 
@@ -41,7 +41,7 @@ export function Signature({ locale }: { locale: Locale }) {
                 )}
               >
                 <DishImage
-                  src={item.image}
+                  src={dishImageFile(section.id, item)}
                   name={item[locale]}
                   sizes="(min-width: 1024px) 46vw, 92vw"
                   className="aspect-[5/4] w-full"

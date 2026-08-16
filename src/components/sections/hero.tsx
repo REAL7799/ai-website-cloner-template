@@ -5,7 +5,7 @@ import { AzulejoPattern } from "@/components/azulejo";
 import { DishImage } from "@/components/dish-image";
 import { getDictionary } from "@/content/dictionary";
 import { formatPrice, site } from "@/content/site";
-import { getSignatureItems } from "@/lib/menu";
+import { dishImageFile, getSignatureItems } from "@/lib/menu";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/types/menu";
 
@@ -80,7 +80,7 @@ export function Hero({ locale }: { locale: Locale }) {
           {lead ? (
             <div className="relative hidden lg:block">
               <DishImage
-                src={lead.item.image}
+                src={dishImageFile(lead.section.id, lead.item)}
                 name={lead.item[locale]}
                 priority
                 sizes="(min-width: 1024px) 40vw, 0px"
@@ -89,7 +89,7 @@ export function Hero({ locale }: { locale: Locale }) {
               <PriceStar
                 value={lead.item.prices[0].value}
                 locale={locale}
-                className="absolute -bottom-2 -left-4"
+                className="absolute bottom-2 -left-6"
               />
             </div>
           ) : null}
@@ -117,11 +117,11 @@ function PriceStar({
     <span
       aria-hidden="true"
       className={cn(
-        "price-star flex size-28 items-center justify-center bg-ink text-center",
+        "price-star flex size-32 items-center justify-center bg-piri text-center",
         className
       )}
     >
-      <span className="shout text-2xl text-gold">
+      <span className="shout text-2xl text-cream">
         {formatPrice(value, locale)}
       </span>
     </span>

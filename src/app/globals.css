@@ -150,12 +150,18 @@
 
 @layer components {
   /* Tipo de berro: condensado, apertado, em caixa alta. */
+  /*
+   * 0.92 e não menos: o português tem muitas maiúsculas acentuadas (Á, À, Ú)
+   * e, em títulos que quebram para duas linhas, um valor mais apertado faz o
+   * acento bater na linha de cima.
+   */
   .shout {
     font-family: var(--font-display);
     font-weight: 400;
-    line-height: 0.82;
+    line-height: 0.92;
     letter-spacing: -0.015em;
     text-transform: uppercase;
+    text-wrap: balance;
   }
 
   /* Contorno vazado, para sobrepor a fotografias e faixas de cor. */

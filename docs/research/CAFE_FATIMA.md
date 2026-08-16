@@ -41,10 +41,26 @@ assim que forem preenchidos.
    impressa. Foi mantido igual para não contradizer o menu do café, mas vale a
    pena corrigir na próxima reimpressão — atum não é vegetariano e um cliente
    com essa exigência pode reclamar.
-5. **Fotografias.** O site foi desenhado sem fotos de pratos de propósito: só
-   existem as fotos da carta plastificada e não se devem inventar imagens de
-   comida que não é a da casa. Com meia dúzia de fotos reais (fachada, balcão,
-   arroz de pato, bitoque, esplanada) a homepage ganha muito.
+5. **Fotografias dos pratos — recriadas, não reais.** As 68 imagens em
+   `public/images/pratos/` foram geradas por IA a partir da carta impressa, a
+   pedido do cliente. Correspondem aos pratos e às porções da casa, mas **não
+   são fotografias da comida que sai desta cozinha**. O site assinala-as como
+   "fotografia ilustrativa" junto de cada uma.
+
+   Isto é aceitável como ponto de partida e é prática corrente na restauração,
+   mas convém substituí-las por fotografias verdadeiras assim que possível —
+   um cliente que compare o prato com a imagem nota a diferença, e a confiança
+   de um café com setenta e quatro anos vale mais do que a comodidade.
+
+   Ficam a faltar, e essas não se recriam: **fachada, interior, balcão e
+   esplanada**. São um lugar real e concreto; qualquer imagem gerada seria uma
+   invenção. O layout tem espaço reservado para elas.
+
+   Para regenerar ou acrescentar imagens: o nome do ficheiro é
+   `<id-da-seccao>--<nome-do-prato>.webp` (ver `src/lib/dish-slug.ts`) e a
+   lista do que existe está em `src/content/dish-images.ts`, gerada
+   automaticamente. Um item sem ficheiro não fica partido — mostra um marcador
+   gráfico e deixa de ser clicável.
 6. **Password do Wi-Fi.** Está impressa na carta, mas não foi para o site —
    publicá-la na internet é diferente de a dar a quem se senta. O site anuncia
    apenas "Wi-Fi grátis".

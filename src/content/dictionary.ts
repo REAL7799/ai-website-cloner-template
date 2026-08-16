@@ -66,6 +66,10 @@ const dictionary = {
         "A carta completa da casa, em português e inglês. IVA incluído à taxa legal em vigor.",
       fromLabel: "desde",
       jumpLabel: "Ir para",
+      viewPhoto: "ver fotografia",
+      closePhoto: "Fechar fotografia",
+      photoDisclaimer:
+        "Fotografia ilustrativa. A apresentação do prato pode variar.",
       allergensTitle: "Mapa de alergénios",
       allergensSubtitle:
         "Os números junto a cada prato correspondem a esta lista. Fale connosco se tiver alguma alergia.",
@@ -159,6 +163,10 @@ const dictionary = {
         "Our full menu, in Portuguese and English. VAT included at the legal rate.",
       fromLabel: "from",
       jumpLabel: "Jump to",
+      viewPhoto: "view photo",
+      closePhoto: "Close photo",
+      photoDisclaimer:
+        "Illustrative photograph. The dish as served may differ.",
       allergensTitle: "Allergen map",
       allergensSubtitle:
         "The numbers next to each dish match this list. Please tell us about any allergy.",
