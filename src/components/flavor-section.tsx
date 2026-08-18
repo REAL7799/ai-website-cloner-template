@@ -246,6 +246,7 @@ export function FlavorSection({ flavor }: { flavor: Flavor }) {
             fill
             sizes="100vw"
             className="object-cover"
+            style={{ objectPosition: flavor.cardFocus }}
           />
         )}
 

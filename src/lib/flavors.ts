@@ -87,9 +87,8 @@ export const flavors: Flavor[] = [
     image: "/images/flavors/frutos-vermelhos.jpg",
     imageAlt: "Garrafa Pedras Frutos Vermelhos com frutos silvestres",
     accent: "oklch(0.45 0.18 15)",
-    cardFocus: "72% 50%",
+    cardFocus: "70% 30%",
     align: "right",
-    offsetClass: "lg:justify-start lg:pt-24",
     animation: "falling-berries",
   },
 ];
