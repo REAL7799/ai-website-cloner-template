@@ -6,34 +6,36 @@ automaticamente (autoplay, sem som, em loop, com fallback para a imagem).
 
 ## Prompt principal (colar no Google Flow)
 
-> Cinematic macro beauty shot in slow motion. Elegant female hands with flawless
-> nude almond-shaped gel nails rest gently on flowing ivory silk fabric. The silk
-> ripples softly as if touched by a gentle breeze; a few delicate white orchid
-> petals drift slowly across the frame. Warm champagne-gold bokeh lights shimmer
-> and float in the softly blurred background. The camera performs a very slow,
-> smooth dolly-in with subtle parallax. Golden-hour side lighting, soft shadows,
-> luxurious minimal spa aesthetic, editorial beauty commercial style,
-> photorealistic, shallow depth of field. Calm, serene, premium mood.
-> Composition weighted to the right half of the frame, with the left side as
-> softly out-of-focus silk. No text, no logos, no faces. The scene ends in almost
-> the same composition as it starts, so it can loop seamlessly.
+> Cinematic close-up in gentle slow motion. The elegant hands of a Black woman
+> with deep brown skin and glossy nude-pink gel nails rest on a folded ivory
+> linen towel on a light stone counter. She slowly turns her hands and softly
+> interlaces her fingers, admiring her fresh manicure. Natural window daylight,
+> true-to-life muted colors, realistic skin with visible natural texture, calm
+> authentic mood like a documentary beauty film for a small local salon — not
+> a glossy advert. No heavy retouching, no glow, no bokeh light effects. Very
+> slow, smooth camera drift-in. Composition weighted to the right half of the
+> frame, left side calm and soft-focus. No text, no logos, no faces. The scene
+> ends close to the starting composition so it can loop seamlessly.
 
 ### Notas para o Flow
 
 - **Formato:** 16:9 (paisagem), 1080p, 8 segundos.
-- **Imagem de referência:** se o Flow permitir "ingredients"/imagem inicial, usa
-  a própria `public/images/hero.webp` — o vídeo fica coerente com o site.
-- **Composição à direita:** o texto do site fica à esquerda; o prompt já pede o
-  motivo principal à direita para não ficar atrás do texto.
+- **Imagem de referência:** se o Flow permitir "ingredients"/imagem inicial,
+  usa a própria `public/images/hero.webp` — o vídeo fica coerente com o site.
+- **Composição à direita:** o texto do site fica à esquerda; o prompt já pede
+  o motivo principal à direita para não ficar atrás do texto.
+- **Aspeto natural:** evita variações que acrescentem brilhos, partículas ou
+  fundos dourados desfocados — quanto mais parecido com uma filmagem real,
+  melhor se integra no site.
 - **Loop:** gera 2–3 variações e escolhe a que começa e acaba mais parecida.
 
-## Variação (se quiseres um plano diferente)
+## Variação (plano alternativo)
 
-> Slow cinematic close-up inside a luxurious beauty salon. A manicurist's hand
-> glides a fine brush of nude gel polish over an almond nail in extreme slow
-> motion. Warm champagne bokeh glows in the background, dust motes float in
-> golden window light. Very slow camera drift to the right. Editorial beauty
-> commercial, photorealistic, serene premium mood, no text, no logos.
+> Slow cinematic close-up inside a small real beauty salon. A manicurist gently
+> files and polishes the nails of a dark-skinned client at a white table by a
+> window, natural daylight, candid documentary style, true-to-life colors,
+> realistic skin texture, very slow camera drift to the right. No text, no
+> logos.
 
 ## Depois de gerar
 

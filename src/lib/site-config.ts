@@ -77,7 +77,7 @@ export const services: Service[] = [
       "O cuidado clássico das mãos e dos pés, feito com calma e atenção ao detalhe, do início ao fim.",
     image: "/images/svc-pedicure.webp",
     imageAlt: "Pedicure com toalhas e flor de orquídea",
-    highlights: ["Mãos e pés renovados", "Momento de puro bem-estar"],
+    highlights: ["Mãos e pés renovados", "Com calma e sem pressas"],
   },
   {
     id: "limpeza-pele",
@@ -85,7 +85,7 @@ export const services: Service[] = [
     description:
       "Um ritual de cuidado facial que devolve a luminosidade e a suavidade naturais da sua pele.",
     image: "/images/svc-facial.webp",
-    imageAlt: "Tratamento de limpeza de pele num rosto sereno",
+    imageAlt: "Cliente relaxada durante um tratamento de limpeza de pele",
     highlights: ["Pele renovada e luminosa", "Protocolo adaptado a si"],
   },
   {
@@ -164,9 +164,9 @@ export const faqItems: FaqItem[] = [
 
 export const galleryItems: GalleryItem[] = [
   { image: "/images/gal-1.webp", alt: "Mãos com unhas de gel nude a segurar uma chávena de café" },
-  { image: "/images/gal-4.webp", alt: "Unhas de gel bordeaux sobre seda champanhe" },
+  { image: "/images/gal-8.webp", alt: "Unhas vermelho-escuras acabadas de fazer, junto a um café" },
   { image: "/images/svc-manicure.webp", alt: "Aplicação de verniz gel numa manicure profissional" },
-  { image: "/images/gal-7.webp", alt: "Unhas rosa peroladas a segurar uma orquídea branca" },
-  { image: "/images/gal-2.webp", alt: "Olhar realçado com pestanas definidas" },
+  { image: "/images/gal-9.webp", alt: "Manicure a limar as unhas de uma cliente" },
+  { image: "/images/gal-10.webp", alt: "Mãos de clientes com manicure em tons nude" },
   { image: "/images/gal-5.webp", alt: "Mão de cliente no catalisador UV durante a manicure" },
 ];

@@ -31,8 +31,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Unhas perfeitas, olhar de sonho e momentos de puro bem-estar — num espaço pensado para
-            si, no coração de Fátima.
+            Unhas cuidadas, um olhar descansado e tempo para si — num espaço acolhedor, no
+            coração de Fátima.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">

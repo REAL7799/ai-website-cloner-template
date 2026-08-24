@@ -10,8 +10,8 @@ export function Services() {
       <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
         <SectionHeading
           eyebrow="Serviços"
-          title="Rituais de beleza à sua medida"
-          subtitle="Do clássico verniz gel ao olhar de sonho — cuidamos de cada detalhe, num só lugar."
+          title="Serviços à sua medida"
+          subtitle="Do verniz gel à limpeza de pele — tudo num só lugar, com marcação simples."
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
