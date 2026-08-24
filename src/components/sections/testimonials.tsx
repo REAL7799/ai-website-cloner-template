@@ -7,7 +7,7 @@ export function Testimonials() {
   return (
     <section
       id="depoimentos"
-      className="relative overflow-hidden bg-espresso py-20 text-espresso-foreground md:py-28"
+      className="relative overflow-hidden bg-emerald py-20 text-emerald-foreground md:py-28"
     >
       {/* Depoimentos de exemplo — substituir por avaliações reais do Google */}
       <div
@@ -23,7 +23,7 @@ export function Testimonials() {
         <div className="grid gap-6 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <Reveal key={testimonial.name} delay={index * 120}>
-              <div className="flex h-full flex-col rounded-3xl border border-gold-soft/15 bg-espresso-foreground/5 p-8">
+              <div className="flex h-full flex-col rounded-3xl border border-gold-soft/15 bg-emerald-foreground/5 p-8">
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }, (_, star) => (
                     <Star key={star} className="size-4 fill-gold text-gold" aria-hidden />
@@ -35,7 +35,7 @@ export function Testimonials() {
                 </blockquote>
                 <footer className="mt-6">
                   <p className="font-medium">{testimonial.name}</p>
-                  <p className="mt-0.5 text-xs uppercase tracking-[0.2em] text-espresso-foreground/60">
+                  <p className="mt-0.5 text-xs uppercase tracking-[0.2em] text-emerald-foreground/60">
                     {testimonial.service}
                   </p>
                 </footer>

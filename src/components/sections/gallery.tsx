@@ -24,8 +24,8 @@ export function Gallery() {
                   sizes="(min-width: 1024px) 33vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-espresso/70 via-espresso/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <figcaption className="p-4 text-xs leading-snug text-espresso-foreground/90 md:text-sm">
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-emerald/70 via-emerald/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <figcaption className="p-4 text-xs leading-snug text-emerald-foreground/90 md:text-sm">
                     {item.alt}
                   </figcaption>
                 </div>

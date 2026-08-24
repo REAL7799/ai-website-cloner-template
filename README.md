@@ -1,8 +1,9 @@
 # Annelux — Estética e Bem-Estar
 
-Site institucional da **Annelux**, salão de estética especializado em unhas e
-pestanas em Fátima (Ourém, Portugal). Construído com Next.js 16, React 19,
-Tailwind CSS v4 e TypeScript.
+Site institucional da **Annelux**, salão de estética em Fátima (Ourém,
+Portugal): unhas, cuidados de pele, pestanas, sobrancelhas e depilação.
+Identidade visual verde esmeralda + dourado, fiel à fachada do salão.
+Construído com Next.js 16, React 19, Tailwind CSS v4 e TypeScript.
 
 ## Desenvolvimento
 
@@ -23,7 +24,8 @@ npm run check      # lint + typecheck + build
 
 ## Antes de publicar
 
-- [ ] Confirmar os **horários** em `src/lib/site-config.ts` (valores provisórios).
+- [ ] Confirmar os **dias de funcionamento** em `src/lib/site-config.ts` (o
+      letreiro indica 09:30–19:00 com almoço 13:00–14:30, mas não os dias).
 - [ ] Substituir os **depoimentos de exemplo** por avaliações reais do Google Maps.
 - [ ] Atualizar o **Instagram** (`instagramUrl`/`instagramHandle`) com o perfil real.
 - [ ] Trocar `url` pelo domínio final quando existir.

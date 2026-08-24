@@ -18,7 +18,7 @@ export function Contact() {
             <div className="h-full space-y-8 rounded-3xl border border-border/70 bg-card p-8 md:p-10">
               <div className="flex gap-4">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent">
-                  <Phone className="size-5 text-espresso" aria-hidden />
+                  <Phone className="size-5 text-emerald" aria-hidden />
                 </span>
                 <div>
                   <p className="text-xs tracking-[0.25em] text-muted-foreground uppercase">
@@ -35,7 +35,7 @@ export function Contact() {
 
               <div className="flex gap-4">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent">
-                  <MapPin className="size-5 text-espresso" aria-hidden />
+                  <MapPin className="size-5 text-emerald" aria-hidden />
                 </span>
                 <div>
                   <p className="text-xs tracking-[0.25em] text-muted-foreground uppercase">
@@ -58,7 +58,7 @@ export function Contact() {
 
               <div className="flex gap-4">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent">
-                  <Clock className="size-5 text-espresso" aria-hidden />
+                  <Clock className="size-5 text-emerald" aria-hidden />
                 </span>
                 <div className="flex-1">
                   <p className="text-xs tracking-[0.25em] text-muted-foreground uppercase">
@@ -82,11 +82,11 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={150} className="lg:col-span-2">
-            <div className="flex h-full flex-col rounded-3xl bg-espresso p-8 text-espresso-foreground md:p-10">
+            <div className="flex h-full flex-col rounded-3xl bg-emerald p-8 text-emerald-foreground md:p-10">
               <h3 className="font-heading text-3xl leading-tight font-medium md:text-4xl">
                 Vamos cuidar de si?
               </h3>
-              <p className="mt-4 leading-relaxed text-espresso-foreground/70">
+              <p className="mt-4 leading-relaxed text-emerald-foreground/70">
                 Envie-nos uma mensagem no WhatsApp e combinamos o horário perfeito para o seu
                 ritual de beleza.
               </p>
@@ -95,12 +95,12 @@ export function Contact() {
                 href={siteConfig.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium tracking-wide text-espresso transition-all duration-300 hover:bg-gold-soft hover:shadow-xl hover:shadow-espresso/20"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-medium tracking-wide text-emerald transition-all duration-300 hover:bg-gold-soft hover:shadow-xl hover:shadow-emerald/20"
               >
                 <WhatsappIcon className="size-5" />
                 Marcar por WhatsApp
               </a>
-              <p className="mt-4 text-center text-xs text-espresso-foreground/70">
+              <p className="mt-4 text-center text-xs text-emerald-foreground/70">
                 Respondemos rapidamente em horário de funcionamento.
               </p>
             </div>

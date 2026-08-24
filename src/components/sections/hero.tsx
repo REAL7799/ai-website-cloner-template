@@ -40,7 +40,7 @@ export function Hero() {
               href={siteConfig.whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium tracking-wide text-primary-foreground transition-all duration-300 hover:bg-espresso hover:shadow-xl hover:shadow-espresso/20"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium tracking-wide text-primary-foreground transition-all duration-300 hover:bg-emerald hover:shadow-xl hover:shadow-emerald/20"
             >
               Marcar por WhatsApp
               <ArrowRight className="size-4" aria-hidden />

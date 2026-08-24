@@ -1,23 +1,31 @@
+import Image from "next/image";
 import { ExternalLink, MapPin, Phone } from "lucide-react";
 import { navLinks, siteConfig } from "@/lib/site-config";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-espresso text-espresso-foreground">
+    <footer className="bg-emerald text-emerald-foreground">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 md:px-8 md:py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
+            <Image
+              src="/images/logo-emblema.webp"
+              alt="Emblema da Annelux"
+              width={56}
+              height={56}
+              className="mb-4 size-14 rounded-xl"
+            />
             <p className="font-heading text-3xl font-semibold">{siteConfig.name}</p>
             <p className="mt-1 text-[10px] tracking-[0.35em] text-gold-soft uppercase">
               {siteConfig.tagline}
             </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-espresso-foreground/60">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-emerald-foreground/60">
               O seu cantinho de beleza e bem-estar no coração de Fátima.
             </p>
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.25em] text-espresso-foreground/70 uppercase">
+            <p className="text-xs tracking-[0.25em] text-emerald-foreground/70 uppercase">
               Navegação
             </p>
             <ul className="mt-4 space-y-2.5">
@@ -35,7 +43,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="text-xs tracking-[0.25em] text-espresso-foreground/70 uppercase">
+            <p className="text-xs tracking-[0.25em] text-emerald-foreground/70 uppercase">
               Contactos
             </p>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -67,7 +75,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-espresso-foreground/10 pt-6 text-xs text-espresso-foreground/70 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-emerald-foreground/10 pt-6 text-xs text-emerald-foreground/70 sm:flex-row">
           <span>
             © {new Date().getFullYear()} {siteConfig.name} — {siteConfig.tagline}
           </span>

@@ -8,7 +8,7 @@ export function WhatsappButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar connosco no WhatsApp"
-      className="fixed right-5 bottom-5 z-50 flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-espresso/25 transition-transform hover:scale-105"
+      className="fixed right-5 bottom-5 z-50 flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-emerald/25 transition-transform hover:scale-105"
     >
       <span
         className="absolute inset-0 animate-ping rounded-full bg-[#25D366]/40 motion-reduce:hidden"

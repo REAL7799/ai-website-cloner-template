@@ -30,7 +30,7 @@ export const siteConfig = {
   // Trocar pelo domínio final quando existir (ex.: https://annelux.pt)
   url: "https://annelux.vercel.app",
   description:
-    "Annelux — Estética e Bem-Estar em Fátima. Unhas de gel, manicure, pedicure, extensão de pestanas e design de sobrancelhas, com marcação fácil por WhatsApp.",
+    "Annelux — Estética e Bem-Estar em Fátima. Unhas de gel, manicure e pedicure, limpeza de pele, lifting de pestanas, sobrancelhas e depilação a laser e a cera, com marcação fácil por WhatsApp.",
   phoneDisplay: "911 766 814",
   phoneHref: "tel:+351911766814",
   whatsappHref:
@@ -40,10 +40,11 @@ export const siteConfig = {
     region: "Ourém, Portugal",
     mapsUrl: "https://maps.app.goo.gl/tvyUSFvVr45vtvG6A",
   },
+  // Horário conforme o letreiro na porta do salão.
   hours: [
-    { days: "Segunda a Sexta", time: "09:00 — 19:00" },
-    { days: "Sábado", time: "09:00 — 13:00" },
-    { days: "Domingo", time: "Encerrado" },
+    { days: "Abertura", time: "09:30" },
+    { days: "Pausa de almoço", time: "13:00 — 14:30" },
+    { days: "Fecho", time: "19:00" },
   ],
   // Instagram: adicionar aqui quando o perfil real for confirmado, p.ex.
   // instagramHandle: "annelux.estetica",
@@ -58,60 +59,61 @@ export const navLinks = [
   { label: "Contactos", href: "#contactos" },
 ] as const;
 
+// Serviços conforme a tabela afixada na montra ("Mãos e Pés" + "Cuidados e Bem-Estar").
 export const services: Service[] = [
   {
-    id: "manicure",
-    title: "Manicure & Verniz Gel",
-    description:
-      "Cuidado completo das mãos com acabamento impecável e cor que dura semanas sem perder o brilho.",
-    image: "/images/svc-manicure.webp",
-    imageAlt: "Aplicação de verniz gel numa manicure profissional",
-    highlights: ["Duração até 3 semanas", "Acabamento de brilho intenso"],
-  },
-  {
     id: "unhas-gel",
-    title: "Unhas de Gel & Extensões",
+    title: "Unhas de Gel & Verniz Gel",
     description:
-      "Alongamento e construção de unhas à medida — do natural discreto ao design mais arrojado.",
+      "Aplicação de gel e verniz gel com acabamento impecável — cor perfeita que dura semanas sem perder o brilho.",
     image: "/images/svc-gel.webp",
     imageAlt: "Unhas de gel com francesa e detalhes dourados",
-    highlights: ["Formato à sua escolha", "Nail art personalizada"],
+    highlights: ["Aplicação, remoção e manutenção", "Formato e cor à sua escolha"],
   },
   {
-    id: "pedicure",
-    title: "Pedicure Spa",
+    id: "manicure-pedicure",
+    title: "Manicure & Pedicure Tradicional",
     description:
-      "Um ritual de bem-estar para os pés: esfoliação, hidratação profunda e acabamento perfeito.",
+      "O cuidado clássico das mãos e dos pés, feito com calma e atenção ao detalhe, do início ao fim.",
     image: "/images/svc-pedicure.webp",
-    imageAlt: "Pedicure spa com toalhas e flor de orquídea",
-    highlights: ["Ritual relaxante", "Pés renovados"],
+    imageAlt: "Pedicure com toalhas e flor de orquídea",
+    highlights: ["Mãos e pés renovados", "Momento de puro bem-estar"],
   },
   {
-    id: "pestanas",
-    title: "Extensão de Pestanas",
+    id: "limpeza-pele",
+    title: "Limpeza de Pele",
     description:
-      "Olhar intenso e natural todos os dias, com extensões aplicadas fio a fio por mãos especialistas.",
-    image: "/images/svc-lashes.webp",
-    imageAlt: "Olho fechado com extensões de pestanas de volume",
-    highlights: ["Efeito natural ou volume", "Manutenção regular"],
+      "Um ritual de cuidado facial que devolve a luminosidade e a suavidade naturais da sua pele.",
+    image: "/images/svc-facial.webp",
+    imageAlt: "Tratamento de limpeza de pele num rosto sereno",
+    highlights: ["Pele renovada e luminosa", "Protocolo adaptado a si"],
   },
   {
     id: "lifting",
     title: "Lifting de Pestanas",
     description:
       "Curvatura e definição das suas pestanas naturais — acorde todos os dias com o olhar levantado.",
-    image: "/images/gal-2.webp",
-    imageAlt: "Olho com pestanas curvadas e definidas",
-    highlights: ["Sem extensões", "Efeito até 8 semanas"],
+    image: "/images/svc-lashes.webp",
+    imageAlt: "Olho fechado com pestanas curvadas e definidas",
+    highlights: ["Sem extensões", "Efeito natural e duradouro"],
   },
   {
     id: "sobrancelhas",
-    title: "Design de Sobrancelhas",
+    title: "Laminação & Design de Sobrancelhas",
     description:
       "Sobrancelhas desenhadas à medida do seu rosto, com técnica de precisão e acabamento natural.",
     image: "/images/svc-brows.webp",
     imageAlt: "Sobrancelha perfeitamente desenhada a ser penteada",
     highlights: ["Visagismo personalizado", "Laminação disponível"],
+  },
+  {
+    id: "depilacao",
+    title: "Depilação a Laser & a Cera",
+    description:
+      "Pele suave e cuidada com a técnica certa para si — depilação profissional a laser ou a cera.",
+    image: "/images/svc-depilacao.webp",
+    imageAlt: "Pernas suaves e luminosas numa marquesa de estética",
+    highlights: ["Laser e cera profissional", "Conforto e resultados"],
   },
 ];
 
@@ -149,9 +151,9 @@ export const faqItems: FaqItem[] = [
       "Com os cuidados adequados, o verniz gel mantém-se impecável durante 2 a 3 semanas, sem lascar e sem perder o brilho.",
   },
   {
-    question: "A extensão de pestanas danifica as pestanas naturais?",
+    question: "O lifting de pestanas danifica as pestanas naturais?",
     answer:
-      "Não. Quando aplicadas corretamente, fio a fio e com o peso adequado, as extensões respeitam o ciclo natural das suas pestanas.",
+      "Não. O lifting trabalha as suas próprias pestanas com produtos adequados, realçando a curvatura natural sem extensões nem danos.",
   },
   {
     question: "Onde fica a Annelux?",
@@ -163,8 +165,8 @@ export const faqItems: FaqItem[] = [
 export const galleryItems: GalleryItem[] = [
   { image: "/images/gal-1.webp", alt: "Mãos com unhas de gel nude a segurar uma chávena de café" },
   { image: "/images/gal-4.webp", alt: "Unhas de gel bordeaux sobre seda champanhe" },
-  { image: "/images/gal-5.webp", alt: "Mão de cliente no catalisador UV durante a manicure" },
+  { image: "/images/svc-manicure.webp", alt: "Aplicação de verniz gel numa manicure profissional" },
   { image: "/images/gal-7.webp", alt: "Unhas rosa peroladas a segurar uma orquídea branca" },
-  { image: "/images/gal-6.webp", alt: "Ambiente do salão com toalhas, vela e orquídea" },
-  { image: "/images/gal-3.webp", alt: "Produtos de cuidado de unhas em mármore" },
+  { image: "/images/gal-2.webp", alt: "Olhar realçado com pestanas definidas" },
+  { image: "/images/gal-5.webp", alt: "Mão de cliente no catalisador UV durante a manicure" },
 ];

@@ -29,8 +29,10 @@ export const metadata: Metadata = {
     "unhas de gel Fátima",
     "manicure Fátima",
     "pedicure Fátima",
-    "extensão de pestanas Fátima",
+    "limpeza de pele Fátima",
+    "lifting de pestanas Fátima",
     "sobrancelhas Ourém",
+    "depilação a laser Fátima",
     "Annelux",
   ],
   alternates: { canonical: "/" },
@@ -77,21 +79,8 @@ const jsonLd = {
     addressRegion: "Santarém",
     addressCountry: "PT",
   },
-  // Manter em sincronia com siteConfig.hours (horários provisórios).
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "19:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "09:00",
-      closes: "13:00",
-    },
-  ],
+  // Sem openingHoursSpecification: o letreiro indica 09:30–19:00 (almoço
+  // 13:00–14:30) mas não os dias da semana — confirmar antes de estruturar.
 };
 
 export default function RootLayout({

@@ -22,14 +22,14 @@ export function About() {
               />
               <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/about-interior.webp"
+                  src="/images/about-interior2.webp"
                   alt="Interior acolhedor do salão Annelux em Fátima"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-5 shadow-xl shadow-espresso/10 sm:-left-6">
+              <div className="absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-5 shadow-xl shadow-emerald/10 sm:-left-6">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent">
                   <Sparkles className="size-5 text-gold" aria-hidden />
                 </span>
@@ -52,8 +52,8 @@ export function About() {
             </Reveal>
             <Reveal className="mt-5" delay={160}>
               <p className="text-muted-foreground leading-relaxed">
-                Especializamo-nos na arte das unhas, das pestanas e das sobrancelhas — sempre com
-                produtos profissionais, técnica rigorosa e um atendimento próximo, dedicado a si.
+                Das unhas de gel à limpeza de pele, do lifting de pestanas à depilação — tudo
+                com produtos profissionais, técnica rigorosa e um atendimento próximo, dedicado a si.
               </p>
             </Reveal>
             <Reveal delay={220}>
@@ -61,7 +61,7 @@ export function About() {
                 {commitments.map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm md:text-base">
                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent">
-                      <Check className="size-3.5 text-espresso" aria-hidden />
+                      <Check className="size-3.5 text-emerald" aria-hidden />
                     </span>
                     {item}
                   </li>

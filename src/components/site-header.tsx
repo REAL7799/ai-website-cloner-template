@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -7,16 +8,26 @@ import { cn } from "@/lib/utils";
 import { navLinks, siteConfig } from "@/lib/site-config";
 
 const primaryButton =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium tracking-wide text-primary-foreground transition-all duration-300 hover:bg-espresso hover:shadow-xl hover:shadow-espresso/20";
+  "inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium tracking-wide text-primary-foreground transition-all duration-300 hover:bg-emerald hover:shadow-xl hover:shadow-emerald/20";
 
 function Wordmark() {
   return (
-    <span className="flex flex-col leading-none">
-      <span className="font-heading text-2xl font-semibold tracking-wide md:text-3xl">
-        {siteConfig.name}
-      </span>
-      <span className="mt-1 hidden text-[10px] tracking-[0.35em] text-gold-text uppercase sm:block">
-        {siteConfig.tagline}
+    <span className="flex items-center gap-3">
+      <Image
+        src="/images/logo-emblema.webp"
+        alt=""
+        width={44}
+        height={44}
+        className="size-9 rounded-lg md:size-10"
+        aria-hidden
+      />
+      <span className="flex flex-col leading-none">
+        <span className="font-heading text-2xl font-semibold tracking-wide md:text-3xl">
+          {siteConfig.name}
+        </span>
+        <span className="mt-1 hidden text-[10px] tracking-[0.35em] text-gold-text uppercase sm:block">
+          {siteConfig.tagline}
+        </span>
       </span>
     </span>
   );
