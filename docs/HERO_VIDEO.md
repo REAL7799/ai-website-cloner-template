@@ -1,8 +1,14 @@
 # Animação do Hero — Google Flow (Veo)
 
-O hero do site já está preparado para vídeo: mostra a imagem `public/images/hero.webp`
-e, assim que existir o ficheiro `public/videos/hero.mp4`, passa a reproduzi-lo
-automaticamente (autoplay, sem som, em loop, com fallback para a imagem).
+> ✅ **Vídeo instalado.** O take "Woman interlaces fingers on towel" gerado no
+> Flow está ativo no hero como loop perfeito de 16s (ida e volta), em duas
+> versões: `public/videos/hero.webm` (VP9, preferida) e `public/videos/hero.mp4`
+> (H.264, fallback). Para trocar o vídeo, gera um novo no Flow e repete os
+> comandos abaixo.
+
+O hero mostra a imagem `public/images/hero.webp` e sobrepõe o vídeo com fade
+assim que ele consegue reproduzir (autoplay, sem som, em loop; com
+`prefers-reduced-motion` fica só a imagem).
 
 ## Prompt principal (colar no Google Flow)
 
@@ -37,15 +43,25 @@ automaticamente (autoplay, sem som, em loop, com fallback para a imagem).
 > realistic skin texture, very slow camera drift to the right. No text, no
 > logos.
 
-## Depois de gerar
+## Depois de gerar (comandos usados na instalação atual)
 
 1. Descarrega o MP4 do Flow.
-2. Comprime para a web (mantém-no de preferência abaixo de ~6–8 MB):
+2. Cria o loop perfeito (palíndromo: o vídeo avança e recua, sem salto) e as
+   duas versões comprimidas:
 
    ```bash
-   ffmpeg -i flow.mp4 -an -vcodec libx264 -crf 26 -preset slow \
-     -movflags +faststart -vf "scale=1920:-2" public/videos/hero.mp4
+   # MP4 (H.264) — compatível com todos os browsers
+   ffmpeg -i flow.mp4 \
+     -filter_complex "[0:v]split[a][b];[b]reverse,trim=start_frame=1[r];[a][r]concat=n=2:v=1[v]" \
+     -map "[v]" -an -c:v libx264 -crf 26 -preset slow -pix_fmt yuv420p \
+     -movflags +faststart public/videos/hero.mp4
+
+   # WebM (VP9) — mais leve, carregado primeiro
+   ffmpeg -i flow.mp4 \
+     -filter_complex "[0:v]split[a][b];[b]reverse,trim=start_frame=1[r];[a][r]concat=n=2:v=1[v]" \
+     -map "[v]" -an -c:v libvpx-vp9 -crf 34 -b:v 0 -row-mt 1 -pix_fmt yuv420p \
+     public/videos/hero.webm
    ```
 
    (`-an` remove o áudio — o hero reproduz sempre sem som.)
-3. Guarda como `public/videos/hero.mp4`, faz commit e publica. Mais nada a mudar.
+3. Faz commit dos dois ficheiros e publica. Mais nada a mudar.

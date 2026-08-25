@@ -49,19 +49,21 @@ export function HeroMedia() {
       />
       {allowVideo && !failed && (
         <video
-          src="/videos/hero.mp4"
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
           onCanPlay={() => setCanPlay(true)}
-          onError={() => setFailed(true)}
           className={cn(
             "absolute inset-0 h-full w-full object-cover transition-opacity duration-1000",
             canPlay ? "opacity-100" : "opacity-0",
           )}
-        />
+        >
+          <source src="/videos/hero.webm" type="video/webm" />
+          {/* O onError na última fonte deteta a falha de todas as fontes. */}
+          <source src="/videos/hero.mp4" type="video/mp4" onError={() => setFailed(true)} />
+        </video>
       )}
     </div>
   );
