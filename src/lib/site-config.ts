@@ -23,6 +23,12 @@ export const siteConfig = {
     { days: "Sábado e Domingo", time: "08:00 – 14:00" },
     { days: "Segunda-feira", time: "Encerrado" },
   ],
+  // Horário estruturado para o selo "Aberto agora" (0 = domingo … 6 = sábado)
+  schedule: [
+    { days: [2, 3, 4, 5], open: "08:00", close: "19:00" },
+    { days: [6, 0], open: "08:00", close: "14:00" },
+  ],
+  timeZone: "Europe/Lisbon",
   social: {
     instagram: "https://instagram.com/docealma",
     facebook: "https://facebook.com/docealma",

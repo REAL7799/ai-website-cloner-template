@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 import { LogoMark } from "@/components/icons";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 

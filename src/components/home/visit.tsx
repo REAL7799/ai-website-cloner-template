@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
+import { OpenNowBadge } from "@/components/site/open-now-badge";
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
 import { images } from "@/lib/images";
@@ -41,7 +42,10 @@ export function Visit() {
             <div className="flex gap-3.5">
               <Clock className="mt-1 size-5 shrink-0 text-primary" aria-hidden="true" />
               <div>
-                <h3 className="font-heading font-semibold">Horário</h3>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <h3 className="font-heading font-semibold">Horário</h3>
+                  <OpenNowBadge />
+                </div>
                 <ul className="mt-1 space-y-0.5 text-sm leading-relaxed text-muted-foreground">
                   {siteConfig.hours.map((slot) => (
                     <li key={slot.days}>

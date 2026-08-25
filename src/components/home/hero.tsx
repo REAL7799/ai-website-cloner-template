@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { images } from "@/lib/images";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/site/reveal";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { values } from "@/lib/content";
 import { images } from "@/lib/images";
 import { siteConfig } from "@/lib/site-config";

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { categoryImage, images } from "@/lib/images";
 import { categories } from "@/lib/products";
 import { cn } from "@/lib/utils";

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/site/reveal";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { categoryImage } from "@/lib/images";
 import { categories } from "@/lib/products";
 import { cn } from "@/lib/utils";

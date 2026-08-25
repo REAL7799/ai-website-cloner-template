@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { orderSteps } from "@/lib/content";
 import { cn } from "@/lib/utils";
 

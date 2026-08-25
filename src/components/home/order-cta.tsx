@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { WhatsAppIcon } from "@/components/icons";
 import { Reveal } from "@/components/site/reveal";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { images } from "@/lib/images";
 import { defaultOrderMessage, whatsappLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
