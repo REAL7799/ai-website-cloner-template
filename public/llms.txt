@@ -1,0 +1,22 @@
+# Doce Alma — Pastelaria Artesanal
+
+> Pastelaria artesanal em Lisboa desde 2009. Bolos de festa por encomenda
+> (casamentos, aniversários, batizados), bolos caseiros, tartes, pastéis de
+> nata e doçaria tradicional portuguesa, tudo feito à mão com ingredientes
+> locais.
+
+## Páginas
+
+- [Início](/): apresentação, especialidades e como encomendar
+- [A Nossa Doçaria](/doces): carta completa com preços — bolos de festa,
+  bolos caseiros, tartes, doces tradicionais, doces finos
+- [Sobre Nós](/sobre): história da casa e valores
+- [Encomendas](/encomendas): pedido de orçamento por WhatsApp ou e-mail, FAQ
+
+## Informação útil
+
+- Morada: Rua das Flores 42, 1200-192 Lisboa
+- Horário: ter–sex 08:00–19:00; sáb–dom 08:00–14:00; segunda encerrado
+- Encomendas: 48h (bolos caseiros/tartes), 1 semana (bolos decorados),
+  4–6 semanas (casamentos, com prova incluída)
+- Entregas na Grande Lisboa com montagem de bolos de festa

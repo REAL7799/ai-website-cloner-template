@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Chave API para scripts/generate-images.mjs (nunca commitar)
+gemini_api_key.txt
