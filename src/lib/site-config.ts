@@ -21,8 +21,12 @@ export interface FaqItem {
 export interface GalleryItem {
   image: string;
   alt: string;
-  /** Quando presente, o azulejo toca este vídeo em loop (image fica como poster). */
-  video?: { webm: string; mp4: string };
+}
+
+export interface GalleryFeature {
+  video: { webm: string; mp4: string };
+  poster: string;
+  alt: string;
 }
 
 // NOTA: horários são provisórios — confirmar com a Annelux antes de publicar.
@@ -164,14 +168,17 @@ export const faqItems: FaqItem[] = [
   },
 ];
 
+// Vídeo principal da galeria (Google Flow): a manicure a trabalhar com uma cliente.
+export const galleryFeature: GalleryFeature = {
+  video: { webm: "/videos/gallery-feature.webm", mp4: "/videos/gallery-feature.mp4" },
+  poster: "/images/gallery-feature-poster.webp",
+  alt: "A nossa manicure a cuidar das unhas de uma cliente, à luz da janela",
+};
+
 export const galleryItems: GalleryItem[] = [
   { image: "/images/gal-1.webp", alt: "Mãos com unhas de gel nude a segurar uma chávena de café" },
   { image: "/images/gal-8.webp", alt: "Unhas vermelho-escuras acabadas de fazer, junto a um café" },
-  {
-    image: "/images/svc-manicure.webp",
-    alt: "Manicure profissional em curso no salão",
-    video: { webm: "/videos/gallery-manicure.webm", mp4: "/videos/gallery-manicure.mp4" },
-  },
+  { image: "/images/svc-manicure.webp", alt: "Aplicação de verniz gel numa manicure profissional" },
   { image: "/images/gal-9.webp", alt: "Manicure a limar as unhas de uma cliente" },
   { image: "/images/gal-10.webp", alt: "Mãos de clientes com manicure em tons nude" },
   { image: "/images/gal-5.webp", alt: "Mão de cliente no catalisador UV durante a manicure" },

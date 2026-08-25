@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { GalleryVideo } from "@/components/gallery-video";
 import { WhatsappIcon } from "@/components/icons";
-import { galleryItems, siteConfig } from "@/lib/site-config";
+import { galleryFeature, galleryItems, siteConfig } from "@/lib/site-config";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 
@@ -14,27 +14,33 @@ export function Gallery() {
           title="O nosso trabalho fala por si"
           subtitle="Um vislumbre dos rituais e resultados que preparamos todos os dias."
         />
+        <Reveal className="mb-3 md:mb-4">
+          <figure className="group relative aspect-video overflow-hidden rounded-3xl">
+            <GalleryVideo
+              webm={galleryFeature.video.webm}
+              mp4={galleryFeature.video.mp4}
+              poster={galleryFeature.poster}
+              caption={galleryFeature.alt}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-emerald/60 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <figcaption className="p-5 text-sm text-emerald-foreground/90 md:text-base">
+                {galleryFeature.alt}
+              </figcaption>
+            </div>
+          </figure>
+        </Reveal>
         <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-3">
           {galleryItems.map((item, index) => (
             <Reveal key={item.image} delay={(index % 3) * 100}>
               <figure className="group relative aspect-square overflow-hidden rounded-2xl">
-                {item.video ? (
-                  <GalleryVideo
-                    webm={item.video.webm}
-                    mp4={item.video.mp4}
-                    poster={item.image}
-                    caption={item.alt}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                ) : (
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, 50vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 flex items-end bg-gradient-to-t from-emerald/70 via-emerald/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                   <figcaption className="p-4 text-xs leading-snug text-emerald-foreground/90 md:text-sm">
                     {item.alt}
