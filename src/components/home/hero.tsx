@@ -1,87 +1,92 @@
+import type * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button-variants";
-import { images } from "@/lib/images";
+import { heroFrames } from "@/lib/images";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
+// Hero 16:9 em flipbook: 6 fotografias trocam a cada 0,5 s (CSS puro,
+// ver .hero-flip-frame em globals.css; para em prefers-reduced-motion).
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 -z-10 h-[32rem] bg-gradient-to-b from-secondary/80 to-transparent"
-      />
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_1fr]">
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <p className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-card px-4 py-1.5 text-sm font-medium text-primary">
-            Forno aceso desde {siteConfig.founded}
-          </p>
-          <h1 className="mt-6 text-4xl leading-[1.08] font-semibold text-balance sm:text-5xl lg:text-6xl">
-            {siteConfig.tagline},
-            <br />
-            <span className="text-primary">todos os dias</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Bolos de festa por encomenda, tartes de fruta da época e a doçaria
-            portuguesa de sempre — tudo preparado de madrugada na nossa cozinha,
-            em {siteConfig.address.city}.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/encomendas"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "h-12 rounded-full px-7 text-base"
-              )}
-            >
-              Fazer encomenda
-            </Link>
-            <Link
-              href="/doces"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-12 rounded-full px-7 text-base"
-              )}
-            >
-              Ver a doçaria
-            </Link>
-          </div>
-          <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground">
-            <span className="flex" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  className="size-4 fill-primary text-primary"
-                />
-              ))}
-            </span>
-            <span>
-              <strong className="font-semibold text-foreground">4,9</strong> em
-              mais de 400 avaliações de clientes
-            </span>
+    <section className="relative">
+      <div className="relative aspect-video max-h-[88svh] min-h-[30rem] w-full overflow-hidden bg-black">
+        {heroFrames.map((frame, i) => (
+          <Image
+            key={frame.alt}
+            src={frame.image}
+            alt={i === 0 ? frame.alt : ""}
+            aria-hidden={i === 0 ? undefined : true}
+            priority={i < 2}
+            placeholder="blur"
+            fill
+            sizes="100vw"
+            style={{ "--flip-index": i } as React.CSSProperties}
+            data-first={i === 0 ? "" : undefined}
+            className="hero-flip-frame object-cover"
+          />
+        ))}
+
+        {/* véus para legibilidade do texto */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/40"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-transparent"
+        />
+
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="mx-auto max-w-6xl px-4 pb-10 sm:px-6 sm:pb-16">
+            <p className="animate-in fade-in slide-in-from-bottom-3 text-sm font-semibold tracking-[0.22em] uppercase text-primary duration-700">
+              Pastelaria artesanal · {siteConfig.address.city}
+            </p>
+            <h1 className="mt-3 max-w-3xl animate-in fade-in slide-in-from-bottom-4 text-5xl leading-[1.02] font-semibold text-balance text-white duration-700 sm:text-6xl lg:text-7xl">
+              A arte de fazer
+              <span className="text-primary italic"> doce</span>
+            </h1>
+            <p className="mt-4 max-w-xl animate-in fade-in slide-in-from-bottom-5 text-lg leading-relaxed text-white/85 duration-700 [animation-delay:120ms]">
+              Bolos de autor, tartes e doçaria fina — cada peça desenhada,
+              montada e acabada à mão pelo mestre {siteConfig.founder}.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-3 animate-in fade-in slide-in-from-bottom-6 duration-700 [animation-delay:200ms]">
+              <Link
+                href="/encomendas"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "h-12 rounded-full px-7 text-base font-semibold"
+                )}
+              >
+                Fazer encomenda
+              </Link>
+              <Link
+                href="/doces"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "h-12 rounded-full border-white/35 bg-white/5 px-7 text-base text-white backdrop-blur-sm hover:bg-white/15 hover:text-white"
+                )}
+              >
+                Ver a doçaria
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="relative animate-in fade-in slide-in-from-bottom-6 duration-700 [animation-delay:150ms]">
-          <div className="overflow-hidden rounded-4xl border border-border/70 shadow-xl shadow-primary/10">
-            <Image
-              src={images.hero}
-              alt="Balcão da Doce Alma com bolo de camadas, tarte de frutos e pastéis de nata"
-              priority
-              placeholder="blur"
-              sizes="(max-width: 1024px) 100vw, 560px"
-              className="h-auto w-full object-cover"
+        {/* indicadores de fotograma, sincronizados com o flipbook */}
+        <div
+          aria-hidden="true"
+          className="absolute right-5 bottom-5 hidden gap-1.5 sm:flex"
+        >
+          {heroFrames.map((frame, i) => (
+            <span
+              key={frame.alt}
+              style={{ "--flip-index": i } as React.CSSProperties}
+              className="hero-flip-frame size-1.5 rounded-full bg-primary"
             />
-          </div>
-          <div className="absolute -bottom-5 left-4 rounded-2xl border border-border/70 bg-card px-5 py-3.5 shadow-lg sm:left-8">
-            <p className="text-sm font-semibold">Pastéis de nata quentes</p>
-            <p className="text-xs text-muted-foreground">
-              saem do forno às 10h e às 16h
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

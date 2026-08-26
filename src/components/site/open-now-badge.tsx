@@ -75,8 +75,8 @@ export function OpenNowBadge({ className }: { className?: string }) {
       className={cn(
         "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold",
         state.open
-          ? "border-[#3d8b52]/30 bg-[#3d8b52]/10 text-[#2c6a3d]"
-          : "border-accent/30 bg-accent/10 text-accent",
+          ? "border-[#6fbe83]/30 bg-[#6fbe83]/10 text-[#8fd4a1]"
+          : "border-accent/35 bg-accent/10 text-accent",
         className
       )}
     >
@@ -84,11 +84,11 @@ export function OpenNowBadge({ className }: { className?: string }) {
         aria-hidden="true"
         className={cn(
           "relative inline-flex size-2 rounded-full",
-          state.open ? "bg-[#3d8b52]" : "bg-accent"
+          state.open ? "bg-[#6fbe83]" : "bg-accent"
         )}
       >
         {state.open ? (
-          <span className="absolute inset-0 animate-ping rounded-full bg-[#3d8b52] opacity-60" />
+          <span className="absolute inset-0 animate-ping rounded-full bg-[#6fbe83] opacity-60" />
         ) : null}
       </span>
       {state.label}

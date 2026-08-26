@@ -1,21 +1,23 @@
 import { AboutPreview } from "@/components/home/about-preview";
-import { FeatureStrip } from "@/components/home/feature-strip";
+import { CakeBuilder } from "@/components/home/cake-builder";
+import { Gallery } from "@/components/home/gallery";
 import { Hero } from "@/components/home/hero";
+import { Marquee } from "@/components/home/marquee";
 import { OrderCta } from "@/components/home/order-cta";
 import { Specialties } from "@/components/home/specialties";
 import { Steps } from "@/components/home/steps";
-import { Testimonials } from "@/components/home/testimonials";
 import { Visit } from "@/components/home/visit";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <FeatureStrip />
+      <Marquee />
+      <CakeBuilder />
       <Specialties />
+      <Gallery />
       <AboutPreview />
       <Steps />
-      <Testimonials />
       <OrderCta />
       <Visit />
     </>

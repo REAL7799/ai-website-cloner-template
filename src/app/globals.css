@@ -49,73 +49,75 @@
 }
 
 :root {
-  /* Doce Alma — paleta quente de pastelaria (creme, chocolate, caramelo, baga) */
-  --background: oklch(0.966 0.014 85);
-  --foreground: oklch(0.31 0.04 48);
-  --card: oklch(0.986 0.01 88);
-  --card-foreground: oklch(0.31 0.04 48);
-  --popover: oklch(0.986 0.01 88);
-  --popover-foreground: oklch(0.31 0.04 48);
-  --primary: oklch(0.52 0.092 58);
-  --primary-foreground: oklch(0.975 0.012 85);
-  --secondary: oklch(0.928 0.022 84);
-  --secondary-foreground: oklch(0.35 0.045 50);
-  --muted: oklch(0.94 0.018 84);
-  --muted-foreground: oklch(0.5 0.038 55);
-  --accent: oklch(0.545 0.085 8);
-  --accent-foreground: oklch(0.975 0.012 85);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.885 0.022 80);
-  --input: oklch(0.885 0.022 80);
-  --ring: oklch(0.58 0.09 58);
-  --chart-1: oklch(0.52 0.092 58);
-  --chart-2: oklch(0.545 0.085 8);
-  --chart-3: oklch(0.65 0.08 75);
-  --chart-4: oklch(0.45 0.05 48);
-  --chart-5: oklch(0.75 0.06 85);
-  --radius: 0.8rem;
-  --sidebar: oklch(0.945 0.018 84);
-  --sidebar-foreground: oklch(0.31 0.04 48);
-  --sidebar-primary: oklch(0.52 0.092 58);
-  --sidebar-primary-foreground: oklch(0.975 0.012 85);
-  --sidebar-accent: oklch(0.928 0.022 84);
-  --sidebar-accent-foreground: oklch(0.35 0.045 50);
-  --sidebar-border: oklch(0.885 0.022 80);
-  --sidebar-ring: oklch(0.58 0.09 58);
-}
-
-.dark {
-  --background: oklch(0.235 0.022 50);
-  --foreground: oklch(0.955 0.014 85);
-  --card: oklch(0.28 0.026 50);
-  --card-foreground: oklch(0.955 0.014 85);
-  --popover: oklch(0.28 0.026 50);
-  --popover-foreground: oklch(0.955 0.014 85);
-  --primary: oklch(0.74 0.08 68);
-  --primary-foreground: oklch(0.25 0.03 50);
-  --secondary: oklch(0.32 0.028 52);
-  --secondary-foreground: oklch(0.955 0.014 85);
-  --muted: oklch(0.32 0.028 52);
-  --muted-foreground: oklch(0.72 0.03 70);
-  --accent: oklch(0.66 0.08 10);
-  --accent-foreground: oklch(0.97 0.012 85);
+  /* Doce Alma — palco escuro para a arte do pasteleiro: carvão quente,
+     creme, caramelo dourado e baga. O site assume o tema escuro como
+     identidade (a classe .dark espelha estes valores). */
+  --background: oklch(0.165 0.012 55);
+  --foreground: oklch(0.945 0.014 85);
+  --card: oklch(0.205 0.016 55);
+  --card-foreground: oklch(0.945 0.014 85);
+  --popover: oklch(0.205 0.016 55);
+  --popover-foreground: oklch(0.945 0.014 85);
+  --primary: oklch(0.755 0.095 70);
+  --primary-foreground: oklch(0.2 0.02 55);
+  --secondary: oklch(0.24 0.02 55);
+  --secondary-foreground: oklch(0.945 0.014 85);
+  --muted: oklch(0.24 0.018 55);
+  --muted-foreground: oklch(0.68 0.028 75);
+  --accent: oklch(0.7 0.088 10);
+  --accent-foreground: oklch(0.2 0.02 55);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.74 0.08 68);
-  --chart-1: oklch(0.74 0.08 68);
-  --chart-2: oklch(0.66 0.08 10);
+  --ring: oklch(0.755 0.095 70);
+  --chart-1: oklch(0.755 0.095 70);
+  --chart-2: oklch(0.7 0.088 10);
   --chart-3: oklch(0.6 0.07 75);
   --chart-4: oklch(0.5 0.05 48);
-  --chart-5: oklch(0.8 0.05 85);
-  --sidebar: oklch(0.28 0.026 50);
-  --sidebar-foreground: oklch(0.955 0.014 85);
-  --sidebar-primary: oklch(0.74 0.08 68);
-  --sidebar-primary-foreground: oklch(0.25 0.03 50);
-  --sidebar-accent: oklch(0.32 0.028 52);
-  --sidebar-accent-foreground: oklch(0.955 0.014 85);
+  --chart-5: oklch(0.85 0.05 85);
+  --radius: 0.8rem;
+  --sidebar: oklch(0.205 0.016 55);
+  --sidebar-foreground: oklch(0.945 0.014 85);
+  --sidebar-primary: oklch(0.755 0.095 70);
+  --sidebar-primary-foreground: oklch(0.2 0.02 55);
+  --sidebar-accent: oklch(0.24 0.02 55);
+  --sidebar-accent-foreground: oklch(0.945 0.014 85);
   --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.74 0.08 68);
+  --sidebar-ring: oklch(0.755 0.095 70);
+}
+
+.dark {
+  --background: oklch(0.165 0.012 55);
+  --foreground: oklch(0.945 0.014 85);
+  --card: oklch(0.205 0.016 55);
+  --card-foreground: oklch(0.945 0.014 85);
+  --popover: oklch(0.205 0.016 55);
+  --popover-foreground: oklch(0.945 0.014 85);
+  --primary: oklch(0.755 0.095 70);
+  --primary-foreground: oklch(0.2 0.02 55);
+  --secondary: oklch(0.24 0.02 55);
+  --secondary-foreground: oklch(0.945 0.014 85);
+  --muted: oklch(0.24 0.018 55);
+  --muted-foreground: oklch(0.68 0.028 75);
+  --accent: oklch(0.7 0.088 10);
+  --accent-foreground: oklch(0.2 0.02 55);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.755 0.095 70);
+  --chart-1: oklch(0.755 0.095 70);
+  --chart-2: oklch(0.7 0.088 10);
+  --chart-3: oklch(0.6 0.07 75);
+  --chart-4: oklch(0.5 0.05 48);
+  --chart-5: oklch(0.85 0.05 85);
+  --sidebar: oklch(0.205 0.016 55);
+  --sidebar-foreground: oklch(0.945 0.014 85);
+  --sidebar-primary: oklch(0.755 0.095 70);
+  --sidebar-primary-foreground: oklch(0.2 0.02 55);
+  --sidebar-accent: oklch(0.24 0.02 55);
+  --sidebar-accent-foreground: oklch(0.945 0.014 85);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.755 0.095 70);
 }
 
 @layer base {
@@ -167,5 +169,47 @@
       transparent 1px
     );
     background-size: 22px 22px;
+  }
+
+  /* Hero flipbook: cada fotograma fica visível 1/6 do ciclo de 3s (0,5s cada),
+     desfasado por --flip-index. Sem JavaScript. */
+  .hero-flip-frame {
+    opacity: 0;
+    animation: hero-flip 3s steps(1, end) infinite;
+    animation-delay: calc(var(--flip-index) * 0.5s);
+  }
+  @keyframes hero-flip {
+    0%,
+    16.6% {
+      opacity: 1;
+    }
+    16.7%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Faixa de texto em movimento contínuo */
+  .animate-marquee {
+    animation: marquee 26s linear infinite;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-flip-frame {
+      animation: none;
+      opacity: 0;
+    }
+    .hero-flip-frame[data-first] {
+      opacity: 1;
+    }
+    .animate-marquee {
+      animation: none;
+      transform: none;
+    }
   }
 }

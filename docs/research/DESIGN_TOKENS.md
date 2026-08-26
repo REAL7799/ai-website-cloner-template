@@ -2,18 +2,21 @@
 
 Site original (não é clone). Tokens definidos em `src/app/globals.css` (oklch).
 
-## Cores
+## Cores (v2 — palco escuro)
+
+O site assume o tema escuro como identidade: um palco de carvão quente onde a
+fotografia dos doces é a protagonista.
 
 | Token | Valor (oklch) | Uso |
 |---|---|---|
-| `--background` | `0.966 0.014 85` | Fundo creme quente |
-| `--foreground` | `0.31 0.04 48` | Texto — castanho chocolate |
-| `--card` | `0.986 0.01 88` | Cartões, quase branco quente |
-| `--primary` | `0.52 0.092 58` | Caramelo — botões, links, destaques |
-| `--secondary` | `0.928 0.022 84` | Faixas de secção, chips |
-| `--muted-foreground` | `0.5 0.038 55` | Texto secundário |
-| `--accent` | `0.545 0.085 8` | Baga/rosa seco — badges "Favorito" |
-| `--border` | `0.885 0.022 80` | Linhas e contornos |
+| `--background` | `0.165 0.012 55` | Fundo — carvão quente, quase preto |
+| `--foreground` | `0.945 0.014 85` | Texto — creme |
+| `--card` | `0.205 0.016 55` | Cartões |
+| `--primary` | `0.755 0.095 70` | Caramelo dourado — botões, destaques |
+| `--secondary` | `0.24 0.02 55` | Faixas de secção, chips |
+| `--muted-foreground` | `0.68 0.028 75` | Texto secundário |
+| `--accent` | `0.7 0.088 10` | Baga clara — badges "Favorito" |
+| `--border` | `1 0 0 / 12%` | Linhas e contornos |
 
 Verde WhatsApp `#25D366` usado apenas nos CTAs de WhatsApp.
 

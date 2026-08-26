@@ -27,6 +27,12 @@ const STYLE =
   "muted authentic colors, no oversaturation, no harsh highlights, shallow " +
   "depth of field, warm neutral tones, artisan Portuguese pastry shop setting.";
 
+// Série dramática (hero + montagem por scroll): fundo escuro, ação, contraste rico.
+const DARK_STYLE =
+  "Dramatic high-end patisserie advertising photography, deep charcoal black " +
+  "background, soft directional studio light, rich contrast without blown " +
+  "highlights, ultra sharp detail, warm tones.";
+
 const IMAGES = [
   {
     name: "hero",
@@ -94,6 +100,55 @@ const IMAGES = [
     prompt:
       "Cozy artisan pastry shop interior without people: glass display case with rows of cakes, tarts and pastéis de nata, wooden counter, two warm pendant lamps, dark menu board on the wall, hanging plant.",
   },
+  {
+    name: "hero-1",
+    aspectRatio: "16:9",
+    dark: true,
+    prompt:
+      "Towering dark chocolate layer cake with glossy milk chocolate ganache dripping down the sides, piped cream swirls, chocolate shards and hazelnut sprinkles on top, on a dark pedestal cake stand.",
+  },
+  {
+    name: "hero-2",
+    aspectRatio: "16:9",
+    dark: true,
+    prompt:
+      "Three square slices of chocolate and cream layer cake levitating in a staggered vertical stack, fresh raspberries, blackberries and mint on top, chocolate shavings suspended mid-air around them.",
+  },
+  {
+    name: "hero-3",
+    aspectRatio: "16:9",
+    dark: true,
+    prompt:
+      "A slice of vanilla layer cake with jam filling flying mid-air above a dark kitchen counter, a ribbon of honey caramel pouring down through the air, strawberries and blueberries suspended, fine powdered sugar dust falling.",
+  },
+  {
+    name: "hero-4",
+    aspectRatio: "16:9",
+    dark: true,
+    prompt:
+      "Elegant macarons in muted rose, pistachio and cream falling through the air with a soft cloud of powdered sugar, some cracked open showing ganache filling.",
+  },
+  {
+    name: "hero-5",
+    aspectRatio: "16:9",
+    dark: true,
+    prompt:
+      "Portuguese pastéis de nata with deeply caramelized tops on dark slate, a fine dust of cinnamon falling from above, a thin wisp of steam rising.",
+  },
+  {
+    name: "hero-6",
+    aspectRatio: "16:9",
+    dark: true,
+    prompt:
+      "Pastry chef hands in a dark apron piping cream rosettes onto a dark chocolate cake, dramatic soft side light, flour dust in the air.",
+  },
+  {
+    name: "bolo-camadas",
+    aspectRatio: "4:5",
+    dark: true,
+    prompt:
+      "Tall perfectly cylindrical chocolate layer cake in exact side view, visible alternating sponge and cream layers, glossy ganache dripping from the top edge, chocolate curls and piped cream swirls on top, standing on a simple dark ceramic plate, perfectly centered, PURE SOLID BLACK background all around with no props and no visible table beyond the plate.",
+  },
 ];
 
 function findApiKey() {
@@ -109,7 +164,13 @@ function findApiKey() {
 
 async function generate(image, { apiKey, model }) {
   const body = {
-    contents: [{ parts: [{ text: `${image.prompt} ${STYLE}` }] }],
+    contents: [
+      {
+        parts: [
+          { text: `${image.prompt} ${image.dark ? DARK_STYLE : STYLE}` },
+        ],
+      },
+    ],
     generationConfig: {
       responseModalities: ["IMAGE", "TEXT"],
       imageConfig: { aspectRatio: image.aspectRatio },

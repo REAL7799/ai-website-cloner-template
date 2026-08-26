@@ -21,33 +21,6 @@ export const orderSteps: Step[] = [
   },
 ];
 
-export interface Testimonial {
-  quote: string;
-  author: string;
-  context: string;
-}
-
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "O bolo do nosso casamento estava lindíssimo e, mais importante, era o melhor bolo que já comi. Os convidados ainda falam dele.",
-    author: "Marta & Rui",
-    context: "Bolo de casamento, setembro",
-  },
-  {
-    quote:
-      "Encomendo a tarte de amêndoa todas as semanas. É igual à da minha avó — e eu não digo isto de ânimo leve.",
-    author: "Dona Fernanda",
-    context: "Cliente de todas as sextas-feiras",
-  },
-  {
-    quote:
-      "Pedimos 120 mini pastéis de nata para um evento da empresa. Chegaram quentes, a horas, e desapareceram em dez minutos.",
-    author: "Pedro M.",
-    context: "Evento de empresa",
-  },
-];
-
 export interface Value {
   title: string;
   description: string;

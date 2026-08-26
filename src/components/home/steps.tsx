@@ -25,7 +25,7 @@ export function Steps() {
             >
               <span
                 aria-hidden="true"
-                className="font-heading text-5xl font-semibold text-primary/20"
+                className="font-heading text-5xl font-semibold text-primary/30"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
