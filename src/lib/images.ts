@@ -6,6 +6,7 @@ import type { StaticImageData } from "next/image";
 import bancada from "../../public/images/bancada.png";
 import boloAniversario from "../../public/images/bolo-aniversario.png";
 import boloCamadas from "../../public/images/bolo-camadas.png";
+import boloExploso from "../../public/images/bolo-exploso.png";
 import boloChocolate from "../../public/images/bolo-chocolate.png";
 import boloFesta from "../../public/images/bolo-festa.png";
 import docesFinos from "../../public/images/doces-finos.png";
@@ -30,6 +31,7 @@ export const images = {
   interior,
   pasteleiro,
   "bolo-camadas": boloCamadas,
+  "bolo-exploso": boloExploso,
   "bolo-festa": boloFesta,
   "bolo-chocolate": boloChocolate,
   "bolo-aniversario": boloAniversario,

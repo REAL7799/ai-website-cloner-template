@@ -149,6 +149,13 @@ const IMAGES = [
     prompt:
       "Tall perfectly cylindrical chocolate layer cake in exact side view, visible alternating sponge and cream layers, glossy ganache dripping from the top edge, chocolate curls and piped cream swirls on top, standing on a simple dark ceramic plate, perfectly centered, PURE SOLID BLACK background all around with no props and no visible table beyond the plate.",
   },
+  {
+    name: "bolo-exploso",
+    aspectRatio: "9:16",
+    dark: true,
+    prompt:
+      "Exploded view of a deconstructed square chocolate raspberry layer cake: six identical-width square cake layers floating in a perfect vertical column, separated by clear even gaps of empty black space — from top to bottom: glossy dark chocolate glaze layer topped with fresh raspberries and chocolate curls with glaze dripping down its edges; dark chocolate sponge cake layer; smooth chocolate mousse layer; vivid raspberry confit layer; chocolate mousse layer; chocolate sponge cake layer at the bottom. All layers perfectly aligned in exact side view, same width, PURE SOLID BLACK background, no plate, no table, no text, no labels, a few tiny crumbs and raspberries floating beside the column.",
+  },
 ];
 
 function findApiKey() {
