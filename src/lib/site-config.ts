@@ -5,7 +5,8 @@ export const siteConfig = {
   tagline: "Bolos com alma, feitos à mão",
   description:
     "Pastelaria artesanal em Lisboa: bolos de festa por encomenda, tartes, pastéis de nata e doces tradicionais, feitos todos os dias com ingredientes locais e receitas de família.",
-  url: "https://docealma.pt",
+  // Domínio de demonstração na Vercel — troque pelo domínio final do cliente.
+  url: "https://doce-alma-manhicarealstore07-6423s-projects.vercel.app",
   founder: "António Correia",
   founded: 2009,
   phone: "+351 912 345 678",
