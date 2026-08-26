@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 export function Hero() {
   return (
     <section className="relative">
-      <div className="relative aspect-video max-h-[88svh] min-h-[30rem] w-full overflow-hidden bg-black">
+      <div className="relative aspect-video max-h-[88svh] min-h-svh w-full overflow-hidden bg-black sm:min-h-[30rem]">
         {heroFrames.map((frame, i) => (
           <Image
             key={frame.alt}
