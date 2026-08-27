@@ -24,16 +24,14 @@ declare -A IMAGES=(
   [naked-cake]="hf_20260827_142817_f9d0f2ce-187d-4587-bf07-1a76cf3a484b"
 )
 
-MAGICK=magick
-command -v magick >/dev/null 2>&1 || MAGICK=convert
-
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
 for name in "${!IMAGES[@]}"; do
   echo "Fetching $name..."
   curl -fsSL --retry 3 -o "$tmp/$name.png" "$BASE/${IMAGES[$name]}.png"
-  "$MAGICK" "$tmp/$name.png" -resize '1280x1280>' -quality 82 "$IMG_DIR/$name.webp"
+  ffmpeg -y -loglevel error -i "$tmp/$name.png" \
+    -vf "scale='min(1280,iw)':-2" -c:v libwebp -q:v 80 "$IMG_DIR/$name.webp"
 done
 
 echo "Fetching hero video..."
