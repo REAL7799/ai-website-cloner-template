@@ -138,7 +138,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring;
   }
   body {
     @apply bg-background text-foreground;
@@ -156,4 +156,15 @@
 
 .font-handwriting {
   font-family: var(--font-handwriting);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-float,
+  .animate-spin-slow,
+  .animate-bounce {
+    animation: none;
+  }
 }

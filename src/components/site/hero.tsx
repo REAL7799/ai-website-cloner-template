@@ -20,6 +20,14 @@ export function Hero() {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Com reduced-motion o vídeo fica parado no poster/primeiro frame.
+    const video = section.querySelector("video");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (video && reduceMotion.matches) {
+      video.pause();
+      video.removeAttribute("autoplay");
+    }
+
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -70,6 +78,13 @@ export function Hero() {
       aria-label="Boas-vindas à Fátima Cake"
       className="relative flex min-h-svh items-center overflow-hidden"
     >
+      {/* React 19 iça este link para o <head>: pré-carrega o poster (LCP). */}
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-cake.webp"
+        type="image/webp"
+      />
       <div ref={videoWrapRef} className="absolute inset-0" aria-hidden="true">
         <video
           className="size-full object-cover"
@@ -82,7 +97,7 @@ export function Hero() {
         >
           <source src="/videos/hero-bolo.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-background/15 sm:via-background/55 sm:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/45 sm:via-background/55 sm:to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
       </div>
 
@@ -161,9 +176,9 @@ export function Hero() {
                 d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"
               />
             </defs>
-            <text className="fill-primary text-[10.5px] font-semibold uppercase tracking-[0.22em]">
-              <textPath href="#badge-circle">
-                Fátima Cake • Feito à mão • Desde 2012 •
+            <text className="fill-primary text-[9px] font-semibold uppercase tracking-[0.18em]">
+              <textPath href="#badge-circle" textLength="230">
+                Fátima Cake • Feito à mão • 2012 •
               </textPath>
             </text>
           </svg>

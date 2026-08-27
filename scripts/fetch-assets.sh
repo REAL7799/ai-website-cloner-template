@@ -28,7 +28,7 @@ declare -A IMAGES=(
 # Imagens da secção "explosão de chocolate" (com fundo transparente).
 declare -A EXPLOSAO=(
   [bolo-chocolate-cutout]="hf_20260827_144948_10aa5466-3af0-4ae3-8a9c-9cc7d4e7fe75"
-  [chocolate-pedacos]="hf_20260827_144948_f26a4f65-8bc9-404f-968f-305c1bfe7f27"
+  [chocolate-pedacos]="hf_20260827_145700_1c7cc4f2-d0c6-4452-a3d9-e7084086d8e5"
   [framboesas]="hf_20260827_144948_a34f6647-52b0-4433-952d-ee6269529d3a"
   [avelas]="hf_20260827_144948_b51d1bc9-e4ec-4d0f-a135-1897fb5dc393"
   [chocolate-calda]="hf_20260827_144948_d4461f56-d960-4bcb-a1d8-11edd2d2081a"

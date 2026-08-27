@@ -48,7 +48,7 @@ export function Vitrine() {
 
         <div
           data-reveal
-          role="tablist"
+          role="group"
           aria-label="Filtrar produtos por categoria"
           className="mt-8 flex flex-wrap items-center justify-center gap-2"
         >
@@ -56,8 +56,7 @@ export function Vitrine() {
             <button
               key={cat.id}
               type="button"
-              role="tab"
-              aria-selected={filter === cat.id}
+              aria-pressed={filter === cat.id}
               onClick={() => setFilter(cat.id as Filter)}
               className={cn(
                 "rounded-full border px-5 py-2 text-sm font-medium transition-all",

@@ -13,7 +13,7 @@ const footerLinks = [
 export function Footer() {
   return (
     <footer className="bg-[oklch(0.24_0.04_260)] text-[oklch(0.9_0.01_250)]">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 pb-14 pt-24 sm:px-6">
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
           <div className="max-w-xs">
             <p className="font-handwriting text-4xl text-[oklch(0.82_0.08_250)]">
@@ -71,7 +71,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 text-center">
-          <p className="text-xs text-[oklch(0.6_0.02_254)]">
+          <p className="text-xs text-[oklch(0.74_0.015_254)]">
             © {new Date().getFullYear()} {site.name} — feito à mão, com amor e
             açúcar. {site.address.street}, {site.address.city}
           </p>

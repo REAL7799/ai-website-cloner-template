@@ -92,7 +92,9 @@ export function Navbar() {
         id="menu-mobile"
         className={cn(
           "overflow-hidden border-b border-border/60 bg-background/95 backdrop-blur-md transition-all duration-300 md:hidden",
-          open ? "max-h-96 opacity-100" : "max-h-0 border-b-0 opacity-0",
+          open
+            ? "visible max-h-96 opacity-100"
+            : "invisible max-h-0 border-b-0 opacity-0",
         )}
       >
         <ul className="space-y-1 px-4 pb-4 pt-2">

@@ -57,10 +57,8 @@ export function Depoimentos() {
               data-reveal
               className="flex flex-col rounded-3xl border border-border/70 bg-card p-7 shadow-sm"
             >
-              <div
-                className="flex gap-1 text-primary"
-                aria-label="Avaliação: 5 de 5 estrelas"
-              >
+              <p className="sr-only">Avaliação: 5 de 5 estrelas</p>
+              <div aria-hidden="true" className="flex gap-1 text-primary">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="size-4 fill-current" />
                 ))}

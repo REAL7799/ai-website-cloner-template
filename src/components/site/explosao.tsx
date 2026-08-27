@@ -91,11 +91,22 @@ export function Explosao() {
           motionOk: boolean;
           isMobile: boolean;
         };
-        if (!motionOk) return;
 
         // No mobile a explosão é mais contida para não sair do ecrã.
         const damp = isMobile ? 0.62 : 1;
         const items = stage.querySelectorAll<HTMLElement>("[data-ingrediente]");
+
+        if (!motionOk) {
+          // Sem animação: coloca os ingredientes diretamente na posição final.
+          items.forEach((item) => {
+            gsap.set(item, {
+              xPercent: Number(item.dataset.x) * damp * 4,
+              yPercent: Number(item.dataset.y) * damp * 4,
+              rotate: Number(item.dataset.rotate),
+            });
+          });
+          return;
+        }
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -145,7 +156,7 @@ export function Explosao() {
       ref={sectionRef}
       id="chocolate"
       aria-label="O nosso bolo de chocolate belga"
-      className="relative overflow-hidden bg-[oklch(0.95_0.02_250)] pb-28 pt-24"
+      className="relative bg-[oklch(0.95_0.02_250)] pb-28 pt-24"
     >
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
         <div>

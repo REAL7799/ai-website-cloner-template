@@ -54,6 +54,9 @@ export function Sobre() {
       el.querySelectorAll<HTMLElement>("[data-count]").forEach((node) => {
         const target = Number(node.dataset.count);
         const counter = { value: 0 };
+        // Sem JS ou com reduced-motion o valor final já está no HTML;
+        // aqui recomeça do zero apenas quando vamos mesmo animar.
+        node.textContent = "0";
         gsap.to(counter, {
           value: target,
           duration: 1.8,
@@ -130,7 +133,9 @@ export function Sobre() {
                 >
                   <dt className="sr-only">{stat.label}</dt>
                   <dd className="font-handwriting text-3xl leading-none text-primary sm:text-4xl">
-                    <span data-count={stat.value}>0</span>
+                    <span data-count={stat.value}>
+                      {stat.value.toLocaleString("pt-PT")}
+                    </span>
                     {stat.suffix}
                   </dd>
                   <p className="mt-2 text-xs text-muted-foreground">

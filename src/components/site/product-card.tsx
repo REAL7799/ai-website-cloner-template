@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
           src={product.image}
           alt={product.imageAlt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 300px"
           className="object-cover transition-transform duration-500 group-hover:rotate-1 group-hover:scale-105"
         />
         {product.badge ? (
