@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Caveat, Geist } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@/components/site/analytics";
 import { site } from "@/lib/site";
 
 const geistSans = Geist({
@@ -76,7 +77,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col overflow-x-clip">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-clip">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
