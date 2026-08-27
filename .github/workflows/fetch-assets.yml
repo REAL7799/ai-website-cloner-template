@@ -2,6 +2,12 @@ name: Fetch site assets
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - claude/fatima-cake-website-ctwcca
+    paths:
+      - scripts/fetch-assets.sh
+      - .github/workflows/fetch-assets.yml
 
 permissions:
   contents: write
