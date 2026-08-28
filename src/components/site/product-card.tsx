@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { WhatsAppIcon } from "@/components/icons";
 import { whatsappLink } from "@/lib/site";
 import type { Product } from "@/types/product";
 
@@ -53,7 +52,6 @@ export function ProductCard({ product }: ProductCardProps) {
             />
           }
         >
-          <WhatsAppIcon className="size-4" />
           Encomendar
         </Button>
       </div>
