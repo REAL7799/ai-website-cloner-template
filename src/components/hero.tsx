@@ -110,16 +110,6 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="absolute -right-3 top-12 hidden items-center gap-2.5 rounded-full border border-border bg-card py-2 pl-3 pr-5 shadow-lg sm:flex lg:-right-6">
-            <span className="flex size-9 items-center justify-center rounded-full bg-whatsapp text-white">
-              <WhatsAppIcon className="size-4.5" />
-            </span>
-            <span className="text-xs font-medium leading-tight text-foreground">
-              Resposta rápida
-              <br />
-              <span className="text-muted-foreground">no WhatsApp</span>
-            </span>
-          </div>
         </div>
       </div>
 
