@@ -68,6 +68,60 @@ export function Hero() {
       });
     });
 
+    // Parallax 3D com o rato (só desktop com rato e sem reduced-motion):
+    // o vídeo inclina-se em profundidade e o selo acompanha como uma moeda.
+    mm.add(
+      "(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)",
+      () => {
+        const videoWrap = videoWrapRef.current;
+        const content = contentRef.current;
+        const badge = section.querySelector("[data-hero-badge]");
+        if (!videoWrap || !content) return;
+
+        gsap.set(videoWrap, { transformPerspective: 1400 });
+        if (badge) gsap.set(badge, { transformPerspective: 500 });
+
+        const q = {
+          vidRX: gsap.quickTo(videoWrap, "rotationX", { duration: 0.8, ease: "power2.out" }),
+          vidRY: gsap.quickTo(videoWrap, "rotationY", { duration: 0.8, ease: "power2.out" }),
+          conX: gsap.quickTo(content, "x", { duration: 0.7, ease: "power2.out" }),
+          conY: gsap.quickTo(content, "y", { duration: 0.7, ease: "power2.out" }),
+          bdgRX: badge
+            ? gsap.quickTo(badge, "rotationX", { duration: 0.6, ease: "power2.out" })
+            : null,
+          bdgRY: badge
+            ? gsap.quickTo(badge, "rotationY", { duration: 0.6, ease: "power2.out" })
+            : null,
+        };
+
+        const onMove = (e: PointerEvent) => {
+          const nx = e.clientX / window.innerWidth - 0.5;
+          const ny = e.clientY / window.innerHeight - 0.5;
+          q.vidRY(nx * 2.4);
+          q.vidRX(ny * -1.8);
+          q.conX(nx * -12);
+          q.conY(ny * -8);
+          q.bdgRY?.(nx * 22);
+          q.bdgRX?.(ny * -16);
+        };
+        const onLeave = () => {
+          q.vidRY(0);
+          q.vidRX(0);
+          q.conX(0);
+          q.conY(0);
+          q.bdgRY?.(0);
+          q.bdgRX?.(0);
+        };
+
+        section.addEventListener("pointermove", onMove, { passive: true });
+        section.addEventListener("pointerleave", onLeave);
+        return () => {
+          section.removeEventListener("pointermove", onMove);
+          section.removeEventListener("pointerleave", onLeave);
+        };
+      },
+    );
+
     return () => mm.revert();
   }, []);
 
@@ -87,7 +141,7 @@ export function Hero() {
       />
       <div ref={videoWrapRef} className="absolute inset-0" aria-hidden="true">
         <video
-          className="size-full object-cover"
+          className="size-full scale-[1.05] object-cover"
           autoPlay
           muted
           loop

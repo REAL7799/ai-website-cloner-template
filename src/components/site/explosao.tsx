@@ -18,6 +18,8 @@ interface Ingrediente {
   y: number;
   size: string;
   rotate: number;
+  /** Profundidade 3D (translateZ em px): maior = mais perto do ecrã. */
+  z: number;
 }
 
 const ingredientes: Ingrediente[] = [
@@ -28,6 +30,7 @@ const ingredientes: Ingrediente[] = [
     y: -26,
     size: "w-[26%]",
     rotate: -18,
+    z: 60,
   },
   {
     src: "/images/explosao/framboesas.webp",
@@ -36,6 +39,7 @@ const ingredientes: Ingrediente[] = [
     y: -30,
     size: "w-[20%]",
     rotate: 14,
+    z: 110,
   },
   {
     src: "/images/explosao/chocolate-caracois.webp",
@@ -44,6 +48,7 @@ const ingredientes: Ingrediente[] = [
     y: -44,
     size: "w-[22%]",
     rotate: 8,
+    z: 40,
   },
   {
     src: "/images/explosao/avelas.webp",
@@ -52,6 +57,7 @@ const ingredientes: Ingrediente[] = [
     y: 26,
     size: "w-[22%]",
     rotate: 20,
+    z: 90,
   },
   {
     src: "/images/explosao/chocolate-calda.webp",
@@ -60,6 +66,7 @@ const ingredientes: Ingrediente[] = [
     y: 20,
     size: "w-[26%]",
     rotate: -12,
+    z: 130,
   },
 ];
 
@@ -85,11 +92,13 @@ export function Explosao() {
       {
         motionOk: "(prefers-reduced-motion: no-preference)",
         isMobile: "(max-width: 767px)",
+        hoverFine: "(hover: hover) and (pointer: fine)",
       },
       (context) => {
-        const { motionOk, isMobile } = context.conditions as {
+        const { motionOk, isMobile, hoverFine } = context.conditions as {
           motionOk: boolean;
           isMobile: boolean;
+          hoverFine: boolean;
         };
 
         // No mobile a explosão é mais contida para não sair do ecrã.
@@ -103,6 +112,7 @@ export function Explosao() {
               xPercent: Number(item.dataset.x) * damp * 4,
               yPercent: Number(item.dataset.y) * damp * 4,
               rotate: Number(item.dataset.rotate),
+              z: Number(item.dataset.z) * damp,
             });
           });
           return;
@@ -119,8 +129,8 @@ export function Explosao() {
 
         tl.fromTo(
           stage.querySelector("[data-bolo]"),
-          { scale: 0.82, y: 40 },
-          { scale: 1, y: 0, ease: "power1.out" },
+          { scale: 0.82, y: 40, rotationY: -14, transformPerspective: 900 },
+          { scale: 1, y: 0, rotationY: 0, ease: "power1.out" },
           0,
         );
 
@@ -128,20 +138,55 @@ export function Explosao() {
           const x = Number(item.dataset.x) * damp;
           const y = Number(item.dataset.y) * damp;
           const rotate = Number(item.dataset.rotate);
+          const z = Number(item.dataset.z) * damp;
           tl.fromTo(
             item,
-            { xPercent: 0, yPercent: 0, scale: 0.25, opacity: 0, rotate: 0 },
+            {
+              xPercent: 0,
+              yPercent: 0,
+              scale: 0.25,
+              opacity: 0,
+              rotate: 0,
+              z: 0,
+            },
             {
               xPercent: x * 4,
               yPercent: y * 4,
               scale: 1,
               opacity: 1,
               rotate,
+              z,
               ease: "power2.out",
             },
             0.05,
           );
         });
+
+        // Parallax 3D com o rato (só desktop): quanto mais perto do ecrã
+        // (z maior), mais o ingrediente acompanha o cursor.
+        if (hoverFine && !isMobile) {
+          const movers = Array.from(items).map((item) => ({
+            z: Number(item.dataset.z),
+            toX: gsap.quickTo(item, "x", { duration: 0.6, ease: "power2.out" }),
+            toY: gsap.quickTo(item, "y", { duration: 0.6, ease: "power2.out" }),
+          }));
+          const onMove = (e: PointerEvent) => {
+            const rect = stage.getBoundingClientRect();
+            const nx = (e.clientX - rect.left) / rect.width - 0.5;
+            const ny = (e.clientY - rect.top) / rect.height - 0.5;
+            movers.forEach((m) => {
+              m.toX(nx * (m.z / 130) * 26);
+              m.toY(ny * (m.z / 130) * 18);
+            });
+          };
+          const onLeave = () => movers.forEach((m) => (m.toX(0), m.toY(0)));
+          stage.addEventListener("pointermove", onMove, { passive: true });
+          stage.addEventListener("pointerleave", onLeave);
+          return () => {
+            stage.removeEventListener("pointermove", onMove);
+            stage.removeEventListener("pointerleave", onLeave);
+          };
+        }
       },
     );
 
@@ -209,7 +254,7 @@ export function Explosao() {
 
         <div
           ref={stageRef}
-          className="relative mx-auto aspect-square w-full max-w-md lg:max-w-lg"
+          className="relative mx-auto aspect-square w-full max-w-md [perspective:1100px] [transform-style:preserve-3d] lg:max-w-lg"
         >
           <div
             data-bolo
@@ -230,6 +275,7 @@ export function Explosao() {
               data-x={ing.x}
               data-y={ing.y}
               data-rotate={ing.rotate}
+              data-z={ing.z}
               className={`absolute left-1/2 top-1/2 ${ing.size} -translate-x-1/2 -translate-y-1/2 will-change-transform`}
             >
               <Image

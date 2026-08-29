@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/site";
+import { TiltCard } from "@/components/site/tilt-card";
 import type { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -11,10 +12,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const message = `Olá, Fátima Cake! 🎂 Gostaria de encomendar: *${product.name}* (${product.price}). Ainda está disponível?`;
 
   return (
-    <article
-      data-reveal
-      className="group flex flex-col overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10"
-    >
+    <TiltCard className="h-full">
+      <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         <Image
           src={product.image}
@@ -55,6 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
           Encomendar
         </Button>
       </div>
-    </article>
+      </article>
+    </TiltCard>
   );
 }
