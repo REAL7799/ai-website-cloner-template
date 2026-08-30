@@ -1,4 +1,4 @@
-export const SITE_URL = "https://kittyflowers.pt";
+export const SITE_URL = "https://kittyflowers.vercel.app";
 
 export const CONTACT = {
   phoneDisplay: "+351 931 420 039",
