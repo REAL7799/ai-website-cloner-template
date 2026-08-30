@@ -1,0 +1,37 @@
+name: fetch-hd-assets
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - name: Download and convert HD product images
+        run: |
+          python3 << 'EOF'
+          import urllib.request
+          from PIL import Image
+          BASE = "https://d8j0ntlcm91z4.cloudfront.net/user_3BlNR1tTudwayR6jBqhHKdoGXvL"
+          urls = {
+              "bouquet-pink-purple-hd": f"{BASE}/hf_20260829_190721_fa874046-cc9a-4399-b561-4ebf67b8d0a9.png",
+              "bouquet-pink-cream-hd": f"{BASE}/hf_20260829_190721_eebff1e2-b821-4017-913e-b37a49d71aac.png",
+              "bouquet-red-glitter-butterfly-hd": f"{BASE}/hf_20260829_190721_9edc4de5-5eb8-4822-835a-f7f184594e52.png",
+              "box-ferrero-heart-hd": f"{BASE}/hf_20260829_190721_0af01abe-49b8-499c-ad4e-83d599cbe1a6.png",
+          }
+          for name, url in urls.items():
+              path = f"/tmp/{name}.png"
+              urllib.request.urlretrieve(url, path)
+              im = Image.open(path).convert("RGB")
+              im = im.resize((800, round(800 * im.height / im.width)), Image.LANCZOS)
+              im.save(f"public/images/{name}.webp", "WEBP", quality=82, method=6)
+              print(name, "ok")
+          EOF
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/images
+          git commit -m "Add AI-recreated HD product images"
+          git push
