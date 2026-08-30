@@ -15,9 +15,13 @@ export function Collections() {
           description="Três formas de eternizar um momento — todas personalizáveis nas cores, tamanhos e detalhes."
         />
 
-        <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-3 md:gap-7">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 md:mt-16 md:gap-7 lg:grid-cols-3">
           {COLLECTIONS.map((collection, i) => (
-            <Reveal key={collection.title} delay={i * 120}>
+            <Reveal
+              key={collection.title}
+              delay={i * 120}
+              className={i === 2 ? "sm:col-span-2 lg:col-span-1" : undefined}
+            >
               <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-primary/10 bg-card shadow-[0_20px_50px_-25px_oklch(0.45_0.13_5/0.3)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-25px_oklch(0.62_0.17_3/0.45)]">
                 <div className="relative aspect-4/3 overflow-hidden">
                   <Image

@@ -2,16 +2,21 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { InstagramIcon } from "@/components/icons";
 import { SectionHeader } from "@/components/site/section-header";
 import { CONTACT, PRODUCTS } from "@/lib/site";
 
 const AUTOPLAY_INTERVAL_MS = 3200;
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function GalleryCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
 
   const scrollByCards = useCallback((direction: 1 | -1) => {
     const track = trackRef.current;
@@ -19,23 +24,24 @@ export function GalleryCarousel() {
     const card = track.querySelector<HTMLElement>("[data-card]");
     const step = card ? card.offsetWidth + 20 : 300;
     const maxScroll = track.scrollWidth - track.clientWidth;
+    const behavior = prefersReducedMotion() ? "auto" : "smooth";
     const atEnd = direction === 1 && track.scrollLeft >= maxScroll - step / 2;
     const atStart = direction === -1 && track.scrollLeft <= step / 2;
     if (atEnd) {
-      track.scrollTo({ left: 0, behavior: "smooth" });
+      track.scrollTo({ left: 0, behavior });
     } else if (atStart) {
-      track.scrollTo({ left: maxScroll, behavior: "smooth" });
+      track.scrollTo({ left: maxScroll, behavior });
     } else {
-      track.scrollBy({ left: direction * step, behavior: "smooth" });
+      track.scrollBy({ left: direction * step, behavior });
     }
   }, []);
 
   useEffect(() => {
-    if (paused) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (hoverPaused || userPaused) return;
+    if (prefersReducedMotion()) return;
     const id = window.setInterval(() => scrollByCards(1), AUTOPLAY_INTERVAL_MS);
     return () => window.clearInterval(id);
-  }, [paused, scrollByCards]);
+  }, [hoverPaused, userPaused, scrollByCards]);
 
   return (
     <section id="criacoes" className="scroll-mt-20 overflow-hidden py-20 md:py-28">
@@ -50,16 +56,20 @@ export function GalleryCarousel() {
 
       <div
         className="relative mt-12 md:mt-16"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onTouchStart={() => setPaused(true)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
+        onMouseEnter={() => setHoverPaused(true)}
+        onMouseLeave={() => setHoverPaused(false)}
+        onTouchStart={() => setHoverPaused(true)}
+        onTouchEnd={() => setHoverPaused(false)}
+        onTouchCancel={() => setHoverPaused(false)}
+        onFocus={() => setHoverPaused(true)}
+        onBlur={() => setHoverPaused(false)}
       >
         <div
           ref={trackRef}
-          className="kf-scrollbar-none flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(1rem,calc((100vw-72rem)/2))] pb-4"
+          role="region"
           aria-label="Carrossel de criações Kitty Flowers"
+          tabIndex={0}
+          className="kf-scrollbar-none flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(1rem,calc((100vw-72rem)/2))] scroll-pl-[max(1rem,calc((100vw-72rem)/2))] pb-4"
         >
           {PRODUCTS.map((product) => (
             <figure
@@ -98,6 +108,19 @@ export function GalleryCarousel() {
             aria-label="Ver criação anterior"
           >
             <ChevronLeft className="size-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setUserPaused((v) => !v)}
+            aria-pressed={userPaused}
+            aria-label={userPaused ? "Retomar carrossel" : "Pausar carrossel"}
+            className="inline-flex size-11 items-center justify-center rounded-full border border-primary/20 bg-card text-rose-deep shadow-sm transition-all hover:scale-105 hover:border-primary/50 hover:text-primary"
+          >
+            {userPaused ? (
+              <Play className="size-4.5" />
+            ) : (
+              <Pause className="size-4.5" />
+            )}
           </button>
           <button
             type="button"

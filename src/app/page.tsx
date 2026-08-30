@@ -22,7 +22,7 @@ const jsonLd = {
       description:
         "Buquês de rosas eternas personalizados, feitos à mão em Lisboa (Prior Velho). Rosas de cetim que nunca murcham, caixas com chocolates e edições especiais.",
       url: SITE_URL,
-      image: `${SITE_URL}/seo/og-image.png`,
+      image: `${SITE_URL}/seo/og-image.jpg`,
       logo: `${SITE_URL}/images/logo-kitty-flowers.png`,
       telephone: "+351931420039",
       priceRange: "€€",

@@ -145,7 +145,7 @@ export const COLLECTIONS = [
     src: "/images/box-ferrero-heart.webp",
     title: "Caixas Doces",
     description:
-      "Corações e caixas presente que juntam rosas eternas a Ferrero Rocher, Kinder Bueno ou Twix. Amor e chocolate na mesma caixa.",
+      "Corações e caixas de presente que juntam rosas eternas a Ferrero Rocher, Kinder Bueno ou Twix. Amor e chocolate na mesma caixa.",
     alt: "Caixa coração com rosas e chocolates Ferrero Rocher",
   },
   {
@@ -166,12 +166,12 @@ export const STEPS = [
   {
     title: "Fala connosco",
     description:
-      "Envia DM no Instagram ou mensagem no WhatsApp com a tua ideia. Personalizamos tudo contigo e enviamos o orçamento.",
+      "Envia-nos uma DM no Instagram ou uma mensagem no WhatsApp com a tua ideia. Personalizamos tudo contigo e enviamos o orçamento.",
   },
   {
     title: "Recebe com amor",
     description:
-      "Entregamos em Lisboa e arredores, ou podes levantar em Prior Velho. Pronto a oferecer — e a durar para sempre.",
+      "Entregamos em Lisboa e arredores, ou podes levantar a tua encomenda em Prior Velho. Pronta a oferecer — e a durar para sempre.",
   },
 ] as const;
 
@@ -194,7 +194,8 @@ export const BENEFITS = [
   {
     icon: "gift",
     title: "Todas as ocasiões",
-    description: "Aniversários, pedidos, datas especiais ou “só porque sim”.",
+    description:
+      "Aniversários, pedidos de casamento, datas especiais ou “só porque sim”.",
   },
 ] as const;
 

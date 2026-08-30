@@ -18,9 +18,9 @@ export function Faq() {
             <Reveal key={faq.question} delay={i * 80}>
               <details className="group rounded-2xl border border-primary/10 bg-card shadow-sm transition-colors open:border-primary/25">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 [&::-webkit-details-marker]:hidden md:px-6 md:py-5">
-                  <h3 className="font-display text-base font-semibold tracking-tight md:text-lg">
+                  <span className="font-display text-base font-semibold tracking-tight md:text-lg">
                     {faq.question}
-                  </h3>
+                  </span>
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-primary transition-transform duration-300 group-open:rotate-45">
                     <Plus className="size-4" />
                   </span>

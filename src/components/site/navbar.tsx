@@ -27,7 +27,10 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-[4.5rem] md:px-6">
+      <nav
+        aria-label="Navegação principal"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-[4.5rem] md:px-6"
+      >
         <a href="#inicio" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <Image
             src="/images/logo-kitty-flowers.png"
@@ -41,7 +44,7 @@ export function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul className="hidden items-center gap-7 lg:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -59,14 +62,14 @@ export function Navbar() {
             href={CONTACT.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[0_10px_25px_-10px_oklch(0.62_0.17_3/0.7)] transition-all hover:scale-[1.03] hover:bg-primary/90 md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-whatsapp px-4 py-2 text-sm font-semibold text-white shadow-[0_10px_25px_-10px_oklch(0.55_0.15_150/0.7)] transition-all hover:scale-[1.03] hover:bg-whatsapp-dark lg:inline-flex"
           >
             <WhatsAppIcon className="size-4" />
             Encomendar
           </a>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-accent md:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-accent lg:hidden"
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
@@ -80,7 +83,7 @@ export function Navbar() {
       <div
         id="menu-mobile"
         hidden={!open}
-        className="border-t border-border/60 bg-background/95 backdrop-blur-md md:hidden"
+        className="border-t border-border/60 bg-background/95 backdrop-blur-md lg:hidden"
       >
         <ul className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4">
           {NAV_LINKS.map((link) => (
@@ -99,7 +102,7 @@ export function Navbar() {
               href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground"
+              className="flex items-center justify-center gap-2 rounded-full bg-whatsapp px-4 py-3 text-sm font-semibold text-white"
             >
               <WhatsAppIcon className="size-4" />
               Encomendar no WhatsApp

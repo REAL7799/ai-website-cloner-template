@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Buquês de rosas eternas personalizados, feitos à mão com amor. Delicadeza em forma de flores — encomendas por DM ou WhatsApp.",
     images: [
       {
-        url: "/seo/og-image.png",
+        url: "/seo/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Kitty Flowers — buquês de rosas eternas feitos à mão em Lisboa",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Kitty Flowers — Rosas Eternas Feitas à Mão em Lisboa",
     description:
       "Buquês de rosas eternas personalizados, feitos à mão com amor. Delicadeza em forma de flores.",
-    images: ["/seo/og-image.png"],
+    images: ["/seo/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -77,10 +77,17 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt"
+      lang="pt-PT"
       className={`${playfair.variable} ${greatVibes.variable} ${poppins.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col overflow-x-clip">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-clip">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

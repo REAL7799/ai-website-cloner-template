@@ -99,7 +99,7 @@ export function Hero() {
             className="kf-enter mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg"
             style={{ "--enter-delay": "0.24s" } as CSSProperties}
           >
-            Buquês de cetim personalizados, dobrados pétala a pétala. Flores que
+            Buquês de cetim personalizados, feitos pétala a pétala. Flores que
             nunca murcham — como as memórias que celebram.
           </p>
 
@@ -111,7 +111,7 @@ export function Hero() {
               href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_18px_40px_-12px_oklch(0.62_0.17_3/0.65)] transition-all hover:scale-[1.04] hover:bg-primary/90 md:text-base"
+              className="inline-flex items-center gap-2.5 rounded-full bg-whatsapp px-7 py-3.5 text-sm font-semibold text-white shadow-[0_18px_40px_-12px_oklch(0.55_0.15_150/0.6)] transition-all hover:scale-[1.04] hover:bg-whatsapp-dark md:text-base"
             >
               <WhatsAppIcon className="size-5" />
               Encomendar no WhatsApp

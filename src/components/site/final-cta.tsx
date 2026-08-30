@@ -52,7 +52,7 @@ export function FinalCta() {
               um momento?
             </span>
           </h2>
-          <p className="relative mx-auto mt-5 max-w-md text-base leading-relaxed text-primary-foreground/85 md:text-lg">
+          <p className="relative mx-auto mt-5 max-w-md text-base leading-relaxed text-primary-foreground md:text-lg">
             Conta-nos a tua ideia — nós fazemos o resto, pétala a pétala.
           </p>
 
@@ -61,9 +61,9 @@ export function FinalCta() {
               href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 rounded-full bg-card px-7 py-3.5 text-sm font-semibold text-rose-deep shadow-lg transition-all hover:scale-[1.04] md:text-base"
+              className="inline-flex items-center gap-2.5 rounded-full bg-whatsapp px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-[1.04] hover:bg-whatsapp-dark md:text-base"
             >
-              <WhatsAppIcon className="size-5 text-primary" />
+              <WhatsAppIcon className="size-5" />
               Falar no WhatsApp
             </a>
             <a

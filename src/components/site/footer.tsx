@@ -63,7 +63,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-primary"
               >
-                <WhatsAppIcon className="size-4 shrink-0 text-primary" />
+                <WhatsAppIcon className="size-4 shrink-0 text-whatsapp" />
                 {CONTACT.phoneDisplay}
               </a>
             </li>
