@@ -1,5 +1,8 @@
 name: fetch-hd-assets
-on: workflow_dispatch
+on:
+  push:
+    branches: ["claude/landing-page-marca-4zon1g"]
+    paths: [".github/workflows/fetch-hd-assets.yml"]
 permissions:
   contents: write
 jobs:
