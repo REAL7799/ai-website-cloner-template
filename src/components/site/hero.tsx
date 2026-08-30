@@ -25,7 +25,7 @@ const PETALS = [
 
 const HERO_CARDS = [
   {
-    src: "/images/bouquet-pink-purple.webp",
+    src: "/images/bouquet-pink-purple-hd.webp",
     alt: "Buquê de rosas eternas rosa e lilás Kitty Flowers",
     label: "Buquê Eterno",
     className: "left-0 top-12 z-10 w-[52%] -rotate-[8deg]",
@@ -33,7 +33,7 @@ const HERO_CARDS = [
     floatDuration: "7s",
   },
   {
-    src: "/images/bouquet-pink-cream.webp",
+    src: "/images/bouquet-pink-cream-hd.webp",
     alt: "Buquê de rosas eternas rosa e champanhe Kitty Flowers",
     label: "Mais amado ♥",
     className: "left-1/2 top-0 z-20 w-[56%] -translate-x-1/2 rotate-2",
@@ -41,7 +41,7 @@ const HERO_CARDS = [
     floatDuration: "6.5s",
   },
   {
-    src: "/images/bouquet-red-glitter-butterfly.webp",
+    src: "/images/bouquet-red-glitter-butterfly-hd.webp",
     alt: "Rosas vermelhas com glitter e borboleta dourada Kitty Flowers",
     label: "Edição Especial",
     className: "right-0 top-16 z-10 w-[52%] rotate-[10deg]",

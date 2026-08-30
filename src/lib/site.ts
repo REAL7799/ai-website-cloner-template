@@ -135,21 +135,21 @@ export const PRODUCTS: Product[] = [
 
 export const COLLECTIONS = [
   {
-    src: "/images/bouquet-pink-purple.webp",
+    src: "/images/bouquet-pink-purple-hd.webp",
     title: "Buquês Eternos",
     description:
       "Rosas de cetim dobradas à mão, em qualquer cor, com embrulho premium e laço a condizer. Do mini buquê ao formato XXL.",
     alt: "Buquê de rosas eternas rosa e lilás",
   },
   {
-    src: "/images/box-ferrero-heart.webp",
+    src: "/images/box-ferrero-heart-hd.webp",
     title: "Caixas Doces",
     description:
       "Corações e caixas de presente que juntam rosas eternas a Ferrero Rocher, Kinder Bueno ou Twix. Amor e chocolate na mesma caixa.",
     alt: "Caixa coração com rosas e chocolates Ferrero Rocher",
   },
   {
-    src: "/images/bouquet-red-glitter-butterfly.webp",
+    src: "/images/bouquet-red-glitter-butterfly-hd.webp",
     title: "Edições Especiais",
     description:
       "Glitter, pérolas, borboletas douradas, ursinhos e balões — detalhes que transformam um presente num momento inesquecível.",
