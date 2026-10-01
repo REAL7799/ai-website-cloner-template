@@ -18,19 +18,31 @@ Este kit instala o [Personal Jarvis](https://github.com/PersonalJarvis/PersonalJ
 
 ### Windows
 
-1. Descarrega esta pasta `jarvis-kit` para o computador.
-2. Clica com o botão direito em `install-windows.ps1` e escolhe **Executar com o PowerShell**. Em alternativa, abre o PowerShell dentro da pasta e corre:
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
-   ```
-3. O instalador oficial do Jarvis instala o Python e o Git se faltarem e abre a app. Quando o script pedir, fecha a app e carrega em Enter. O script aplica a voz e a persona e cria o atalho **Jarvis Face** no ambiente de trabalho.
+Abre o **PowerShell**: carrega na tecla Windows, escreve `powershell` e carrega em Enter. Depois cola este comando e carrega em Enter:
+
+```powershell
+irm https://raw.githubusercontent.com/REAL7799/ai-website-cloner-template/claude/trusting-hypatia-mx8m91/jarvis-kit/get.ps1 | iex
+```
+
+O comando faz tudo por esta ordem:
+1. Descarrega o kit para `C:\Users\<tu>\jarvis-kit`.
+2. Corre o instalador oficial do Personal Jarvis, que instala o Python e o Git se faltarem. Quando ele perguntar alguma coisa, aceita.
+3. Quando a app do Jarvis abrir, o script pede para a fechares: clica com o botão direito no ícone junto ao relógio, escolhe **Sair** e carrega em Enter no PowerShell.
+4. Aplica a voz e a persona e cria o atalho **Jarvis Face** no ambiente de trabalho.
 
 ### macOS / Linux
 
+Abre o **Terminal**, cola isto e carrega em Enter:
+
 ```bash
-cd jarvis-kit
-./install-mac-linux.sh
+curl -fsSL https://raw.githubusercontent.com/REAL7799/ai-website-cloner-template/claude/trusting-hypatia-mx8m91/jarvis-kit/get.sh | bash
 ```
+
+O kit fica em `~/jarvis-kit`. Os passos são os mesmos do Windows, mas o orbe abre-se com `~/jarvis-kit/start-face.sh`.
+
+### Instalação manual (sem o comando de uma linha)
+
+Descarrega o ZIP do repositório no GitHub (botão **Code › Download ZIP**, no ramo `claude/trusting-hypatia-mx8m91`) e extrai a pasta `jarvis-kit`. No Windows, corre `powershell -ExecutionPolicy Bypass -File .\install-windows.ps1` dentro dela; no macOS e no Linux, corre `./install-mac-linux.sh`.
 
 ### Depois da instalação (só da primeira vez)
 
@@ -119,6 +131,7 @@ Também podes mudar a voz nas definições de voz da app.
 
 ```
 jarvis-kit/
+├── get.ps1 / get.sh        instalação de uma linha (descarrega o kit e corre o instalador)
 ├── install-windows.ps1     instala o Jarvis + persona + atalho
 ├── install-mac-linux.sh    instala o Jarvis + persona
 ├── configure_jarvis.py     voz, persona e palavra de ativação (com cópia de segurança)
