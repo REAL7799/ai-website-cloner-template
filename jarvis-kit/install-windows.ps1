@@ -47,7 +47,7 @@ $Lnk = $Shell.CreateShortcut((Join-Path $Desktop "Jarvis Face.lnk"))
 $Lnk.TargetPath = Join-Path $Kit "start-face.bat"
 $Lnk.WorkingDirectory = $Kit
 $Lnk.WindowStyle = 7  # minimized: the console flashes away, the face window stays
-$Lnk.Description = "Rosto animado do Personal Jarvis"
+$Lnk.Description = "Orbe de energia do Personal Jarvis"
 $Lnk.Save()
 
 Step "Pronto"
@@ -55,5 +55,5 @@ Write-Host @"
 1. Abre o Personal Jarvis (menu Iniciar).
 2. Settings > API Keys: cola a tua chave Gemini (gratis em https://aistudio.google.com/apikey).
 3. Duplo clique em 'Jarvis Face' no ambiente de trabalho.
-4. Diz "$Wake" - o rosto acorda, ouve-te e fala contigo.
+4. Diz "$Wake" - o orbe acorda, ouve-te e fala contigo.
 "@

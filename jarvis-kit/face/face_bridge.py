@@ -55,7 +55,7 @@ HERE = Path(__file__).resolve().parent
 STATIC_FILES = {
     "/": ("face.html", "text/html; charset=utf-8"),
     "/face.html": ("face.html", "text/html; charset=utf-8"),
-    "/face3d.js": ("face3d.js", "text/javascript; charset=utf-8"),
+    "/orb.js": ("orb.js", "text/javascript; charset=utf-8"),
 }
 
 # Jarvis' supervisor states (SystemStateChanged.new_state, /api/voice/state)
@@ -253,8 +253,6 @@ class Bridge:
                 "X-Content-Type-Options": "nosniff",
                 "Content-Security-Policy": (
                     "default-src 'self'; connect-src 'self'; "
-                    # The bundled mesh decoder compiles WebAssembly.
-                    "script-src 'self' 'wasm-unsafe-eval'; "
                     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
                     "font-src https://fonts.gstatic.com; img-src 'self' data:"
                 ),

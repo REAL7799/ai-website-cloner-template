@@ -1,15 +1,14 @@
-// Bundles src/ (three.js, loaders, post-processing and the embedded head model)
-// into ../face3d.js — a single classic script that also works from file://.
+// Bundles src/ (three.js + post-processing) into ../orb.js — a single classic
+// script, so the page also works when opened straight from file://.
 import { build } from "esbuild";
 
 await build({
-  entryPoints: ["src/face3d.js"],
+  entryPoints: ["src/orb.js"],
   bundle: true,
   format: "iife",
   target: "es2020",
   minify: true,
   legalComments: "eof",
-  loader: { ".glb": "binary" },
-  outfile: "../face3d.js",
+  outfile: "../orb.js",
   logLevel: "info",
 });

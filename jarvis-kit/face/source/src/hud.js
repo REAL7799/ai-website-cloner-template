@@ -50,7 +50,7 @@ export function createHud() {
     }
     if (!live.bridge) {
       linkLabel.textContent = "ponte desligada";
-      showBanner("A ponte do rosto não está a correr — inicia face_bridge.py");
+      showBanner("A ponte do orbe não está a correr — inicia face_bridge.py");
     } else if (!live.linked) {
       linkLabel.textContent = "à espera do jarvis";
       showBanner("À espera do Personal Jarvis… abre a app no computador.");

@@ -39,5 +39,5 @@ cat <<EOF
 1. Abre o Personal Jarvis.
 2. Settings > API Keys: cola a tua chave Gemini (grátis em https://aistudio.google.com/apikey).
 3. Corre:  $KIT/start-face.sh
-4. Diz "$WAKE" — o rosto acorda, ouve-te e fala contigo.
+4. Diz "$WAKE" — o orbe acorda, ouve-te e fala contigo.
 EOF
