@@ -43,19 +43,19 @@ cd jarvis-kit
 
 ## O rosto
 
-O rosto é desenhado ao vivo: uma cabeça "topográfica" feita de linhas de contorno, com olhos que piscam e seguem o rato. Cada estado do Jarvis tem um comportamento próprio:
+O rosto é uma cabeça humana 3D com uma malha em grelha luminosa, desenhada em tempo real no browser com WebGL. Tem 52 expressões faciais: a boca abre, os olhos piscam e seguem o rato, e as sobrancelhas mexem-se. Cada estado do Jarvis tem um comportamento próprio:
 
 | Estado | O que acontece |
 |---|---|
-| **Em espera** | Respira devagar, pisca e olha à volta. |
-| **A ouvir** | Fica ciano, os olhos abrem-se e o anel à volta da cabeça reage à **tua** voz. |
-| **A pensar** | Fica âmbar, os olhos estreitam-se e varrem de um lado para o outro. Arcos orbitam a cabeça e uma linha de luz percorre o rosto. |
-| **A falar** | A boca abre e fecha com o **volume real** da voz do Jarvis. As ondas expandem-se e as legendas mostram o que ele diz. |
-| **Offline** | Olhos fechados, à espera de que a app arranque. |
+| **Em espera** | Grelha branca-azulada. Respira, pisca, olha à volta e esboça um leve sorriso. |
+| **A ouvir** | Fica ciano, os olhos abrem-se e as sobrancelhas sobem. A grelha brilha mais quando **tu** falas. |
+| **A pensar** | Fica âmbar, franze a testa e semicerra os olhos. Os olhos varrem de um lado para o outro e uma linha de luz percorre a cabeça. |
+| **A falar** | O maxilar abre com o **volume real** da voz do Jarvis e os dentes ficam à vista. Os lábios alternam entre forma redonda e esticada, a cabeça acena ligeiramente e as legendas mostram o que ele diz. |
+| **Offline** | Olhos fechados e cabeça descaída, à espera de que a app arranque. |
 
 **Controlos:** clicar no rosto ou carregar em `Espaço` começa ou termina a conversa. `Esc` desliga, `C` mostra ou esconde as legendas e `F` põe em ecrã inteiro.
 
-Para ver o rosto sem ter o Jarvis instalado, abre `face/face.html` diretamente no browser. Entra em **modo demonstração**.
+Para ver o rosto sem ter o Jarvis instalado, abre `face/face.html` diretamente no browser. Entra em **modo demonstração**. Precisas de um browser com WebGL (Chrome, Edge, Firefox ou Safari atuais).
 
 ### Como funciona
 
@@ -123,5 +123,29 @@ jarvis-kit/
 └── face/
     ├── face_bridge.py      ponte local Jarvis ⇄ rosto
     ├── face.html           interface
-    └── face.js             animação (canvas, sem dependências)
+    ├── face3d.js           rosto 3D já compilado (three.js + modelo embutido)
+    ├── head.glb            modelo da cabeça preparado (sem texturas)
+    └── source/             código-fonte do rosto 3D
+        ├── src/face3d.js   malha, iluminação, expressões e animação
+        ├── src/hud.js      ligação à ponte, legendas, teclas, modo demo
+        ├── prepare-model.mjs
+        └── build.mjs
 ```
+
+### Alterar o rosto 3D
+
+O `face3d.js` já vem compilado, por isso só precisas de Node.js se quiseres mudar o código:
+
+```bash
+cd jarvis-kit/face/source
+npm install
+npm run model   # só se mudares o modelo: facecap.source.glb -> ../head.glb
+npm run build   # src/ -> ../face3d.js
+```
+
+As cores, o brilho e a expressão de cada estado estão na tabela `LOOK` no início de `src/face3d.js`.
+
+## Créditos
+
+- Modelo da cabeça: **Face Cap**, de [Bannaflak](https://www.bannaflak.com/face-cap), tal como é distribuído nos exemplos do [three.js](https://github.com/mrdoob/three.js/tree/dev/examples/models/gltf). Não encontrei uma licença explícita para este modelo. Serve bem para uso pessoal; para uso comercial, confirma a licença com o autor ou troca o modelo por outro com blendshapes ARKit.
+- Renderização: [three.js](https://threejs.org) (licença MIT).
