@@ -10,6 +10,7 @@ re-broadcasts a small, stable message set to the face page it serves itself:
     {"t": "state",  "state": "idle|listening|thinking|speaking|error|paused"}
     {"t": "level",  "in": float, "out": float}           mic / speaker, 0..1
     {"t": "caption","who": "user|jarvis", "text": str, "final": bool}
+    {"t": "name",   "name": str}                         assistant's name (e.g. "Medusa")
 
 The page may send {"cmd": "call"} or {"cmd": "hangup"}; the bridge forwards
 them to Jarvis' REST API (the same path as the wake word and hangup hotkey).
@@ -83,6 +84,7 @@ class Bridge:
         self.clients: set[ServerConnection] = set()
         self.linked = False
         self.state = "idle"
+        self.name: str | None = None
         self._last_level_sent = 0.0
 
     # ---- fan-out ---------------------------------------------------------
@@ -139,6 +141,12 @@ class Bridge:
         snap = await self.rest("GET", "/api/voice/state")
         if snap:
             self.set_state(str(snap.get("voice_state", "idle")))
+        # The name derives from the user's wake phrase ("e aí Medusa" -> "Medusa").
+        named = await self.rest("GET", "/api/settings/assistant-name")
+        name = str((named or {}).get("resolved", "")).strip()
+        if name and name != self.name:
+            self.name = name
+            self.broadcast({"t": "name", "name": name})
 
     # ---- Jarvis /ws reader -----------------------------------------------
 
@@ -265,6 +273,8 @@ class Bridge:
         try:
             await ws.send(json.dumps({"t": "link", "jarvis": self.linked}))
             await ws.send(json.dumps({"t": "state", "state": self.state}))
+            if self.name:
+                await ws.send(json.dumps({"t": "name", "name": self.name}))
             async for raw in ws:
                 try:
                     cmd = json.loads(raw).get("cmd")

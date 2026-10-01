@@ -16,6 +16,10 @@ Este kit instala o [Personal Jarvis](https://github.com/PersonalJarvis/PersonalJ
 
 **Requisitos:** um computador com Windows 10/11, macOS ou Linux, microfone e colunas, e **uma chave de API**. A mais fácil é a do Gemini, que é gratuita e se cria em <https://aistudio.google.com/apikey>. Não é preciso placa gráfica.
 
+> **Já tens o Personal Jarvis instalado?** Usa o mesmo comando. O kit deteta a instalação, salta o instalador oficial e mantém a tua palavra de ativação e o nome do assistente (por exemplo, "Medusa"). Só acrescenta o orbe e a voz. Para forçar a reinstalação do Jarvis, acrescenta `-Reinstall` no Windows ou `REINSTALL=1` no macOS/Linux.
+>
+> **Porque é que não consigo falar com ele?** Se só configuraste uma chave da Anthropic (Claude), o Jarvis consegue pensar mas não ouve nem fala, porque a Anthropic não tem modelos de voz. O kit põe o Gemini a tratar das duas coisas: o reconhecimento de voz e a voz. Basta acrescentares a chave Gemini grátis. O Claude continua a ser o cérebro.
+
 ### Windows
 
 Abre o **PowerShell**: carrega na tecla Windows, escreve `powershell` e carrega em Enter. Depois cola este comando e carrega em Enter:
@@ -105,9 +109,9 @@ Também podes mudar a voz nas definições de voz da app.
 
 | Definição | Valor | Porquê |
 |---|---|---|
-| `[trigger.wake_word] phrase` | `Hey Jarvis` | O Jarvis tira o nome da palavra de ativação. |
-| `[stt] language` | `pt` | Melhora o reconhecimento de português. |
-| `[brain] reply_language` | `auto` | Responde na língua em que falas (ver limitação abaixo). |
+| `[trigger.wake_word] phrase` | mantém a atual (`Hey Jarvis` numa instalação nova) | O nome do assistente vem da palavra de ativação, por isso o kit não a altera. |
+| `[stt] provider / language` | `gemini-api` / `pt` | Ouve-te com a mesma chave Gemini da voz e reconhece melhor o português. |
+| `[brain] reply_language` | `auto`, se ainda não estiver definido | Responde na língua em que falas (ver limitação abaixo). |
 | `[tts] provider / voice` | `gemini-flash-tts` / `Charon` | Voz grave e formal, grátis com a chave Gemini. |
 | `[ui] orb_style` | não muda | Só muda com `--overlay none`, se quiseres esconder a barra do Jarvis e ficar só com o orbe. |
 

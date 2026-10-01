@@ -8,11 +8,16 @@ Jarvis' own Python so tomlkit is available, while the app is closed:
     %USERPROFILE%\\.personal-jarvis\\.venv\\Scripts\\python.exe configure_jarvis.py
 
 What it sets (everything else stays as the app wrote it):
-    [trigger.wake_word] phrase   -> "Hey Jarvis"  (the assistant's name derives from it)
-    [stt] language                -> "pt"          (recognition preference)
-    [brain] reply_language        -> "auto"        (mirror the user's language; Jarvis
-                                                     has no hard Portuguese pin yet)
+    [trigger.wake_word] phrase   -> kept if already set (the assistant's name, e.g.
+                                    "Medusa", derives from it); "Hey Jarvis" only on
+                                    a fresh install, or whatever --wake says
+    [stt] provider / language     -> Gemini speech recognition, "pt" hint
+    [brain] reply_language        -> "auto" unless already set (Jarvis has no hard
+                                    Portuguese pin; auto mirrors the user)
     [tts] provider / voice        -> Gemini "Charon" (deep, calm) or ElevenLabs
+
+One free Gemini key therefore covers both hearing (STT) and speaking (TTS).
+A Claude/Anthropic key alone cannot: Anthropic has no speech models.
     [ui] orb_style                -> unchanged unless --overlay is given
 
 API keys are NOT handled here: add them in the app (Settings > API Keys),
@@ -72,10 +77,11 @@ def table(doc: tomlkit.TOMLDocument | Table, dotted: str) -> Table:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Apply the Jarvis Kit persona and voice")
     ap.add_argument("--config", type=Path, default=default_config_path())
-    ap.add_argument("--wake", default="Hey Jarvis", help='wake phrase (default: "Hey Jarvis")')
+    ap.add_argument("--wake", help='wake phrase (default: keep the current one, or "Hey Jarvis" if none)')
     ap.add_argument("--tts", choices=("gemini", "elevenlabs"), default="gemini")
     ap.add_argument("--voice", help="Gemini voice name or ElevenLabs voice id")
     ap.add_argument("--stt-language", default="pt", help='speech recognition hint (default: "pt")')
+    ap.add_argument("--keep-stt", action="store_true", help="leave the speech-recognition provider as it is")
     ap.add_argument("--overlay", choices=OVERLAYS, help="Jarvis' own on-screen overlay")
     ap.add_argument("--dry-run", action="store_true", help="print the result, write nothing")
     ap.add_argument("--list-voices", action="store_true")
@@ -90,9 +96,21 @@ def main() -> int:
     path: Path = args.config
     doc = tomlkit.parse(path.read_text(encoding="utf-8-sig")) if path.exists() else tomlkit.document()
 
-    table(doc, "trigger.wake_word")["phrase"] = args.wake
-    table(doc, "stt")["language"] = args.stt_language
-    table(doc, "brain")["reply_language"] = "auto"
+    wake_tbl = table(doc, "trigger.wake_word")
+    current_wake = str(wake_tbl.get("phrase", "") or "").strip()
+    wake = args.wake or current_wake or "Hey Jarvis"
+    wake_tbl["phrase"] = wake
+
+    stt = table(doc, "stt")
+    stt["language"] = args.stt_language
+    if args.tts == "gemini" and not args.keep_stt:
+        # The same free Gemini key then serves both directions of the voice.
+        stt["provider"] = "gemini-api"
+        stt["provider_user_selected"] = True
+
+    brain = table(doc, "brain")
+    if "reply_language" not in brain:
+        brain["reply_language"] = "auto"
 
     tts = table(doc, "tts")
     tts["language_code"] = "auto"
@@ -127,7 +145,8 @@ def main() -> int:
     os.replace(tmp, path)  # atomic: Jarvis never reads a half-written file
 
     print(f"Configuração aplicada em {path}")
-    print(f"  palavra de ativação: {args.wake}")
+    print(f"  palavra de ativação: {wake}" + ("  (mantida)" if wake == current_wake else ""))
+    print(f"  reconhecimento de voz: {stt.get('provider', '(sem alteração)')}")
     print(f"  voz: {tts['provider']} / {voice}")
     print("Reinicia o Personal Jarvis para aplicar.")
     return 0

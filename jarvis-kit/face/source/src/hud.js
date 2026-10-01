@@ -81,6 +81,9 @@ export function createHud() {
         live.inLevel = +m.in || 0; live.outLevel = +m.out || 0;
       } else if (m.t === "caption") {
         showCaption(m.who, m.text, m.final);
+      } else if (m.t === "name" && m.name) {
+        $("brand-name").textContent = m.name.toUpperCase();
+        document.title = m.name;
       }
     };
   }
