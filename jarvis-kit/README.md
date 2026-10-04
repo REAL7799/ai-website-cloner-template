@@ -31,8 +31,8 @@ irm https://raw.githubusercontent.com/REAL7799/ai-website-cloner-template/claude
 O comando faz tudo por esta ordem:
 1. Descarrega o kit para `C:\Users\<tu>\jarvis-kit`.
 2. Corre o instalador oficial do Personal Jarvis, que instala o Python e o Git se faltarem. Quando ele perguntar alguma coisa, aceita.
-3. Quando a app do Jarvis abrir, o script pede para a fechares: clica com o botão direito no ícone junto ao relógio, escolhe **Sair** e carrega em Enter no PowerShell.
-4. Aplica a voz e a persona e cria o atalho **Jarvis Face** no ambiente de trabalho.
+3. Fecha o Jarvis sozinho (não precisas de procurar nenhum ícone), aplica a voz, a persona e o português e cria o atalho **Jarvis Face** no ambiente de trabalho.
+4. Volta a abrir o Jarvis automaticamente.
 
 ### macOS / Linux
 

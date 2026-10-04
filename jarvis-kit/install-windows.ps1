@@ -35,9 +35,52 @@ if (-not (Test-Path $Py)) {
   exit 1
 }
 
+function Get-JarvisProcesses {
+  # Every process started from Jarvis' own folder (its Python, its window, the orb bridge).
+  $root = [IO.Path]::GetFullPath($JHome).TrimEnd('\') + '\'
+  Get-CimInstance Win32_Process | Where-Object {
+    ($_.ExecutablePath -and $_.ExecutablePath.StartsWith($root, [StringComparison]::OrdinalIgnoreCase)) -or
+    ($_.CommandLine -and $_.CommandLine.IndexOf($root, [StringComparison]::OrdinalIgnoreCase) -ge 0)
+  }
+}
+
+function Find-JarvisShortcut {
+  $dirs = @([Environment]::GetFolderPath("Programs"), [Environment]::GetFolderPath("CommonPrograms"), [Environment]::GetFolderPath("Desktop"))
+  foreach ($d in $dirs) {
+    if ($d -and (Test-Path $d)) {
+      $lnk = Get-ChildItem -Path $d -Recurse -Filter "*Jarvis*.lnk" -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -notlike "*Face*" } | Select-Object -First 1
+      if ($lnk) { return $lnk.FullName }
+    }
+  }
+  return $null
+}
+
 Step "A fechar o Jarvis para aplicar a configuracao"
-Write-Host "Se a app do Jarvis estiver aberta, fecha-a (icone na bandeja > Sair) e carrega em Enter."
-Read-Host | Out-Null
+$WasRunning = $false
+$Procs = @(Get-JarvisProcesses)
+if ($Procs.Count -gt 0) {
+  $WasRunning = $true
+  # Main process = the one whose parent is not itself a Jarvis process; remember how to relaunch it.
+  $ids = $Procs.ProcessId
+  $Main = $Procs | Where-Object { $ids -notcontains $_.ParentProcessId } | Select-Object -First 1
+  # 1) Ask politely: close the windows.
+  foreach ($p in $Procs) {
+    $gp = Get-Process -Id $p.ProcessId -ErrorAction SilentlyContinue
+    if ($gp -and $gp.MainWindowHandle -ne 0) { [void]$gp.CloseMainWindow() }
+  }
+  for ($i = 0; $i -lt 10 -and @(Get-JarvisProcesses).Count -gt 0; $i++) { Start-Sleep -Milliseconds 500 }
+  # 2) Whatever is still running (it may live on in the tray) is stopped.
+  foreach ($p in @(Get-JarvisProcesses)) { Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue }
+  Start-Sleep -Seconds 1
+  if (@(Get-JarvisProcesses).Count -gt 0) {
+    Write-Host "Nao consegui fechar o Jarvis sozinho. Reinicia o computador e corre o comando de novo." -ForegroundColor Red
+    exit 1
+  }
+  Write-Host "Jarvis fechado."
+} else {
+  Write-Host "O Jarvis nao estava aberto."
+}
 
 Step "A aplicar persona e voz"
 $CfgArgs = @((Join-Path $Kit "configure_jarvis.py"), "--voice", $Voice)
@@ -59,9 +102,23 @@ $Lnk.WindowStyle = 7  # minimized: the console flashes away, the face window sta
 $Lnk.Description = "Orbe de energia do Personal Jarvis"
 $Lnk.Save()
 
+Step "A abrir o Jarvis outra vez"
+$Shortcut = Find-JarvisShortcut
+if ($Shortcut) {
+  Start-Process -FilePath $Shortcut
+  Write-Host "Jarvis a arrancar."
+} elseif ($WasRunning -and $Main -and $Main.ExecutablePath) {
+  $cut = $Main.CommandLine.IndexOf($Main.ExecutablePath, [StringComparison]::OrdinalIgnoreCase)
+  $argsOnly = if ($cut -ge 0) { $Main.CommandLine.Substring($cut + $Main.ExecutablePath.Length).TrimStart('"', ' ') } else { "" }
+  Start-Process -FilePath $Main.ExecutablePath -ArgumentList $argsOnly -WorkingDirectory $JHome
+  Write-Host "Jarvis a arrancar."
+} else {
+  Write-Host "Abre o Personal Jarvis pelo menu Iniciar."
+}
+
 Step "Pronto"
 Write-Host @"
-1. Abre o Personal Jarvis (menu Iniciar).
+1. O Jarvis abre sozinho (se nao abrir, procura "Jarvis" no menu Iniciar).
 2. Settings > API Keys: cola a tua chave Gemini (gratis em https://aistudio.google.com/apikey).
 3. Duplo clique em 'Jarvis Face' no ambiente de trabalho.
 4. Diz a tua palavra de ativacao - o orbe acorda, ouve-te e fala contigo.

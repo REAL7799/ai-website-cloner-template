@@ -30,7 +30,16 @@ if [ ! -x "$PY" ]; then
 fi
 
 step "A fechar o Jarvis para aplicar a configuração"
-read -r -p "Se a app do Jarvis estiver aberta, fecha-a e carrega em Enter. " _ </dev/tty || true
+WAS_RUNNING=""
+if pgrep -f "$JHOME/" >/dev/null 2>&1; then
+  WAS_RUNNING=1
+  pkill -TERM -f "$JHOME/" 2>/dev/null || true
+  for _ in 1 2 3 4 5 6 7 8 9 10; do pgrep -f "$JHOME/" >/dev/null 2>&1 || break; sleep 0.5; done
+  pkill -KILL -f "$JHOME/" 2>/dev/null || true
+  echo "Jarvis fechado."
+else
+  echo "O Jarvis não estava aberto."
+fi
 
 step "A aplicar persona e voz"
 if [ -n "$WAKE" ]; then
@@ -43,9 +52,14 @@ step "A ativar o português"
 "$PY" "$KIT/portugues.py" || echo "O português não foi ativado; o resto da instalação continua."
 chmod +x "$KIT/start-face.sh"
 
+if [ -n "$WAS_RUNNING" ] && [ -x "$JHOME/run.sh" ]; then
+  step "A abrir o Jarvis outra vez"
+  (cd "$JHOME" && nohup ./run.sh >/dev/null 2>&1 &)
+fi
+
 step "Pronto"
 cat <<EOF
-1. Abre o Personal Jarvis.
+1. Abre o Personal Jarvis (se não abriu sozinho).
 2. Settings > API Keys: cola a tua chave Gemini (grátis em https://aistudio.google.com/apikey).
 3. Corre:  $KIT/start-face.sh
 4. Diz a tua palavra de ativação — o orbe acorda, ouve-te e fala contigo.
