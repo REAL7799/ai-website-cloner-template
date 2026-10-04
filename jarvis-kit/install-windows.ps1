@@ -9,7 +9,7 @@
 #   powershell -ExecutionPolicy Bypass -File .\install-windows.ps1 -Reinstall   # force the official installer
 
 param(
-  [string]$Voice = "Charon",
+  [string]$Voice = "",           # empty = keep the current voice (Charon on a fresh install)
   [string]$Wake = "",            # empty = keep the current wake phrase / assistant name
   [switch]$SkipJarvisInstall,
   [switch]$Reinstall,
@@ -84,7 +84,8 @@ if ($Procs.Count -gt 0) {
 }
 
 Step "A aplicar persona e voz"
-$CfgArgs = @((Join-Path $Kit "configure_jarvis.py"), "--voice", $Voice)
+$CfgArgs = @((Join-Path $Kit "configure_jarvis.py"))
+if ($Voice) { $CfgArgs += @("--voice", $Voice) }
 if ($Wake) { $CfgArgs += @("--wake", $Wake) }
 & $Py @CfgArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

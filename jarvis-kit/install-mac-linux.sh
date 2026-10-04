@@ -12,7 +12,7 @@ set -euo pipefail
 KIT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 JHOME="${JARVIS_INSTALL_DIR:-$HOME/.personal-jarvis}"
 PY="$JHOME/.venv/bin/python"
-VOICE="${VOICE:-Charon}"
+VOICE="${VOICE:-}"   # empty = keep the current voice (Charon on a fresh install)
 WAKE="${WAKE:-}"   # empty = keep the current wake phrase / assistant name
 
 step() { printf '\n\033[36m==> %s\033[0m\n' "$1"; }
@@ -42,11 +42,10 @@ else
 fi
 
 step "A aplicar persona e voz"
-if [ -n "$WAKE" ]; then
-  "$PY" "$KIT/configure_jarvis.py" --wake "$WAKE" --voice "$VOICE"
-else
-  "$PY" "$KIT/configure_jarvis.py" --voice "$VOICE"
-fi
+CFG_ARGS=()
+[ -n "$WAKE" ] && CFG_ARGS+=(--wake "$WAKE")
+[ -n "$VOICE" ] && CFG_ARGS+=(--voice "$VOICE")
+"$PY" "$KIT/configure_jarvis.py" "${CFG_ARGS[@]+"${CFG_ARGS[@]}"}"
 
 step "A ativar o português"
 "$PY" "$KIT/portugues.py" || echo "O português não foi ativado; o resto da instalação continua."

@@ -118,6 +118,18 @@ O Jarvis recusa ligações de páginas web de outras origens, e isso é uma prot
 
 ## Mudar a voz
 
+### A tua própria voz do ElevenLabs
+
+A chave do ElevenLabs não aparece na lista **API Keys** da app, porque o Jarvis a trata como fornecedor de voz e não como cérebro. Usa este script: pede a chave sem a mostrar no ecrã, confirma no ElevenLabs que a chave e o Voice ID funcionam, guarda a chave no gestor de credenciais do Windows (o mesmo sítio que a app usa) e ativa a voz.
+
+```powershell
+& "$env:USERPROFILE\.personal-jarvis\.venv\Scripts\python.exe" "$env:USERPROFILE\jarvis-kit\voz_elevenlabs.py"
+```
+
+Depois fecha e volta a abrir o Jarvis. A voz que escolheres é mantida quando voltares a correr o instalador.
+
+### Outras vozes
+
 ```bash
 # lista as vozes recomendadas
 ~/.personal-jarvis/.venv/bin/python configure_jarvis.py --list-voices
@@ -194,6 +206,8 @@ jarvis-kit/
 ├── install-mac-linux.sh    instala o Jarvis + persona
 ├── configure_jarvis.py     voz, persona e palavra de ativação (com cópia de segurança)
 ├── portugues.py            faz o Jarvis responder e falar em português (reversível)
+├── voz_elevenlabs.py       guarda a chave do ElevenLabs e ativa a tua voz
+├── diagnostico.ps1         verifica a instalação e diz o que falta
 ├── start-face.bat / .sh    arranca a ponte e abre o orbe numa janela
 └── face/
     ├── face_bridge.py      ponte local Jarvis ⇄ HUD

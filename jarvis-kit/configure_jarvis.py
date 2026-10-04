@@ -47,7 +47,7 @@ GEMINI_VOICES = {
     "Charon": "grave, calmo e formal (recomendado)",
     "Orus": "firme e confiante",
     "Iapetus": "claro e articulado",
-    "Algenib": "rouco, com textura",
+    "Algenib": "rouco, com textura (estilo vilão)",
     "Kore": "voz feminina firme",
     "Aoede": "voz feminina leve",
 }
@@ -78,8 +78,9 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Apply the Jarvis Kit persona and voice")
     ap.add_argument("--config", type=Path, default=default_config_path())
     ap.add_argument("--wake", help='wake phrase (default: keep the current one, or "Hey Jarvis" if none)')
-    ap.add_argument("--tts", choices=("gemini", "elevenlabs"), default="gemini")
-    ap.add_argument("--voice", help="Gemini voice name or ElevenLabs voice id")
+    ap.add_argument("--tts", choices=("gemini", "elevenlabs"),
+                    help="voice provider (default: keep the current voice; Gemini on a fresh install)")
+    ap.add_argument("--voice", help="Gemini voice name or ElevenLabs voice id (default: keep the current one)")
     ap.add_argument("--stt-language", default="pt", help='speech recognition hint (default: "pt")')
     ap.add_argument("--keep-stt", action="store_true", help="leave the speech-recognition provider as it is")
     ap.add_argument("--overlay", choices=OVERLAYS, help="Jarvis' own on-screen overlay")
@@ -101,9 +102,22 @@ def main() -> int:
     wake = args.wake or current_wake or "Hey Jarvis"
     wake_tbl["phrase"] = wake
 
+    # Voice: an explicit --tts/--voice wins; otherwise a voice the user already
+    # chose (e.g. their own ElevenLabs voice) is kept, and only a fresh install
+    # gets the kit default (Gemini "Charon").
+    tts = table(doc, "tts")
+    current_provider = str(tts.get("provider", "") or "")
+    keep_voice = args.tts is None and args.voice is None and current_provider != ""
+    if args.tts:
+        tts_choice = args.tts
+    elif args.voice and args.voice not in GEMINI_VOICES and current_provider == "elevenlabs":
+        tts_choice = "elevenlabs"  # a new ElevenLabs voice ID for the current provider
+    else:
+        tts_choice = "gemini"      # Gemini voice names ("Charon", "Algenib", ...) always mean Gemini
+
     stt = table(doc, "stt")
     stt["language"] = args.stt_language
-    if args.tts == "gemini" and not args.keep_stt:
+    if not keep_voice and tts_choice == "gemini" and not args.keep_stt:
         # The same free Gemini key then serves both directions of the voice.
         stt["provider"] = "gemini-api"
         stt["provider_user_selected"] = True
@@ -116,9 +130,10 @@ def main() -> int:
     if previous_pin not in ("auto", ""):
         print(f"Aviso: a língua de resposta estava fixada em '{previous_pin}'; passou para 'auto' para o português funcionar.")
 
-    tts = table(doc, "tts")
     tts["language_code"] = "auto"
-    if args.tts == "gemini":
+    if keep_voice:
+        voice = str(tts.get("voice_de", "") or "(atual)")
+    elif tts_choice == "gemini":
         voice = args.voice or "Charon"
         if voice not in GEMINI_VOICES:
             print(f"Aviso: '{voice}' não está na lista curta; o Jarvis usa Charon se o nome for inválido.")
@@ -128,8 +143,9 @@ def main() -> int:
         tts["provider"] = "elevenlabs"
         tts["stability"] = 0.55
         tts["similarity_boost"] = 0.8
-    tts["voice_de"] = voice
-    tts["voice_en"] = voice
+    if not keep_voice:
+        tts["voice_de"] = voice
+        tts["voice_en"] = voice
 
     if args.overlay:
         table(doc, "ui")["orb_style"] = args.overlay
@@ -151,7 +167,7 @@ def main() -> int:
     print(f"Configuração aplicada em {path}")
     print(f"  palavra de ativação: {wake}" + ("  (mantida)" if wake == current_wake else ""))
     print(f"  reconhecimento de voz: {stt.get('provider', '(sem alteração)')}")
-    print(f"  voz: {tts['provider']} / {voice}")
+    print(f"  voz: {tts.get('provider', '?')} / {voice}" + ("  (mantida)" if keep_voice else ""))
     print("Reinicia o Personal Jarvis para aplicar.")
     return 0
 

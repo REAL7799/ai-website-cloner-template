@@ -1,0 +1,106 @@
+"""Set up an ElevenLabs voice for Personal Jarvis in one step.
+
+Asks for the API key (typed hidden, never shown or written to a file), checks
+it against ElevenLabs together with the voice ID, stores the key exactly where
+the app itself stores it (the OS credential manager, via Jarvis' own
+``set_secret``), then switches Jarvis' voice to that ElevenLabs voice.
+
+    python voz_elevenlabs.py                 asks for the key and the voice ID
+    python voz_elevenlabs.py --voice <id>    asks only for the key
+
+Run it with Jarvis' own Python; restart Jarvis afterwards.
+"""
+
+from __future__ import annotations
+
+import argparse
+import getpass
+import json
+import os
+import subprocess
+import sys
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+API = "https://api.elevenlabs.io/v1"
+
+
+def jarvis_home() -> Path:
+    env = os.environ.get("JARVIS_INSTALL_DIR", "").strip()
+    return Path(env) if env else Path.home() / ".personal-jarvis"
+
+
+def check_voice(key: str, voice_id: str) -> tuple[bool, str]:
+    """Ask ElevenLabs for the voice with this key: proves both at once."""
+    req = urllib.request.Request(f"{API}/voices/{voice_id}", headers={"xi-api-key": key})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read() or b"{}")
+            return True, str(data.get("name") or voice_id)
+    except urllib.error.HTTPError as exc:
+        if exc.code == 401:
+            return False, "a chave foi recusada (401). Confirma que copiaste a chave inteira, ou dá-lhe a permissão 'Voices: Read'."
+        if exc.code in (400, 404):
+            return False, "a chave funciona, mas esse Voice ID não existe nesta conta."
+        return False, f"o ElevenLabs respondeu com erro {exc.code}."
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        return False, f"sem ligação ao ElevenLabs ({exc})."
+
+
+def store_key(key: str) -> bool:
+    home = jarvis_home()
+    sys.path.insert(0, str(home))
+    try:
+        from jarvis.core.config import set_secret
+    except Exception as exc:  # noqa: BLE001
+        print(f"Não consegui carregar o Jarvis em {home}: {exc}")
+        return False
+    return bool(set_secret("elevenlabs_api_key", key))
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Voz ElevenLabs para o Personal Jarvis")
+    ap.add_argument("--voice", help="Voice ID do ElevenLabs")
+    args = ap.parse_args()
+
+    print("Chave do ElevenLabs: em elevenlabs.io > o teu perfil > API Keys.")
+    key = getpass.getpass("Cola a chave e carrega em Enter (não aparece no ecrã): ").strip()
+    if not key:
+        print("Nenhuma chave introduzida; nada foi alterado.")
+        return 1
+    voice = (args.voice or input("Voice ID da tua voz (em Voices > a tua voz > ID): ")).strip()
+    if not voice:
+        print("Nenhum Voice ID introduzido; nada foi alterado.")
+        return 1
+
+    ok, info = check_voice(key, voice)
+    if ok:
+        print(f"Chave e voz confirmadas: \"{info}\".")
+    elif info.startswith("sem ligação"):
+        # Only an unreachable server is uncertain; a refused key or unknown voice is not.
+        if input(f"Não consegui confirmar: {info} Guardar mesmo assim? (s/n) ").strip().lower() != "s":
+            print("Nada foi alterado.")
+            return 1
+    else:
+        print(f"Não ativei a voz: {info}")
+        return 1
+
+    if not store_key(key):
+        print("Não consegui guardar a chave no gestor de credenciais; nada mais foi alterado.")
+        return 1
+    print("Chave guardada no gestor de credenciais do sistema (o mesmo sítio que a app usa).")
+
+    result = subprocess.run(
+        [sys.executable, str(HERE / "configure_jarvis.py"), "--tts", "elevenlabs", "--voice", voice],
+        check=False,
+    )
+    if result.returncode != 0:
+        return result.returncode
+    print("\nPronto. Fecha e volta a abrir o Personal Jarvis para ouvires a nova voz.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
