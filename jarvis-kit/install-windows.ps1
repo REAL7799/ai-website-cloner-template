@@ -45,6 +45,10 @@ if ($Wake) { $CfgArgs += @("--wake", $Wake) }
 & $Py @CfgArgs
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+Step "A ativar o portugues"
+& $Py (Join-Path $Kit "portugues.py")
+if ($LASTEXITCODE -ne 0) { Write-Host "O portugues nao foi ativado; o resto da instalacao continua." -ForegroundColor Yellow }
+
 Step "A criar o atalho 'Jarvis Face' no ambiente de trabalho"
 $Desktop = [Environment]::GetFolderPath("Desktop")
 $Shell = New-Object -ComObject WScript.Shell

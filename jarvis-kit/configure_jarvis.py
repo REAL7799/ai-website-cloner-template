@@ -12,8 +12,8 @@ What it sets (everything else stays as the app wrote it):
                                     "Medusa", derives from it); "Hey Jarvis" only on
                                     a fresh install, or whatever --wake says
     [stt] provider / language     -> Gemini speech recognition, "pt" hint
-    [brain] reply_language        -> "auto" unless already set (Jarvis has no hard
-                                    Portuguese pin; auto mirrors the user)
+    [brain] reply_language        -> "auto" (Jarvis has no Portuguese pin; a de/en/es
+                                    pin would override Portuguese, auto mirrors it)
     [tts] provider / voice        -> Gemini "Charon" (deep, calm) or ElevenLabs
 
 One free Gemini key therefore covers both hearing (STT) and speaking (TTS).
@@ -108,9 +108,13 @@ def main() -> int:
         stt["provider"] = "gemini-api"
         stt["provider_user_selected"] = True
 
+    # Portuguese needs "auto": a de/en/es pin would override the user's language
+    # (see portugues.py for why Jarvis cannot pin Portuguese itself).
     brain = table(doc, "brain")
-    if "reply_language" not in brain:
-        brain["reply_language"] = "auto"
+    previous_pin = str(brain.get("reply_language", "auto"))
+    brain["reply_language"] = "auto"
+    if previous_pin not in ("auto", ""):
+        print(f"Aviso: a língua de resposta estava fixada em '{previous_pin}'; passou para 'auto' para o português funcionar.")
 
     tts = table(doc, "tts")
     tts["language_code"] = "auto"

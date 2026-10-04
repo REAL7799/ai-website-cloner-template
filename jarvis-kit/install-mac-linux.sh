@@ -38,6 +38,9 @@ if [ -n "$WAKE" ]; then
 else
   "$PY" "$KIT/configure_jarvis.py" --voice "$VOICE"
 fi
+
+step "A ativar o português"
+"$PY" "$KIT/portugues.py" || echo "O português não foi ativado; o resto da instalação continua."
 chmod +x "$KIT/start-face.sh"
 
 step "Pronto"

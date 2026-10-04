@@ -2,7 +2,7 @@
 // The renderer only reads `live` (state + levels) and `pointer`.
 
 export const STATES = {
-  offline:   { label: "jarvis offline", dot: "#4a4f57" },
+  offline:   { label: "desligado",      dot: "#4a4f57" },
   idle:      { label: "em espera",      dot: "#8a8f98" },
   listening: { label: "a ouvir",        dot: "#5ce1e6" },
   thinking:  { label: "a pensar",       dot: "#ffb547" },
@@ -44,7 +44,7 @@ export function createHud() {
   function refreshLink() {
     if (demo) {
       linkLabel.textContent = "modo demonstração";
-      sub.textContent = "demo · sem ligação ao jarvis";
+      sub.textContent = "demonstração · sem ligação ao jarvis";
       showBanner("");
       return;
     }

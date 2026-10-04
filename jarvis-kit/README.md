@@ -111,14 +111,39 @@ Também podes mudar a voz nas definições de voz da app.
 |---|---|---|
 | `[trigger.wake_word] phrase` | mantém a atual (`Hey Jarvis` numa instalação nova) | O nome do assistente vem da palavra de ativação, por isso o kit não a altera. |
 | `[stt] provider / language` | `gemini-api` / `pt` | Ouve-te com a mesma chave Gemini da voz e reconhece melhor o português. |
-| `[brain] reply_language` | `auto`, se ainda não estiver definido | Responde na língua em que falas (ver limitação abaixo). |
+| `[brain] reply_language` | `auto` | Obrigatório para o português: uma língua fixa (alemão, inglês ou espanhol) passaria por cima dele. |
 | `[tts] provider / voice` | `gemini-flash-tts` / `Charon` | Voz grave e formal, grátis com a chave Gemini. |
 | `[ui] orb_style` | não muda | Só muda com `--overlay none`, se quiseres esconder a barra do Jarvis e ficar só com o orbe. |
 
+## Português
+
+O Personal Jarvis só conhece alemão, inglês e espanhol. Sem correção, o detetor de língua dele trata o português como **espanhol** ("Olá Medusa, como está o meu dia hoje?" → espanhol), por palavras partilhadas como *como*, *está* e *para*. Com frases curtas ou informais trata-o como **inglês**. Nesses casos obriga o assistente a responder em espanhol ou inglês e põe a voz com essa pronúncia.
+
+O instalador corre o `portugues.py`, que faz três correções pequenas e reversíveis no Jarvis instalado:
+
+1. O detetor reconhece o português e deixa de o rotular como espanhol ou inglês. O assistente passa a responder na tua língua.
+2. A verificação que bloqueia respostas "na língua errada" deixa de bloquear respostas em português.
+3. A voz Gemini fala as frases portuguesas como português, sem sotaque espanhol. Para fixar uma variante, define a variável de ambiente `JARVIS_KIT_PT_LOCALE`, por exemplo `pt-BR`.
+
+A correção guarda os ficheiros originais, verifica-se a si própria e, se algo falhar, desfaz tudo. Testei-a com os testes do próprio Jarvis e passam exatamente os mesmos que sem ela.
+
+```powershell
+# Windows (no PowerShell)
+& "$env:USERPROFILE\.personal-jarvis\.venv\Scripts\python.exe" "$env:USERPROFILE\jarvis-kit\portugues.py" --check   # ver o estado
+& "$env:USERPROFILE\.personal-jarvis\.venv\Scripts\python.exe" "$env:USERPROFILE\jarvis-kit\portugues.py"           # ativar
+& "$env:USERPROFILE\.personal-jarvis\.venv\Scripts\python.exe" "$env:USERPROFILE\jarvis-kit\portugues.py" --undo    # desfazer
+```
+
+No macOS ou Linux: `~/.personal-jarvis/.venv/bin/python ~/jarvis-kit/portugues.py` (com `--check` ou `--undo`).
+
+**Depois de atualizar o Jarvis** (voltar a correr o instalador oficial), corre o `portugues.py` outra vez, porque a atualização repõe os ficheiros originais. Reinicia o Jarvis depois de ativar.
+
 ## Limitações
 
-- **Português:** o Jarvis só tem modo fixo para alemão, inglês e espanhol. Em português funciona no modo `auto`: quando lhe falas em português, ele responde em português. Às vezes pode escapar uma frase noutra língua. Se isso acontecer, diz-lhe *"responde sempre em português"*.
-- **Palavra de ativação:** não existe um modelo pré-treinado para "Hey Jarvis". A deteção usa reconhecimento genérico (Vosk ou Whisper). Em ambientes com muito ruído podes usar o atalho de teclado da app ou clicar no orbe.
+- **Menus da app:** a interface do Jarvis só existe em inglês, alemão e espanhol, por isso os menus continuam numa dessas línguas. As conversas e a voz ficam em português.
+- **Frases automáticas:** algumas frases que o próprio Jarvis gera, como confirmações curtas ("um momento") ou mensagens de erro, podem sair em inglês, porque as tabelas internas dele não têm português. As respostas do assistente saem em português.
+- **Não fixes outra língua:** se escolheres alemão, inglês ou espanhol como "língua de resposta" nas definições, essa escolha passa por cima do português. Mantém em automático.
+- **Palavra de ativação:** não existe um modelo pré-treinado para a tua frase. A deteção usa reconhecimento genérico (Vosk ou Whisper). Em ambientes com muito ruído, usa o atalho de teclado da app ou clica no orbe.
 - **Custos:** a chave Gemini tem um nível gratuito com limites. O ElevenLabs e outros fornecedores cobram à parte.
 
 ## Resolução de problemas
@@ -139,6 +164,7 @@ jarvis-kit/
 ├── install-windows.ps1     instala o Jarvis + persona + atalho
 ├── install-mac-linux.sh    instala o Jarvis + persona
 ├── configure_jarvis.py     voz, persona e palavra de ativação (com cópia de segurança)
+├── portugues.py            faz o Jarvis responder e falar em português (reversível)
 ├── start-face.bat / .sh    arranca a ponte e abre o orbe numa janela
 └── face/
     ├── face_bridge.py      ponte local Jarvis ⇄ orbe
