@@ -19,11 +19,28 @@ try {
   Expand-Archive -Path $Zip -DestinationPath $Tmp -Force
   $Src = Get-ChildItem -Path $Tmp -Directory -Recurse -Filter "jarvis-kit" | Select-Object -First 1
   if (-not $Src) { throw "A pasta jarvis-kit nao foi encontrada no download." }
-  if (Test-Path $Dest) { Remove-Item -Recurse -Force $Dest }
-  Move-Item -Path $Src.FullName -Destination $Dest
+  # An older HUD bridge keeps the kit folder in use, and Windows refuses to delete a
+  # folder in use; stop it first (it is restarted by the installer).
+  try {
+    Get-CimInstance Win32_Process -ErrorAction Stop |
+      Where-Object { $_.CommandLine -and $_.CommandLine -like "*face_bridge.py*" } |
+      ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+  } catch { }
+  Start-Sleep -Milliseconds 700
+  $replaced = $false
+  if (Test-Path $Dest) {
+    try { Remove-Item -Recurse -Force $Dest -ErrorAction Stop }
+    catch { Write-Host "A pasta antiga ainda esta em uso; a atualizar os ficheiros por cima." -ForegroundColor Yellow }
+  }
+  if (Test-Path $Dest) {
+    Copy-Item -Path (Join-Path $Src.FullName "*") -Destination $Dest -Recurse -Force
+  } else {
+    Move-Item -Path $Src.FullName -Destination $Dest
+  }
 } finally {
   Remove-Item -Recurse -Force $Tmp -ErrorAction SilentlyContinue
 }
-Write-Host "Kit guardado em $Dest"
+$Version = (Get-Content (Join-Path $Dest "VERSION") -ErrorAction SilentlyContinue | Select-Object -First 1)
+Write-Host "Kit guardado em $Dest (versao $Version)"
 
 & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Dest "install-windows.ps1")

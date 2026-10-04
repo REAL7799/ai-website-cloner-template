@@ -12,6 +12,7 @@ re-broadcasts a small, stable message set to the face page it serves itself:
     {"t": "caption","who": "user|jarvis", "text": str, "final": bool}
     {"t": "name",   "name": str}                         assistant's name (e.g. "Medusa")
     {"t": "sys", ...}                                    live PC readings (see sysstats.py), 1 Hz
+    {"t": "hello",  "version": str}                      kit version; the page reloads itself on change
 
 The page may send {"cmd": "call"} or {"cmd": "hangup"}; the bridge forwards
 them to Jarvis' REST API (the same path as the wake word and hangup hotkey).
@@ -56,6 +57,14 @@ except ImportError:  # pragma: no cover — depends on the interpreter used
 log = logging.getLogger("jarvis-face")
 
 HERE = Path(__file__).resolve().parent
+
+
+def kit_version() -> str:
+    """The installed kit version, read fresh so an update is noticed without a restart."""
+    try:
+        return (HERE.parent / "VERSION").read_text(encoding="utf-8").strip()
+    except OSError:
+        return "dev"
 STATIC_FILES = {
     "/": ("face.html", "text/html; charset=utf-8"),
     "/face.html": ("face.html", "text/html; charset=utf-8"),
@@ -254,6 +263,8 @@ class Bridge:
 
     def process_request(self, connection: ServerConnection, request: Request) -> Response | None:
         path = request.path.split("?", 1)[0]
+        if path == "/version":
+            return connection.respond(http.HTTPStatus.OK, kit_version() + "\n")
         if path == "/bridge":
             # Only same-origin pages may drive the bridge (blocks other sites
             # in the browser from starting voice sessions via this port).
@@ -288,6 +299,7 @@ class Bridge:
     async def page_handler(self, ws: ServerConnection) -> None:
         self.clients.add(ws)
         try:
+            await ws.send(json.dumps({"t": "hello", "version": kit_version()}))
             await ws.send(json.dumps({"t": "link", "jarvis": self.linked}))
             await ws.send(json.dumps({"t": "state", "state": self.state}))
             if self.name:

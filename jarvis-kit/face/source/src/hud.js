@@ -73,7 +73,7 @@ export function createHud() {
   }
 
   // ---- bridge
-  let ws = null, retry = 400, capTimer = 0;
+  let ws = null, retry = 400, capTimer = 0, version = null;
   function connect() {
     ws = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/bridge`);
     ws.onopen = () => { live.bridge = true; retry = 400; refreshLink(); };
@@ -83,7 +83,11 @@ export function createHud() {
     };
     ws.onmessage = (ev) => {
       let m; try { m = JSON.parse(ev.data); } catch { return; }
-      if (m.t === "link") {
+      if (m.t === "hello") {
+        // A kit update while this window stayed open: load the new HUD.
+        if (version && m.version !== version) location.reload();
+        version = m.version;
+      } else if (m.t === "link") {
         live.linked = !!m.jarvis; refreshLink();
         if (live.linked && live.state === "offline") setState("idle");
       } else if (m.t === "state") {
