@@ -1,7 +1,7 @@
 # Jarvis Kit - Windows installer.
 # 1) Runs the official Personal Jarvis installer (unchanged, from its GitHub repo)
 # 2) Applies the kit's persona/voice (wake phrase "Hey Jarvis", Portuguese, voice Charon)
-# 3) Creates a "Jarvis Face" shortcut on the desktop
+# 3) Creates a "Jarvis HUD" shortcut on the desktop and starts its bridge at login
 #
 # Usage (PowerShell, inside the jarvis-kit folder):
 #   powershell -ExecutionPolicy Bypass -File .\install-windows.ps1
@@ -12,7 +12,8 @@ param(
   [string]$Voice = "Charon",
   [string]$Wake = "",            # empty = keep the current wake phrase / assistant name
   [switch]$SkipJarvisInstall,
-  [switch]$Reinstall
+  [switch]$Reinstall,
+  [switch]$NoAutostart          # do not start the HUD bridge with Windows
 )
 
 $ErrorActionPreference = "Stop"
@@ -92,15 +93,36 @@ Step "A ativar o portugues"
 & $Py (Join-Path $Kit "portugues.py")
 if ($LASTEXITCODE -ne 0) { Write-Host "O portugues nao foi ativado; o resto da instalacao continua." -ForegroundColor Yellow }
 
-Step "A criar o atalho 'Jarvis Face' no ambiente de trabalho"
+Step "A criar o atalho 'Jarvis HUD' no ambiente de trabalho"
 $Desktop = [Environment]::GetFolderPath("Desktop")
 $Shell = New-Object -ComObject WScript.Shell
-$Lnk = $Shell.CreateShortcut((Join-Path $Desktop "Jarvis Face.lnk"))
+Remove-Item (Join-Path $Desktop "Jarvis Face.lnk") -ErrorAction SilentlyContinue  # older kit name
+$Lnk = $Shell.CreateShortcut((Join-Path $Desktop "Jarvis HUD.lnk"))
 $Lnk.TargetPath = Join-Path $Kit "start-face.bat"
 $Lnk.WorkingDirectory = $Kit
-$Lnk.WindowStyle = 7  # minimized: the console flashes away, the face window stays
-$Lnk.Description = "Orbe de energia do Personal Jarvis"
+$Lnk.WindowStyle = 7  # minimized: the console flashes away, the HUD window stays
+$Lnk.Description = "HUD holografico do Personal Jarvis"
 $Lnk.Save()
+
+# The HUD bridge at login: needed for the animated wallpaper (Lively), which
+# loads the HUD page by itself after a reboot. Runs hidden (pythonw), ~30 MB RAM.
+$Startup = Join-Path ([Environment]::GetFolderPath("Startup")) "Jarvis HUD (ponte).lnk"
+if ($NoAutostart) {
+  Remove-Item $Startup -ErrorAction SilentlyContinue
+} else {
+  $Pyw = Join-Path $JHome ".venv\Scripts\pythonw.exe"
+  if (-not (Test-Path $Pyw)) { $Pyw = $Py }
+  $Auto = $Shell.CreateShortcut($Startup)
+  $Auto.TargetPath = $Pyw
+  $Auto.Arguments = '"' + (Join-Path $Kit "face\face_bridge.py") + '"'
+  $Auto.WorkingDirectory = Join-Path $Kit "face"
+  $Auto.WindowStyle = 7
+  $Auto.Description = "Ponte do Jarvis HUD (dados do sistema e estado da voz)"
+  $Auto.Save()
+  Write-Host "A ponte do HUD passa a arrancar com o Windows (para o papel de parede animado)."
+  # Start it now too, so the wallpaper works without a reboot.
+  Start-Process -FilePath $Pyw -ArgumentList $Auto.Arguments -WorkingDirectory $Auto.WorkingDirectory -WindowStyle Hidden
+}
 
 Step "A abrir o Jarvis outra vez"
 $Shortcut = Find-JarvisShortcut
@@ -120,6 +142,8 @@ Step "Pronto"
 Write-Host @"
 1. O Jarvis abre sozinho (se nao abrir, procura "Jarvis" no menu Iniciar).
 2. Settings > API Keys: cola a tua chave Gemini (gratis em https://aistudio.google.com/apikey).
-3. Duplo clique em 'Jarvis Face' no ambiente de trabalho.
+3. Duplo clique em 'Jarvis HUD' no ambiente de trabalho.
+   Papel de parede animado: instala o Lively Wallpaper e adiciona o endereco
+   http://127.0.0.1:47900/?wallpaper   (ver README, seccao "Papel de parede").
 4. Diz a tua palavra de ativacao - o orbe acorda, ouve-te e fala contigo.
 "@

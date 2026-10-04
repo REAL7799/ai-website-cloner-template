@@ -28,7 +28,7 @@ open_app_window() {
     Darwin)
       for app in "Google Chrome" "Microsoft Edge" "Brave Browser"; do
         if [ -d "/Applications/$app.app" ]; then
-          open -na "$app" --args --app="$URL" --window-size=520,640
+          open -na "$app" --args --app="$URL" --start-maximized
           return
         fi
       done
@@ -36,7 +36,7 @@ open_app_window() {
     *)
       for bin in google-chrome chromium chromium-browser microsoft-edge brave-browser; do
         if command -v "$bin" >/dev/null 2>&1; then
-          "$bin" --app="$URL" --window-size=520,640 >/dev/null 2>&1 &
+          "$bin" --app="$URL" --start-maximized >/dev/null 2>&1 &
           return
         fi
       done

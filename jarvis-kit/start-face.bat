@@ -24,9 +24,9 @@ set "URL=http://127.0.0.1:47900/"
 set "EDGE=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
 set "CHROME=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
 if exist "%EDGE%" (
-  start "" "%EDGE%" --app=%URL% --window-size=520,640
+  start "" "%EDGE%" --app=%URL% --start-maximized
 ) else if exist "%CHROME%" (
-  start "" "%CHROME%" --app=%URL% --window-size=520,640
+  start "" "%CHROME%" --app=%URL% --start-maximized
 ) else (
   start "" %URL%
 )

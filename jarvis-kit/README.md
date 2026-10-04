@@ -31,7 +31,7 @@ irm https://raw.githubusercontent.com/REAL7799/ai-website-cloner-template/claude
 O comando faz tudo por esta ordem:
 1. Descarrega o kit para `C:\Users\<tu>\jarvis-kit`.
 2. Corre o instalador oficial do Personal Jarvis, que instala o Python e o Git se faltarem. Quando ele perguntar alguma coisa, aceita.
-3. Fecha o Jarvis sozinho (não precisas de procurar nenhum ícone), aplica a voz, a persona e o português e cria o atalho **Jarvis Face** no ambiente de trabalho.
+3. Fecha o Jarvis sozinho (não precisas de procurar nenhum ícone), aplica a voz, a persona e o português e cria o atalho **Jarvis HUD** no ambiente de trabalho.
 4. Volta a abrir o Jarvis automaticamente.
 
 ### macOS / Linux
@@ -52,29 +52,58 @@ Descarrega o ZIP do repositório no GitHub (botão **Code › Download ZIP**, no
 
 1. Abre o **Personal Jarvis**. Se o assistente inicial pedir uma palavra de ativação, escreve `Hey Jarvis`.
 2. Vai a **Settings › API Keys** e cola a chave Gemini. Fica guardada no gestor de credenciais do sistema e não vai para nenhum ficheiro.
-3. Abre o orbe. No Windows é o atalho **Jarvis Face**; no macOS e no Linux é `./start-face.sh`.
+3. Abre o HUD. No Windows é o atalho **Jarvis HUD**; no macOS e no Linux é `./start-face.sh`.
 4. Diz **"Hey Jarvis"** e faz um pedido, por exemplo: *"Planeia comigo o dia de amanhã."*
 
 ---
 
-## O orbe
+## O HUD
 
-O orbe é uma esfera de plasma desenhada em tempo real no browser com WebGL. Tem dezenas de anéis de luz distorcidos por ruído, poeira luminosa por dentro, um núcleo incandescente e um reflexo horizontal de lente. Cada estado do Jarvis tem um comportamento próprio:
+O ecrã do assistente é um HUD holográfico ao estilo Iron Man, com o orbe de energia ao centro. **Todos os números são reais**: vêm do teu computador e são atualizados a cada segundo.
+
+| Zona | O que mostra |
+|---|---|
+| **Topo** | Nome do assistente (por exemplo, MEDUSA), hora, data em português e estado da voz |
+| **Processador** | Uso total, frequência, gráfico do último minuto e barras por núcleo |
+| **Memória** | Percentagem e GB em uso |
+| **Armazenamento** | Espaço livre em cada disco (C:, D:…) |
+| **Rede** | Velocidade de receção e de envio ao vivo, com gráfico |
+| **Energia** | Bateria e carregamento, ou "AC" num PC de secretária |
+| **Sistema** | Nome da máquina, versão do Windows, tempo ligado e número de processos |
+| **Centro** | O orbe, rodeado de anéis holográficos que giram, sobre uma grelha em perspetiva |
+| **Baixo** | Onda da voz em tempo real e legendas do que é dito |
+
+Quando abre, o HUD mostra uma sequência de arranque curta com verificações reais: a ponte, a ligação ao assistente e os sensores. Para a saltar, clica ou carrega numa tecla. As barras ficam laranja ou vermelhas quando a memória ou um disco estão quase cheios, ou quando a bateria está baixa.
+
+O orbe e os anéis mudam de cor com o estado do assistente:
 
 | Estado | O que acontece |
 |---|---|
 | **Em espera** | Azul elétrico. Ondula devagar, respira e roda lentamente. |
 | **A ouvir** | Fica ciano e agita-se ao ritmo da **tua** voz. |
-| **A pensar** | Fica violeta-azulado e mais turbulento, com o plasma a girar depressa. |
-| **A falar** | Pulsa com o **volume real** da voz do Jarvis: os anéis expandem-se, o núcleo cresce e o reflexo alonga-se. As legendas mostram o que ele diz. |
+| **A pensar** | Fica violeta-azulado e mais turbulento, e os anéis aceleram. |
+| **A falar** | Pulsa com o **volume real** da voz: os anéis expandem-se, o núcleo cresce e a onda mexe-se. |
 | **Offline** | Pequeno, escuro e quase parado, à espera de que a app arranque. |
 | **Erro** | Fica vermelho e instável. |
 
-Mexer o rato inclina o orbe na direção do ponteiro. Se o sistema tiver a opção "reduzir movimento" ativa, a animação fica mais calma.
-
 **Controlos:** clicar no orbe ou carregar em `Espaço` começa ou termina a conversa. `Esc` desliga, `C` mostra ou esconde as legendas e `F` põe em ecrã inteiro.
 
-Para ver o orbe sem ter o Jarvis instalado, abre `face/face.html` diretamente no browser. Entra em **modo demonstração**. Precisas de um browser com WebGL (Chrome, Edge, Firefox ou Safari atuais).
+Para ver o HUD sem ter o Jarvis instalado, abre `face/face.html` diretamente no browser. Entra em **modo demonstração**, com dados de exemplo claramente identificados. Precisas de um browser com WebGL (Chrome, Edge, Firefox ou Safari atuais).
+
+### Papel de parede animado (o "PC do Tony Stark")
+
+Para teres o HUD sempre vivo atrás das janelas:
+
+1. Instala o **Lively Wallpaper**, que é gratuito e de código aberto: pela Microsoft Store ou em <https://www.rocksdanister.com/lively/>.
+2. No Lively, carrega em **+** (adicionar papel de parede) e escolhe a opção de inserir um **URL**.
+3. Cola este endereço e confirma:
+   ```
+   http://127.0.0.1:47900/?wallpaper
+   ```
+
+O instalador põe a ponte do HUD a arrancar com o Windows, por isso o papel de parede volta sozinho depois de reiniciares. No modo papel de parede, o HUD limita a animação a 30 imagens por segundo para poupar a placa gráfica, e o Lively pausa-o quando tens um jogo ou vídeo em ecrã inteiro. Para falar com o assistente nesse modo, usa a palavra de ativação ou o atalho **Jarvis HUD**.
+
+Para a ponte não arrancar com o Windows, corre o instalador com `-NoAutostart`, ou apaga "Jarvis HUD (ponte)" da pasta de arranque (`Win + R` → `shell:startup`).
 
 ### Como funciona
 
@@ -150,8 +179,8 @@ No macOS ou Linux: `~/.personal-jarvis/.venv/bin/python ~/jarvis-kit/portugues.p
 
 | Sintoma | Solução |
 |---|---|
-| O orbe diz "à espera do Jarvis" | Abre a app Personal Jarvis. O orbe liga-se sozinho em poucos segundos. |
-| O orbe diz "ponte desligada" | Volta a abrir o atalho Jarvis Face ou o `start-face.sh`. No macOS/Linux o registo fica em `/tmp/jarvis-face.log`. |
+| O HUD diz "à espera do Jarvis" | Abre a app Personal Jarvis. O HUD liga-se sozinho em poucos segundos. |
+| O HUD diz "ponte desligada" | Volta a abrir o atalho Jarvis HUD ou o `start-face.sh`. No macOS/Linux o registo fica em `/tmp/jarvis-face.log`. |
 | Fala mas o orbe não pulsa | Atualiza o Jarvis, voltando a correr o instalador. As versões antigas não enviam o nível de áudio. |
 | Não ouve "Hey Jarvis" | Confirma nas definições da app qual é o microfone escolhido e qual é a palavra de ativação. |
 | A app pede uma "Control Key" | Ativaste o bloqueio do browser. Define `JARVIS_CONTROL_KEY` com a chave mostrada em Settings antes de abrir o orbe. |
@@ -167,12 +196,15 @@ jarvis-kit/
 ├── portugues.py            faz o Jarvis responder e falar em português (reversível)
 ├── start-face.bat / .sh    arranca a ponte e abre o orbe numa janela
 └── face/
-    ├── face_bridge.py      ponte local Jarvis ⇄ orbe
+    ├── face_bridge.py      ponte local Jarvis ⇄ HUD
+    ├── sysstats.py         leitura real de CPU, memória, discos, rede e bateria
     ├── face.html           interface
-    ├── orb.js              orbe já compilado (three.js incluído)
+    ├── orb.js              HUD já compilado (three.js incluído)
     └── source/             código-fonte do orbe
         ├── src/orb.js      anéis de plasma, núcleo, reflexo e animação
-        ├── src/hud.js      ligação à ponte, legendas, teclas, modo demo
+        ├── src/hud.js      ligação à ponte, cores por estado, legendas, teclas, modo demo
+        ├── src/panels.js   relógio, painéis de dados, gráficos e onda da voz
+        ├── src/boot.js     sequência de arranque
         └── build.mjs
 ```
 

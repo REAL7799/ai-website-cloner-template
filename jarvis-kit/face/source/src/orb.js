@@ -6,6 +6,8 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { createHud } from "./hud.js";
+import { createPanels } from "./panels.js";
+import { runBoot } from "./boot.js";
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -33,7 +35,8 @@ try {
   hud.showBanner("Este browser não suporta WebGL — atualiza o Chrome/Edge para ver o orbe.");
   throw new Error("WebGL unavailable");
 }
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+// Wallpaper mode trades a little sharpness and frame rate for a quiet GPU.
+renderer.setPixelRatio(Math.min(devicePixelRatio, hud.wallpaper ? 1.25 : 2));
 renderer.setClearColor(0x000000, 1);
 
 const scene = new THREE.Scene();
@@ -214,6 +217,40 @@ const streak = new THREE.Sprite(new THREE.SpriteMaterial({
 streak.scale.set(9, 0.12, 1);
 scene.add(halo, core, streak);
 
+// ------------------------------------------------------------------ holographic floor
+// A perspective grid receding to the horizon below the orb, drifting toward the
+// viewer; lines fade with distance and near the edges of the view.
+const floorUniforms = { uColor: uniforms.uColor, uTime: { value: 0 }, uGlow: uniforms.uGlow };
+const floor = new THREE.Mesh(
+  new THREE.PlaneGeometry(60, 60, 1, 1),
+  new THREE.ShaderMaterial({
+    uniforms: floorUniforms,
+    ...additive,
+    vertexShader: /* glsl */ `
+      varying vec2 vXZ;
+      void main(){
+        vec4 w = modelMatrix * vec4(position, 1.0);
+        vXZ = w.xz;
+        gl_Position = projectionMatrix * viewMatrix * w;
+      }`,
+    fragmentShader: /* glsl */ `
+      uniform vec3 uColor; uniform float uTime, uGlow;
+      varying vec2 vXZ;
+      void main(){
+        vec2 p = vec2(vXZ.x, vXZ.y + uTime * 0.6) / 0.9;
+        vec2 g = abs(fract(p - 0.5) - 0.5) / fwidth(p);
+        float line = 1.0 - min(min(g.x, g.y), 1.0);
+        float dist = length(vXZ - vec2(0.0, 2.0));
+        float fade = exp(-dist * 0.085) * smoothstep(9.0, 3.0, abs(vXZ.x) * 0.5);
+        fade *= smoothstep(4.5, -4.0, vXZ.y);   // dim the rows nearest the viewer (captions sit there)
+        gl_FragColor = vec4(uColor * line * fade * (0.32 + 0.14 * uGlow), 1.0);
+      }`,
+  })
+);
+floor.rotation.x = -Math.PI / 2;
+floor.position.set(0, -1.75, -24);
+scene.add(floor);
+
 // ------------------------------------------------------------------ post
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
@@ -227,7 +264,7 @@ function resize() {
   composer.setSize(w, h);
   camera.aspect = w / h;
   // Keep the orb fully visible on narrow (phone) screens.
-  camera.position.z = 6.2 * Math.max(1, 0.9 / camera.aspect);
+  camera.position.z = 6.8 * Math.max(1, 0.9 / camera.aspect);
   uniforms.uCamDist.value = camera.position.z;
   camera.updateProjectionMatrix();
 }
@@ -285,19 +322,28 @@ function update(t, dt) {
   streak.material.opacity = 0.3 * anim.glow + level * 0.2;
   streak.scale.x = 7 + level * 2.5;
   bloom.strength = 0.6 + anim.glow * 0.3 + level * 0.25;
+
+  floorUniforms.uTime.value += dt * motion * (0.6 + level);
+  // The DOM rings and voice strip share the same level.
+  document.documentElement.style.setProperty("--level", level.toFixed(3));
+  panels.drawWave(t, Math.max(level, live.state === "listening" ? anim.inL : 0));
 }
 
+const panels = createPanels(hud);
+const minFrame = hud.wallpaper ? 1 / 30 : 0;
 let last = performance.now() / 1000;
 function frame(ms) {
+  requestAnimationFrame(frame);
   const t = ms / 1000;
+  if (t - last < minFrame) return;
   const dt = Math.min(0.05, t - last); last = t;
   update(t, dt);
   composer.render();
-  requestAnimationFrame(frame);
 }
 
 window.__jarvisOrb = { anim, hud };
 hud.bindInput(canvas);
 hud.start();
+runBoot(hud, { reduceMotion });
 resize();
 requestAnimationFrame(frame);

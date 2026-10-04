@@ -54,6 +54,8 @@ class SystemSampler:
                 du = psutil.disk_usage(mount)
             except OSError:
                 continue
+            if du.total < 1024**3:  # tiny system/image mounts are noise on a HUD
+                continue
             disks.append({"name": mount.rstrip("\\/") or mount, "used": du.used, "total": du.total, "pct": du.percent})
 
         net = psutil.net_io_counters()

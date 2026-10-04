@@ -11,6 +11,7 @@ re-broadcasts a small, stable message set to the face page it serves itself:
     {"t": "level",  "in": float, "out": float}           mic / speaker, 0..1
     {"t": "caption","who": "user|jarvis", "text": str, "final": bool}
     {"t": "name",   "name": str}                         assistant's name (e.g. "Medusa")
+    {"t": "sys", ...}                                    live PC readings (see sysstats.py), 1 Hz
 
 The page may send {"cmd": "call"} or {"cmd": "hangup"}; the bridge forwards
 them to Jarvis' REST API (the same path as the wake word and hangup hotkey).
@@ -36,6 +37,8 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 from typing import Any
+
+from sysstats import SystemSampler
 
 try:
     from websockets.asyncio.client import connect
@@ -85,6 +88,7 @@ class Bridge:
         self.linked = False
         self.state = "idle"
         self.name: str | None = None
+        self.last_sys: dict[str, Any] | None = None
         self._last_level_sent = 0.0
 
     # ---- fan-out ---------------------------------------------------------
@@ -233,6 +237,19 @@ class Bridge:
             await asyncio.sleep(delay)
             delay = min(delay * 2, RECONNECT_MAX_S)
 
+    # ---- system readings for the HUD -------------------------------------
+
+    async def sys_loop(self, sampler: SystemSampler) -> None:
+        """Sample the PC once a second, only while a HUD page is open."""
+        while True:
+            if self.clients:
+                try:
+                    self.last_sys = await asyncio.to_thread(sampler.sample)
+                    self.broadcast(self.last_sys)
+                except Exception as exc:  # noqa: BLE001 — a failed reading never kills the bridge
+                    log.debug("system sample failed: %s", exc)
+            await asyncio.sleep(1.0)
+
     # ---- face page server ------------------------------------------------
 
     def process_request(self, connection: ServerConnection, request: Request) -> Response | None:
@@ -275,6 +292,8 @@ class Bridge:
             await ws.send(json.dumps({"t": "state", "state": self.state}))
             if self.name:
                 await ws.send(json.dumps({"t": "name", "name": self.name}))
+            if self.last_sys:
+                await ws.send(json.dumps(self.last_sys))
             async for raw in ws:
                 try:
                     cmd = json.loads(raw).get("cmd")
@@ -312,10 +331,12 @@ async def main_async(args: argparse.Namespace) -> None:
             loop.add_signal_handler(sig, stop.set)
 
     reader = asyncio.create_task(bridge.jarvis_loop())
+    sampler_task = asyncio.create_task(bridge.sys_loop(SystemSampler()))
     try:
         await stop.wait()
     finally:
         reader.cancel()
+        sampler_task.cancel()
         server.close()
         await server.wait_closed()
 
